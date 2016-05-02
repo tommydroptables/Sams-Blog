@@ -1,0 +1,35 @@
+header {
+	z-index: 100;
+	font-family: 'Lato',serif;
+	color: #fff;
+	width: 100%;
+	box-shadow: 0 4px 8px rgba(0,0,0,.28), 0 0 4px rgba(0,0,0,.14);
+	background-color: rgba(0,0,0,0.5);
+	position: fixed;
+	vertical-align: middle;
+}
+
+#title_t_pearl {
+	font-size: 4em;
+	transition: font-size 1s;
+}
+
+#slogan {
+	text-align: center;
+	width: 100%;
+	overflow: hidden;
+}
+
+#slogan_inner {
+	color: white;
+	font-size: 1em;
+	display: inline-block;
+	border-top: 1px white solid;
+	width: 366px;
+	transition: border-color 1s, width 1s 1s;
+	border-color: rgba(255,255,255,0);
+}
+
+#menu-spacing {
+	height: 150px;
+}

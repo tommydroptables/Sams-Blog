@@ -1,0 +1,374 @@
+<!<!DOCTYPE html>
+<html>
+<head>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+	.html {
+		text-align: center;
+	}
+	.tile_container {
+		border-radius: 2px;
+		border: 4px solid #007bff;
+		min-width: 10vw;
+		max-width: 20vw;
+		min-height: 5vh;
+		display: inline-block;
+		color: #5c5c5c;
+		position: relative;
+		margin: 1em 1em 1em 1em;
+
+	}
+	.tile_container:hover {
+		cursor: pointer;
+		opacity: .6;
+	}
+
+
+	.tile_container:hover p {
+		visibility: visible;
+	    opacity: 1;
+	    transition: opacity .5s linear;
+	    z-index: 3;
+	    color: black;
+	}
+
+	.tile_container:visited{
+		opacity: .5;
+		color: red;
+		background-color: red;
+	}
+
+	.tile_container > h1 {
+		text-align: center;
+		margin-top: 0;
+	}
+
+	.tile_container > p {
+		margin: 0 1em 0 1em;
+		 visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+	}
+
+	.triangle_base {
+		width: 0;
+		height: 0;
+		border-style: solid;
+		display: inline-block;
+
+	} 
+
+	.tile_background_image {
+		background-image: url('../images/1.gif');
+		background-repeat: no-repeat;
+		background-origin: 50% 50%;
+		background-size: cover;
+		display: inline-block;
+		z-index: 1;
+		width: 100%;
+	}
+
+	.triangle_top_left {
+		border-color: #007bff transparent transparent transparent;
+		border-width: 30px 30px 0 0;
+	}
+	.triangle_top_right {
+		border-color: transparent #007bff transparent transparent;
+		border-width: 0 30px 30px 0;
+		float: right;
+	}
+
+	.triangle_bottom_left {
+		border-width: 30px 0 0 30px;
+		border-color: transparent transparent transparent #007bff;
+	}
+	.triangle_bottom_right {
+		border-width: 0 0 30px 30px;
+		border-color: transparent transparent #007bff transparent;
+		float: right;
+	}
+	/*
+A custom Bootstrap 3.2 'Google Plus style' theme
+from http://bootply.com
+
+This CSS code should follow the 'bootstrap.css'
+in your HTML file.
+
+license: MIT
+author: bootply.com
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400);
+body {
+  background-color:#e0e0e0;
+  -webkit-font-smoothing: antialiased;
+}
+.navbar-default {background-color:#f4f4f4;margin-top:50px;border-width:0;z-index:5;}
+.navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > li:hover > a {font-weight:800;background-color:transparent;}
+.navbar-default .dropdown-menu {background-color:#ffffff;}
+.navbar-default .dropdown-menu li > a {padding-left:30px;}
+
+.header {background-color:#ffffff;border-width:0;}
+.header .navbar-collapse {background-color:#ffffff;}
+.btn,.form-control,.panel,.list-group,.well {border-radius:1px;box-shadow:0 0 0;}
+.form-control {border-color:#d7d7d7;}
+.btn-primary {border-color:transparent;}
+.btn-primary,.label-primary,.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {background-color:#4285f4;}
+.btn-plus {background-color:#ffffff;border-width:1px;box-shadow:1px 1px 0 #999999;border-radius:3px;color:#666666;text-shadow:0 0 1px #bbbbbb;}
+.well,.panel {box-shadow:0 1px 0 #cfcfcf;border-radius:3px;}
+.btn-success,.label-success,.progress-bar-success{background-color:#65b045;}
+.btn-info,.label-info,.progress-bar-info{background-color:#a0c3ff;border-color:#a0c3ff;}
+.btn-danger,.label-danger,.progress-bar-danger{background-color:#dd4b39;}
+.btn-warning,.label-warning,.progress-bar-warning{background-color:#f4b400;color:#444444;}
+
+hr {border-color:#ececec;}
+button {
+ outline: 0;
+}
+textarea {
+ resize: none;
+ outline: 0; 
+}
+.panel .btn i,.btn span{
+ color:#666666;
+}
+.panel .panel-heading {
+ background-color: transparent;
+ font-weight:700;
+ font-size:16px;
+ color:#262626;
+ border-color: transparent;
+}
+.panel .panel-heading a {
+ font-weight:400;
+ font-size:11px;
+}
+.panel .panel-default {
+ border-color:#cccccc;
+}
+.panel .panel-thumbnail {
+ padding:0;
+}
+.panel .img-circle {
+ width:50px;
+ height:50px;
+}
+.list-group-item:first-child,.list-group-item:last-child {
+ border-radius:0;
+}
+h3,h4,h5 { 
+ border:0 solid #c5c5c5; 
+ border-bottom-width:1px;
+ padding-bottom:10px;
+}
+.modal-dialog {
+ width: 450px;
+}
+.modal-footer {
+ border-width:0;
+}
+.dropdown-menu {
+ background-color:#f4f4f4;
+ border-color:#f0f0f0;
+ border-radius:0;
+ margin-top:-1px;
+}
+/* end theme */
+
+/* template layout*/
+#subnav {
+ position:fixed;
+ width:100%;
+}
+
+@media (max-width: 768px) {
+ #subnav {
+  padding-top: 6px;
+ }
+}
+
+#main {
+ padding-top:120px;
+}
+body {
+	margin: 0 3em 0 3em;
+}
+</style>
+	<title></title>
+</head>
+<body>
+
+<!-- <div class="tile_container tile_background_image">
+	<div class="triangle_top_left triangle_base"></div>
+	<div class="triangle_top_right triangle_base"></div>
+	<h1>Title 1</h1>
+	<p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	<div class="triangle_bottom_left triangle_base"></div>
+	<div class="triangle_bottom_right triangle_base"></div>
+</div> -->
+
+
+<div class="container" id="main">
+  <div class="row">
+	  <div class="col-md-4 col-sm-6">
+	    <div class="tile_container panel panel-default tile_background_image">
+	      <div class="triangle_top_left triangle_base"></div>
+				<div class="triangle_top_right triangle_base"></div>
+	      <div class="panel-heading"><h4>Article 1</h4></div>
+				<div class="panel-body">
+	        <div class="list-group">
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+						<p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+						<p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+						<p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+						<p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+						<p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	        </div>
+	      </div>
+			  <div class="triangle_bottom_left triangle_base"></div>
+				<div class="triangle_bottom_right triangle_base"></div>
+			</div>
+
+	    <div class="tile_container panel panel-default tile_background_image">
+	      <div class="triangle_top_left triangle_base"></div>
+				<div class="triangle_top_right triangle_base"></div>
+	      <div class="panel-heading"><h4>Article 1</h4></div>
+				<div class="panel-body">
+	        <div class="list-group">
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	        </div>
+	      </div>
+			  <div class="triangle_bottom_left triangle_base"></div>
+				<div class="triangle_bottom_right triangle_base"></div>
+			</div>
+
+	    <div class="tile_container panel panel-default tile_background_image">
+	      <div class="triangle_top_left triangle_base"></div>
+				<div class="triangle_top_right triangle_base"></div>
+	      <div class="panel-heading"><h4>Article 1</h4></div>
+				<div class="panel-body">
+	        <div class="list-group">
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	        </div>
+	      </div>
+			  <div class="triangle_bottom_left triangle_base"></div>
+				<div class="triangle_bottom_right triangle_base"></div>
+			</div>
+		</div>
+
+
+	  <div class="col-md-4 col-sm-6">
+	    <div class="tile_container panel panel-default tile_background_image">
+	      <div class="triangle_top_left triangle_base"></div>
+				<div class="triangle_top_right triangle_base"></div>
+	      <div class="panel-heading"><h4>Article 1</h4></div>
+				<div class="panel-body">
+	        <div class="list-group">
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	        </div>
+	      </div>
+			  <div class="triangle_bottom_left triangle_base"></div>
+				<div class="triangle_bottom_right triangle_base"></div>
+			</div>
+			<div class="tile_container panel panel-default tile_background_image">
+	      <div class="triangle_top_left triangle_base"></div>
+				<div class="triangle_top_right triangle_base"></div>
+	      <div class="panel-heading"><h4>Article 1</h4></div>
+				<div class="panel-body">
+	        <div class="list-group">
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	        </div>
+	      </div>
+			  <div class="triangle_bottom_left triangle_base"></div>
+				<div class="triangle_bottom_right triangle_base"></div>
+			</div>
+			<div class="tile_container panel panel-default tile_background_image">
+	      <div class="triangle_top_left triangle_base"></div>
+				<div class="triangle_top_right triangle_base"></div>
+	      <div class="panel-heading"><h4>Article 1</h4></div>
+				<div class="panel-body">
+	        <div class="list-group">
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	        </div>
+	      </div>
+			  <div class="triangle_bottom_left triangle_base"></div>
+				<div class="triangle_bottom_right triangle_base"></div>
+			</div>
+		</div>
+
+
+		<div class="col-md-4 col-sm-6">
+	    <div class="tile_container panel panel-default tile_background_image">
+	      <div class="triangle_top_left triangle_base"></div>
+				<div class="triangle_top_right triangle_base"></div>
+	      <div class="panel-heading"><h4>Article 1</h4></div>
+				<div class="panel-body">
+	        <div class="list-group">
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	        </div>
+	      </div>
+			  <div class="triangle_bottom_left triangle_base"></div>
+				<div class="triangle_bottom_right triangle_base"></div>
+			</div>
+			<div class="tile_container panel panel-default tile_background_image">
+	      <div class="triangle_top_left triangle_base"></div>
+				<div class="triangle_top_right triangle_base"></div>
+	      <div class="panel-heading"><h4>Article 1</h4></div>
+				<div class="panel-body">
+	        <div class="list-group">
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	        </div>
+	      </div>
+			  <div class="triangle_bottom_left triangle_base"></div>
+				<div class="triangle_bottom_right triangle_base"></div>
+			</div>
+			<div class="tile_container panel panel-default tile_background_image">
+	      <div class="triangle_top_left triangle_base"></div>
+				<div class="triangle_top_right triangle_base"></div>
+	      <div class="panel-heading"><h4>Article 1</h4></div>
+				<div class="panel-body">
+	        <div class="list-group">
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+		          <p>Body Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+	        </div>
+	      </div>
+			  <div class="triangle_bottom_left triangle_base"></div>
+				<div class="triangle_bottom_right triangle_base"></div>
+			</div>
+		</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
