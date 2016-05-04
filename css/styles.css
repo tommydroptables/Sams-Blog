@@ -1,16 +1,12 @@
-	/*
-A custom Bootstrap 3.2 'Google Plus style' theme
-from http://bootply.com
 
-This CSS code should follow the 'bootstrap.css'
-in your HTML file.
-
-license: MIT
-author: bootply.com
-*/
 html {
 	height: 100%;
 }
+
+body {
+  margin: 0 3em 0 3em;
+}
+
 @import url(http://fonts.googleapis.com/css?family=Roboto:400);
 body {
   background-color:#e0e0e0;
@@ -20,7 +16,7 @@ body {
 .navbar-default .navbar-brand:hover { color: #3b3d3c;}
 .navbar-default .navbar-nav>li>a {color: white}
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-	color: #c5c5c5;
+	 color: #c5c5c5;
     background-color: purple;
 }
 
@@ -69,21 +65,7 @@ textarea {
 .panel .btn i,.btn span{
  color:#666666;
 }
-.panel .panel-heading {
- background-color: transparent;
- font-weight:700;
- border-color: transparent;
- text-align: center;
-}
-.panel .panel-heading a {
- font-weight:400;
- font-size:11px;
-}
 
-.panel-heading h4 {
-	font-size: 25px;
-  color: white;
-}
 .panel .panel-thumbnail {
  padding:0;
 }
@@ -94,31 +76,7 @@ textarea {
 .list-group-item:first-child,.list-group-item:last-child {
  border-radius:0;
 }
-h3,h4,h5 { 
- padding-bottom:10px;
-}
 
-h3 span, h4 span, h5 span {
-  background:linear-gradient(
-          rgba(0, 0, 0, .5),
-          rgba(0, 0, 0, .5)
-        );
-  border-radius: 5px;
-  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-  box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 4px rgba(0,0,0,.6);
-}
-.modal-dialog {
- width: 450px;
-}
-.modal-footer {
- border-width:0;
-}
-.dropdown-menu {
- background-color:#f4f4f4;
- border-color:#f0f0f0;
- border-radius:0;
- margin-top:-1px;
-}
 /* end theme */
 
 /* template layout*/

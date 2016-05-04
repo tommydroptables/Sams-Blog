@@ -2,15 +2,6 @@ $(document).ready(function()
 {
     // Call on page load so tiles are scalled correctly
 	onWindowResize();
-
-    // ------------------------------------------------------------------
-    //   remove filter of background on hover to make it look better
-    // ------------------------------------------------------------------
-    $('.tile_container').hover(function(){
-        $(this).children().find('span').css('background', 'linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0))');
-    }, function(){
-        $(this).children().find('span').css('background', 'linear-gradient(rgba(0, 0, 0, .5),rgba(0, 0, 0, .5))');
-    });
 });
 
 // ------------------------------------------------------------------
