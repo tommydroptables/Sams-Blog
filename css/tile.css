@@ -11,40 +11,44 @@
 	 font-size:11px;
 	}
 
-	.panel-heading h4 {
-		font-size: 25px;
-	}
-
-
 	.panel-heading {
-		margin-top: 3px;
+		margin: 7px -7px -7px -7px;
 		padding-top: 5px;
 		height: 40px;
-		background-color: white;
+		background-color: transparent;
+		position: absolute;
+		right: 50%;
 	}
+	.panel-heading-header {
+		font-size: 25px;
+		position: relative;
+		right: -50%;
+	}
+
+
+	.panel-heading-container {
+		height:40px;
+	}
+
 	.tile_container {
 		display: inline-block;
 		position: relative;
 		margin: 1em 1em 1em 1em;
 		background-color: #6DB3F2;
-		padding: 3px 3px 3px 3px;
+		padding: 7px;
+		overflow: hidden;
+		box-shadow: 
+	  		0 1px 5px rgba(0,0,0, 0.12),
+	    	0 1px 3px rgba(0,0,0, 0.24); 
 	}
 	.tile_container:hover {
 		cursor: pointer;
 	}
 
-
-
-
-	.tile_container:visited{
-		opacity: .5;
-		color: red;
-		background-color: red;
-	}
-
 	.tile_container > h1 {
 		text-align: center;
 		margin-top: 0;
+
 	}
 
 	.list-group > p {
@@ -53,15 +57,45 @@
 	    transition: visibility 0s .5s, opacity .5s linear;
 	}
 
-	.tile_container:hover p {
+	.tile_container:hover .article_descrption {
 		visibility: visible;
 	    opacity: 1;
 	    transition: opacity .2s linear;
 	    color: white;
 	}
 
+	.tile_container:hover .tile_background_image {
+		padding-bottom: 80px;
+		margin-bottom: -40px;
+	}
+
+	.tile_container:hover .panel-heading-container-absolute {
+		color: white;
+		top: 10px;
+	}
+
+	.tile_container:hover .tile_background_image {
+		background-image: 
+		    linear-gradient(
+		      rgba(0, 0, 0, .5),
+		      rgba(0, 0, 0, .5)
+		    ),
+		    url(../images/1.jpg);
+	}
+
+
+	.panel-heading-container-absolute {
+		position: absolute;
+		display: inline-block;
+	}
+
+	.article_descrption_container {
+		padding-top: 40px;
+	}
+
 	.tile_background_image {
-		border-radius: 30px;
+		border-radius: 5px;
+		color: white;
 		background-image: 
 		    linear-gradient(
 		      rgba(0, 0, 0, 0),
@@ -73,12 +107,11 @@
 		background-size: cover;
 		display: inline-block;
 		width: 100%;
+		box-shadow: 
+	  		0 1px 2px rgba(0,0,0, 0.12),
+	    	0 1px 2px rgba(0,0,0, 0.24); 
 	}
-	.tile_background_image:hover {
-		background-image: 
-		    linear-gradient(
-		      rgba(0, 0, 0, .5),
-		      rgba(0, 0, 0, .5)
-		    ),
-		    url(../images/1.jpg);
+	
+	.text_padding {
+		padding: 20px 0 40px 0;
 	}
