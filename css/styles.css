@@ -40,7 +40,6 @@ body {
 .navbar-default .navbar-nav > .active > a {font-weight:800;background-color:transparent;}
 .navbar-default .dropdown-menu {background-color:#ffffff;}
 .navbar-default .dropdown-menu li > a {padding-left:30px;}
-
 .header {background-color:#ffffff;border-width:0;}
 .header .navbar-collapse {background-color:#ffffff;}
 .btn,.form-control,.panel,.list-group,.well {border-radius:1px;box-shadow:0 0 0;}
