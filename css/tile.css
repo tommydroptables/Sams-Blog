@@ -57,10 +57,9 @@
 	    transition: visibility 0s .5s, opacity .5s linear;
 	}
 
-	.article_descrption {
-		transition: color .25s;
-	}
-
+	 .article_descrption {
+	 	transition: color .25s;
+	 }
 	.tile_container:hover .article_descrption {
 		visibility: visible;
 	    opacity: 1;
@@ -93,7 +92,7 @@
 		display: inline-block;
 		top: 100%;
 		margin-top: -47;
-		transition: top .25s;
+		transition: top .25s, color .25s;
 	}
 
 	.article_descrption_container {
