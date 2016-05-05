@@ -24,6 +24,90 @@
 <div class="container" id="main">
   <div class="row">
     <div class="col-md-4 col-sm-6">
+
+    <?php
+      function startsWith($haystack, $needle) {
+          // search backwards starting from haystack length characters from the end
+          return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+      }
+      function endsWith($haystack, $needle) {
+          // search forward starting from end minus needle length characters
+          return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
+      }
+      $dir    = 'blogs';
+      $blogs = scandir($dir);
+      foreach($blogs as &$blog){
+        # since this is linux we will need to skip '.' and '..'
+        if($blog == '.' || $blog == '..') {
+          continue;
+        }
+
+        if($blog == '.' || $blog == '..') {
+          continue;
+        }
+        $blog_contents = scandir("$dir/$blog");
+
+        foreach($blog_contents as &$blog_content){
+          # since this is linux we will need to skip '.' and '..'
+          if($blog_content == '.' || $blog_content == '..') {
+            continue;
+          }
+
+          # blog text file
+          if(endsWith($blog_content, '.txt')){
+            $myfile = fopen("$dir/$blog/$blog_content", "r") or die("Unable to open file, $blog_content!");
+
+            $title = '';
+            $summary = '';
+            $article = '';
+
+            while(!feof($myfile)) {
+              $text_line = fgets($myfile);
+              if(startsWith($text_line, ':title:')){
+                $title = str_replace(':title:', '', $text_line);
+                # read in title
+                while(!feof($myfile)){
+                  $text_line = fgets($myfile);
+                  if(startsWith($text_line, ':summary:')){
+                    break;
+                  }
+                  $title .= $text_line; 
+                }
+              }
+
+              if(startsWith($text_line, ':summary:')){
+                $summary = str_replace(':summary:', '', $text_line);
+                # read in summary
+                while(!feof($myfile)){
+                  $text_line = fgets($myfile);
+                  if(startsWith($text_line, ':article:')){
+                    break;
+                  }
+                  $summary .= $text_line; 
+                }
+              }
+
+              if(startsWith($text_line, ':article:')){
+                $article = str_replace(':article:', '', $text_line);
+                # read in article
+                while(!feof($myfile)){
+                  $text_line = fgets($myfile);
+                  $article .= $text_line; 
+                }
+              }
+            }
+            print_r("$title<br>");
+            print_r("$summary<br>");
+            print_r("$article<br>");
+            fclose($myfile);
+          }
+        }
+
+
+      }
+
+    ?>
+
       <div class="tile_container panel panel-default">
         <div class="list-group panel-body tile_background_image text_padding">
           <p>Dessert cake cheesecake lollipop. Chupa chups wafer croissant chupa chups jujubes tootsie roll. Sweet gingerbread gummies danish carrot cake cotton candy wafer.</p>
