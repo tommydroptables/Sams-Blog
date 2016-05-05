@@ -57,6 +57,10 @@
 	    transition: visibility 0s .5s, opacity .5s linear;
 	}
 
+	.article_descrption {
+		transition: color .25s;
+	}
+
 	.tile_container:hover .article_descrption {
 		visibility: visible;
 	    opacity: 1;
@@ -71,7 +75,7 @@
 
 	.tile_container:hover .panel-heading-container-absolute {
 		color: white;
-		top: 10px;
+		top: 57px;
 	}
 
 	.tile_container:hover .tile_background_image {
@@ -87,6 +91,9 @@
 	.panel-heading-container-absolute {
 		position: absolute;
 		display: inline-block;
+		top: 100%;
+		margin-top: -47;
+		transition: top .25s;
 	}
 
 	.article_descrption_container {
@@ -110,6 +117,7 @@
 		box-shadow: 
 	  		0 1px 2px rgba(0,0,0, 0.12),
 	    	0 1px 2px rgba(0,0,0, 0.24); 
+	    transition: padding-bottom .25s, margin-bottom .25s;
 	}
 	
 	.text_padding {
