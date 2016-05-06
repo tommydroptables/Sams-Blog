@@ -26,6 +26,22 @@
     <div class="col-md-4 col-sm-6">
 
     <?php
+      function output_cards($title, $summary, $href) {
+        echo("<div class='tile_container panel panel-default'>");
+        echo("<div class='list-group panel-body tile_background_image text_padding'>");
+        echo("<p>$summary</p>");
+        echo("</div>");
+        echo("<div class='panel-heading-container'>");
+        echo("<div class='panel-heading-container-absolute'>");
+        echo("<div class='panel-heading'><h4 class='panel-heading-header'><span>$title</span></h4></div>");
+        echo("<div class='article_descrption_container list-group panel-body'>");
+        echo("<p class='article_descrption text_padding'>$summary</p>");
+        echo("</div>");
+        echo("</div>");
+        echo("</div>");
+        echo("</div>");
+      }
+
       function startsWith($haystack, $needle) {
           // search backwards starting from haystack length characters from the end
           return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
@@ -46,6 +62,7 @@
           continue;
         }
         $blog_contents = scandir("$dir/$blog");
+        $blog_info = array();
 
         foreach($blog_contents as &$blog_content){
           # since this is linux we will need to skip '.' and '..'
@@ -55,9 +72,10 @@
 
           # blog text file
           if(endsWith($blog_content, '.txt')){
-            $myfile = fopen("$dir/$blog/$blog_content", "r") or die("Unable to open file, $blog_content!");
+            $blog_file = "$dir/$blog/$blog_content";
+            $myfile = fopen($blog_file, "r") or die("Unable to open file, $blog_content!");
 
-            $title = '';
+            $title   = '';
             $summary = '';
             $article = '';
 
@@ -96,13 +114,12 @@
                 }
               }
             }
-            print_r("$title<br>");
-            print_r("$summary<br>");
-            print_r("$article<br>");
+            $blog_info .= array($title, $summary, $blog_file);
             fclose($myfile);
-          }
-        }
+          } 
+        } # end reading in all blogs from dir
 
+        
 
       }
 
