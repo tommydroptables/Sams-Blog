@@ -23,23 +23,23 @@
 <div id="menu-spacing"></div>
 <div class="container" id="main">
   <div class="row">
-    <div class="col-md-4 col-sm-6">
+    <!-- <div class="col-md-4 col-sm-6"> -->
 
     <?php
       function output_cards($title, $summary, $href) {
-        echo("<div class='tile_container panel panel-default'>");
-        echo("<div class='list-group panel-body tile_background_image text_padding'>");
-        echo("<p>$summary</p>");
-        echo("</div>");
-        echo("<div class='panel-heading-container'>");
-        echo("<div class='panel-heading-container-absolute'>");
-        echo("<div class='panel-heading'><h4 class='panel-heading-header'><span>$title</span></h4></div>");
-        echo("<div class='article_descrption_container list-group panel-body'>");
-        echo("<p class='article_descrption text_padding'>$summary</p>");
-        echo("</div>");
-        echo("</div>");
-        echo("</div>");
-        echo("</div>");
+        echo("<div class='tile_container panel panel-default'>\n");
+        echo("<div class='list-group panel-body tile_background_image text_padding'>\n");
+        echo("<p>$summary</p>\n");
+        echo("</div>\n");
+        echo("<div class='panel-heading-container'>\n");
+        echo("<div class='panel-heading-container-absolute'>\n");
+        echo("<div class='panel-heading'><h4 class='panel-heading-header'><span>$title</span></h4></div>\n");
+        echo("<div class='article_descrption_container list-group panel-body'>\n");
+        echo("<p class='article_descrption text_padding'>$summary</p>\n");
+        echo("</div>\n");
+        echo("</div>\n");
+        echo("</div>\n");
+        echo("</div>\n");
       }
 
       function startsWith($haystack, $needle) {
@@ -52,15 +52,18 @@
       }
       $dir   = 'blogs';
       $blogs = scandir($dir);
-      $blog_info = array();
+      $blog_row1 = array();
+      $blog_row2 = array();
+      $blog_row3 = array();
+
+      $blog_counter = 0;
       foreach($blogs as &$blog){
         # since this is linux we will need to skip '.' and '..'
         if($blog == '.' || $blog == '..') {
           continue;
-        }
-
-        if($blog == '.' || $blog == '..') {
-          continue;
+        } 
+        if($blog_counter == 3) {
+          $blog_counter = 0;
         }
         $blog_contents = scandir("$dir/$blog");
 
@@ -114,16 +117,32 @@
                 }
               }
             }
-            array_push($blog_info, array($title, $summary, $blog_file));
+            if($blog_counter == 0)
+              array_push($blog_row1, array($title, $summary, $blog_file));
+            if($blog_counter == 1)
+              array_push($blog_row2, array($title, $summary, $blog_file));
+            if($blog_counter == 2)
+              array_push($blog_row3, array($title, $summary, $blog_file));
             fclose($myfile);
-          } 
+          }
         }
+        $blog_counter++;
       } # end reading in all blogs from dir
-        var_dump($blog_info);
-        foreach($each_blog_info as &$blog_info){
-          // var_dump($each_blog_info); <- WHY ISN'T THIS OUTPUTTING
-          // output_cards($title, $summary, $href);
-        } 
+
+      echo('<div class="col-md-4 col-sm-6">');
+      foreach($blog_row1 as &$each_blog_info){
+        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2]);
+      }
+      echo('</div><div class="col-md-4 col-sm-6">');
+      foreach($blog_row1 as &$each_blog_info){
+        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2]);
+      }
+      echo('</div><div class="col-md-4 col-sm-6">');
+      foreach($blog_row1 as &$each_blog_info){
+        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2]);
+      }
+      echo('</div>');
+
 
     ?>
     </div>
