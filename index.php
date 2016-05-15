@@ -23,7 +23,6 @@
 <div id="menu-spacing"></div>
 <div class="container" id="main">
   <div class="row">
-    <!-- <div class="col-md-4 col-sm-6"> -->
 
     <?php
 
@@ -82,7 +81,8 @@
         if($blog_counter == 3) {
           $blog_counter = 0;
         }
-        $blog_contents = scandir("$dir/$blog");
+        $blog_str = "$dir/$blog";
+        $blog_contents = scandir($blog_str);
 
         foreach($blog_contents as &$blog_content){
           # since this is linux we will need to skip '.' and '..'
@@ -134,11 +134,11 @@
               }
             }
             if($blog_counter == 0)
-              array_push($blog_row1, array($title, $summary, $blog_file));
+              array_push($blog_row1, array($title, $summary, $blog_file, ($blog_str . 'images/')));
             if($blog_counter == 1)
-              array_push($blog_row2, array($title, $summary, $blog_file));
+              array_push($blog_row2, array($title, $summary, $blog_file, ($blog_str . 'images/')));
             if($blog_counter == 2)
-              array_push($blog_row3, array($title, $summary, $blog_file));
+              array_push($blog_row3, array($title, $summary, $blog_file, ($blog_str . 'images/')));
             fclose($myfile);
           }
         }
@@ -147,15 +147,15 @@
 
       echo('<div class="col-md-4 col-sm-6">');
       foreach($blog_row1 as &$each_blog_info){
-        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2]);
+        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3]);
       }
       echo('</div><div class="col-md-4 col-sm-6">');
       foreach($blog_row2 as &$each_blog_info){
-        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2]);
+        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3]);
       }
       echo('</div><div class="col-md-4 col-sm-6">');
       foreach($blog_row3 as &$each_blog_info){
-        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2]);
+        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3]);
       }
       echo('</div>');
 

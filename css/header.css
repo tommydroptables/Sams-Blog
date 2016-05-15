@@ -1,4 +1,4 @@
-header {
+/*header {
 	z-index: 100;
 	font-family: 'Lato',serif;
 	color: #fff;
@@ -7,7 +7,7 @@ header {
 	background-color: rgba(0,0,0,0.5);
 	position: fixed;
 	vertical-align: middle;
-}
+}*/
 
 #title_t_pearl {
 	font-size: 4em;

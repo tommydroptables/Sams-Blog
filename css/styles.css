@@ -28,6 +28,7 @@ body {
     -webkit-transition: opacity .25s ease-in-out;*/
     border-width:0;
     z-index:5;
+  box-shadow: 0 4px 8px rgba(0,0,0,.28), 0 0 4px rgba(0,0,0,.14);
 }
 
 .navbar-header {

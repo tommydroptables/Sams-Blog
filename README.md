@@ -3,7 +3,7 @@ Content Management System for Sam's Blog
 
 # File Structure
 
-All blogs will go in the blog directory in the order
+All blogs will go in the blog directory in the bellow order
 
 ```
 blogs
@@ -25,7 +25,9 @@ Note: all blogs must be text files (.txt) that follow the bellow
 order
 
 # Format
+Bellow is the format that the blog-name.txt files shoud be in.
 
+```
 :title: best title ever
 :summary:IMAGE-NAME: short summary of why this is the best article ever made.
 The image specifed here will be shown on the home page.
@@ -39,3 +41,4 @@ half of the page
 half of the page
 :image-full:IMAGE-NAME: Will allow the image to take up the full
 with of the page.
+```

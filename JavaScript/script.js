@@ -11,9 +11,10 @@ $(document).ready(function()
 //                 Remove the read more button from
 //                 blog if the user is NOT mobile
 // ------------------------------------------------------------------
-// function remove_readmore(){
+function remove_readmore(){
 
-// }
+}
+
 
 // ------------------------------------------------------------------
 //                 Navigation to get to full blog
@@ -50,7 +51,6 @@ function size_titles(){
 //                 Scroll Effect for Nav Bar
 // ------------------------------------------------------------------
 $(document).scroll(function() {
-	console.log("here");
     if (window.scrollY > 10) {
         $("#slogan").css("transition", "height 1s, margin-bottom 1s");
         $("#title_t_pearl").css("font-size", "2em");
