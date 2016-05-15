@@ -22,7 +22,67 @@
 </head>
 <body>
   <div id="menu_spacing"></div>
-  <div class="basic_image_attributes" id="title_image_container"></div>
+    <?php
+      # read in variables from url
+      $blog_text_url = $_GET["blog_text_url"];
+      $images_dir = $_GET["images_dir"];
+      // echo($blog_text_url);
+      // echo($images_dir);
+
+      $myfile = fopen($blog_text_url, "r") or die("Unable to open file, $blog_content!");
+
+      $title       = '';
+      $summary     = '';
+      $article     = '';
+      $image_title = '';
+      $image_left  = '';
+      $image_right = '';
+      $image_full  = '';
+
+      while(!feof($myfile)) {
+        $text_line = fgets($myfile);
+        if(startsWith($text_line, ':title:')){
+          // $title = str_replace(':title:', '', $text_line);
+          # read in title
+          // while(!feof($myfile)){
+          //   $text_line = fgets($myfile);
+          //   if(startsWith($text_line, ':summary:')){
+          //     break;
+          //   }
+          //   $title .= $text_line;
+          // }
+        }
+        // if(startsWith($text_line, ':summary:')){
+        //   $summary_image = explode(":", $text_line)[1];
+        //   echo("image: " . $summary_image);
+        //   $summary = str_replace(':summary:', '', $text_line);
+        //   # read in summary
+        //   while(!feof($myfile)){
+        //     $text_line = fgets($myfile);
+        //     if(startsWith($text_line, ':article:')){
+        //       break;
+        //     }
+        //     $summary .= $text_line; 
+        //   }
+        // }
+
+        // if(startsWith($text_line, ':article:')){
+        //   $article = str_replace(':article:', '', $text_line);
+        //   # read in article
+        //   while(!feof($myfile)){
+        //     $text_line = fgets($myfile);
+        //     $article .= $text_line; 
+        //   }
+        // }
+      }
+
+
+      $image_title = '';
+      echo("<div style='background-image: \"" . $images_dir . $image_title . "\"' class='basic_image_attributes' id='title_image_container'></div>");
+
+
+
+    ?>
   <div id="text_body">
     <h1>The best blog :p</h1>
     <h5>Author: Dr. Parker</h5>
@@ -36,7 +96,7 @@
 <p>Sed a posuere erat. Mauris ac libero libero. Nulla eget ante eu sem scelerisque vehicula. Pellentesque malesuada est eget metus lobortis fermentum. Pellentesque sit amet sem nec purus auctor porttitor. Praesent erat ante, hendrerit id imperdiet ut, volutpat at ante. Cras vitae ornare augue. In vel tincidunt odio. Vivamus sit amet risus lectus. Pellentesque nec nunc vel sem sollicitudin rutrum. Praesent placerat velit a leo lacinia ultrices. In neque risus, mattis et nulla id, tempor lobortis lorem. Sed sodales lectus at urna convallis vulputate. Curabitur malesuada consectetur mauris, sit amet viverra est vehicula eu.</p>
 <div class="basic_image_attributes inpage_image_full"></div>
 
-<p>Cras nec tortor nisl. Fusce a nulla sed magna pharetra tempor id quis ipsum. Sed mattis, orci sit amet luctus maximus, mi libero fringilla purus, quis hendrerit dui nisi vel dolor. Donec ac nibh in ante rutrum tristique. Cras non viverra sapien, quis hendrerit risus. Donec sit amet lectus odio. Sed tellus ante, feugiat a sapien ut, aliquam hendrerit tellus. Mauris vel libero elementum, aliquet lectus sit amet, venenatis tortor. Duis vitae scelerisque dui. Mauris feugiat nulla sed augue vulputate lacinia. In sit amet mauris vitae dolor consectetur varius. Curabitur mollis, justo eu ullamcorper hendrerit, nisl purus pulvinar odio, id posuere sapien mi nec lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut finibus risus at euismod dictum. Quisque venenatis, dolor ut blandit dictum, odio est vestibulum dui, vitae luctus lectus ex vel est. </p>
+<p>Cras nec tortor nisl. Fusce a nulla sed magna pharetra tempor id quis ipsum. Sed mattis, orci sit amet luctus maximus, mi libero fringilla purus, quis hendrerit dui nisi vel dolor. Donec ac nibh in ante rutrum tristique. Cras non viverra sapien, quis hendrerit risus. Donec sit amet lectus odio. Sed tellus ante, feugiat a sapien ut, aliquam hendrerit tellus. Mauris vel libero elementum, aliquet lectus sit amet, venenatis tortor. Duis vitae scelerisque dui. Mauris feugiat nulla sed augue vulputate lacinia. In sit amet mauris vitae dolor consectetur varius. Curabitur mollis, justo eu ullamcorper hendrerit, nisl purus pulvinar odio, id posuere sapien mi nec lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut finibus risus at euismod dictum. Quisque venenatis, dolor ut blandit dictum, odio est vestibulum dui, vitae luctus lectus ex vel est.</p>
       
   </div>
 </body>

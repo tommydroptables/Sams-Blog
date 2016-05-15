@@ -13,7 +13,7 @@
 
   <nav class="navbar navbar-default navbar-fixed-top">
       <div class="navbar-header navbar-center">
-        <a class="navbar-brand" id="title_t_pearl" href="index.php">Thanks Pearl ...</a>
+        <a class="navbar-brand" id="title_t_pearl" href="?">Thanks Pearl ...</a>
     </div>  
         <p id="slogan"><span id="slogan_inner">A blog about all things I wish someone had told me.</span></p>
   </nav>
@@ -25,6 +25,12 @@
   <div class="row">
 
     <?php
+      function get_random_color() {
+        // $colors = array('#C6ACC7', '#ECB4BF', '#FBD7B7', '#FDF3B8', '#C2E3EC');
+        $colors = array('#EF9EA4', '#9A89BF', '#89D2F3', '#D5E29D', '#F9CB8D', '#F0997B', '#F3ECDC', '#CA95BF', '#93B0DC', '#96CB9D', '#FFF59C', '#F4B488');
+        $random_int = rand(0, count($colors));
+        return $colors[$random_int];
+      }
 
       function listdir_by_date($path){
         $dir = opendir($path);
@@ -43,7 +49,7 @@
         return $list;
       }
       function output_cards($title, $summary, $href_blog_text, $href_blog_images_folder) {
-        echo("<div onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' class='tile_container panel panel-default'>\n");
+        echo("<div onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' style='background-color: " . get_random_color() . "' class='tile_container panel panel-default'>\n");
         echo("<div class='list-group panel-body tile_background_image text_padding'>\n");
         echo("<p>$summary</p>\n");
         echo("</div>\n");
@@ -95,10 +101,10 @@
             $blog_file = "$dir/$blog/$blog_content";
             $myfile = fopen($blog_file, "r") or die("Unable to open file, $blog_content!");
 
-            $title   = '';
-            $summary = '';
-            $article = '';
-
+            $title       = '';
+            $summary     = '';
+            $article     = '';
+            
             while(!feof($myfile)) {
               $text_line = fgets($myfile);
               if(startsWith($text_line, ':title:')){
@@ -134,11 +140,11 @@
               }
             }
             if($blog_counter == 0)
-              array_push($blog_row1, array($title, $summary, $blog_file, ($blog_str . 'images/')));
+              array_push($blog_row1, array($title, $summary, $blog_file, ($blog_str . '/images/')));
             if($blog_counter == 1)
-              array_push($blog_row2, array($title, $summary, $blog_file, ($blog_str . 'images/')));
+              array_push($blog_row2, array($title, $summary, $blog_file, ($blog_str . '/images/')));
             if($blog_counter == 2)
-              array_push($blog_row3, array($title, $summary, $blog_file, ($blog_str . 'images/')));
+              array_push($blog_row3, array($title, $summary, $blog_file, ($blog_str . '/images/')));
             fclose($myfile);
           }
         }
