@@ -26,6 +26,23 @@
     <!-- <div class="col-md-4 col-sm-6"> -->
 
     <?php
+
+      function listdir_by_date($path){
+        $dir = opendir($path);
+        $list = array();
+        while($file = readdir($dir)){
+          if ($file != '.' and $file != '..'){
+            
+            // add the filename, to be sure not to
+            // overwrite a array key
+            $ctime = filectime($data_path . $file) . ',' . $file;
+            $list[$ctime] = $file;
+          }
+        }
+        closedir($dir);
+        krsort($list);
+        return $list;
+      }
       function output_cards($title, $summary, $href) {
         echo("<div class='tile_container panel panel-default'>\n");
         echo("<div class='list-group panel-body tile_background_image text_padding'>\n");
@@ -61,7 +78,7 @@
         # since this is linux we will need to skip '.' and '..'
         if($blog == '.' || $blog == '..') {
           continue;
-        } 
+        }
         if($blog_counter == 3) {
           $blog_counter = 0;
         }
@@ -82,8 +99,7 @@
             $summary = '';
             $article = '';
 
-            while(!feof($myfile
-              )) {
+            while(!feof($myfile)) {
               $text_line = fgets($myfile);
               if(startsWith($text_line, ':title:')){
                 $title = str_replace(':title:', '', $text_line);
@@ -93,10 +109,9 @@
                   if(startsWith($text_line, ':summary:')){
                     break;
                   }
-                  $title .= $text_line; 
+                  $title .= $text_line;
                 }
               }
-
               if(startsWith($text_line, ':summary:')){
                 $summary = str_replace(':summary:', '', $text_line);
                 # read in summary
@@ -135,15 +150,14 @@
         output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2]);
       }
       echo('</div><div class="col-md-4 col-sm-6">');
-      foreach($blog_row1 as &$each_blog_info){
+      foreach($blog_row2 as &$each_blog_info){
         output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2]);
       }
       echo('</div><div class="col-md-4 col-sm-6">');
-      foreach($blog_row1 as &$each_blog_info){
+      foreach($blog_row3 as &$each_blog_info){
         output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2]);
       }
       echo('</div>');
-
 
     ?>
     </div>
