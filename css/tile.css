@@ -12,7 +12,6 @@
 	}
 
 	.panel-heading {
-		margin: 7p;
 		padding-top: 5px;
 		height: 40px;
 		background-color: transparent;
@@ -68,10 +67,10 @@
 	    color: white;
 	}
 
-	.tile_container:hover .tile_background_image {
+	/*.tile_container:hover .tile_background_image {
 		padding-bottom: 80px;
 		margin-bottom: -40px;
-	}
+	}*/
 
 	.tile_container:hover .panel-heading-container-absolute {
 		color: white;

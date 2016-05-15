@@ -13,7 +13,7 @@
 
   <nav class="navbar navbar-default navbar-fixed-top">
       <div class="navbar-header navbar-center">
-        <a class="navbar-brand" id="title_t_pearl" href="index.html">Thanks Pearl ...</a>
+        <a class="navbar-brand" id="title_t_pearl" href="index.php">Thanks Pearl ...</a>
     </div>  
         <p id="slogan"><span id="slogan_inner">A blog about all things I wish someone had told me.</span></p>
   </nav>
@@ -82,7 +82,8 @@
             $summary = '';
             $article = '';
 
-            while(!feof($myfile)) {
+            while(!feof($myfile
+              )) {
               $text_line = fgets($myfile);
               if(startsWith($text_line, ':title:')){
                 $title = str_replace(':title:', '', $text_line);
