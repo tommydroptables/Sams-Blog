@@ -14,15 +14,20 @@
 	.panel-heading {
 		padding-top: 5px;
 		height: 40px;
+		margin: 0 5px 0 5px;
 		background-color: transparent;
 		position: absolute;
 		right: 0;
 		left: 0;
 		text-align: center;
 	}
+
+
 	.panel-heading-header {
 		font-size: 25px;
 		position: relative;
+		margin: 0 5px 0 5px;
+		
 	}
 
 
@@ -67,14 +72,14 @@
 	    color: white;
 	}
 
-	/*.tile_container:hover .tile_background_image {
+	.tile_container:hover .tile_background_image {
 		padding-bottom: 80px;
 		margin-bottom: -40px;
-	}*/
+	}
 
 	.tile_container:hover .panel-heading-container-absolute {
 		color: white;
-		top: 57px;
+		top: 97px;
 	}
 
 	.tile_container:hover .tile_background_image {

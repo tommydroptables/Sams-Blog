@@ -15,13 +15,16 @@ function size_titles(){
     $(".tile_container").each(function(){
         var title_height =  $(this).find(".panel_heading_span").height(); 
         $(this).find(".panel-heading-container").css("height", (title_height + 8) + "px");
+        $(this).find(".article_descrption_container").css("padding-top", (title_height + 8) + "px");
         $(this).find(".panel-heading-container-absolute").css("margin-top",  "-" + (title_height + 8) + "px");
         $(this).hover(function(e) {
             $(this).find(".tile_background_image").css("padding-bottom",  ((title_height + 10) + 40)   + "px")
                 .css("margin-bottom", "-" + (title_height + 10) + "px");
+            $(this).find(".panel-heading-container-absolute").css("top", ((title_height + 10) + 17) + "px");
         }, function(e) {
             $(this).find(".tile_background_image").css("padding-bottom",  "40px")
                 .css("margin-bottom", "0px");
+            $(this).find(".panel-heading-container-absolute").css("top", "100%");
         });
         
     });
