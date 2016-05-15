@@ -2,12 +2,29 @@ $(document).ready(function()
 {
     // Call on page load so tiles are scalled correctly
 	onWindowResize();
+
+    // Fit title area to size of title
+    size_titles();
 });
+
+
+// ------------------------------------------------------------------
+//                 Size Title to fit in title area
+// ------------------------------------------------------------------
+function size_titles(){
+    $(".tile_container").each(function(){
+        var title_height =  $(this).find(".panel_heading_span").height(); 
+        $(this).find(".panel-heading-container").css("height", (title_height + 8) + "px");
+        $(this).find(".panel-heading-container-absolute").css("margin-top",  "-" + (title_height + 8) + "px");
+    });
+   
+}
+
 
 // ------------------------------------------------------------------
 //                 Scroll Effect for Nav Bar
 // ------------------------------------------------------------------
-$(document).scroll(function () {
+$(document).scroll(function() {
 	console.log("here");
     if (window.scrollY > 10) {
         $("#slogan").css("transition", "height 1s, margin-bottom 1s");

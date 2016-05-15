@@ -33,7 +33,7 @@
         echo("</div>\n");
         echo("<div class='panel-heading-container'>\n");
         echo("<div class='panel-heading-container-absolute'>\n");
-        echo("<div class='panel-heading'><h4 class='panel-heading-header'><span>$title</span></h4></div>\n");
+        echo("<div class='panel-heading'><h4 class='panel-heading-header'><span class='panel_heading_span'>$title</span></h4></div>\n");
         echo("<div class='article_descrption_container list-group panel-body'>\n");
         echo("<p class='article_descrption text_padding'>$summary</p>\n");
         echo("</div>\n");

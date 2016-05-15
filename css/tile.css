@@ -12,17 +12,18 @@
 	}
 
 	.panel-heading {
-		margin: 7px -7px -7px -7px;
+		margin: 7p;
 		padding-top: 5px;
 		height: 40px;
 		background-color: transparent;
 		position: absolute;
-		right: 50%;
+		right: 0;
+		left: 0;
+		text-align: center;
 	}
 	.panel-heading-header {
 		font-size: 25px;
 		position: relative;
-		right: -50%;
 	}
 
 
@@ -91,6 +92,8 @@
 		position: absolute;
 		display: inline-block;
 		top: 100%;
+		left: 0;
+		right: 0;
 		margin-top: -47;
 		transition: top .25s, color .25s;
 	}
