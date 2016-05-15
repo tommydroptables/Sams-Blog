@@ -7,6 +7,21 @@ $(document).ready(function()
     size_titles();
 });
 
+// ------------------------------------------------------------------
+//                 Remove the read more button from
+//                 blog if the user is NOT mobile
+// ------------------------------------------------------------------
+// function remove_readmore(){
+
+// }
+
+// ------------------------------------------------------------------
+//                 Navigation to get to full blog
+// ------------------------------------------------------------------
+function read_more(href_blog_text, href_blog_images_folder){
+    window.location.href = ('/Sams-Blog/read_blog.php?blog_text_url=' + href_blog_text +
+                      '&images_dir=' + href_blog_images_folder);
+}
 
 // ------------------------------------------------------------------
 //                 Size Title to fit in title area
@@ -28,7 +43,6 @@ function size_titles(){
         });
         
     });
-   
 }
 
 

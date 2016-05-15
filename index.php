@@ -32,7 +32,7 @@
         $list = array();
         while($file = readdir($dir)){
           if ($file != '.' and $file != '..'){
-            
+
             // add the filename, to be sure not to
             // overwrite a array key
             $ctime = filectime($data_path . $file) . ',' . $file;
@@ -43,8 +43,8 @@
         krsort($list);
         return $list;
       }
-      function output_cards($title, $summary, $href) {
-        echo("<div class='tile_container panel panel-default'>\n");
+      function output_cards($title, $summary, $href_blog_text, $href_blog_images_folder) {
+        echo("<div onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' class='tile_container panel panel-default'>\n");
         echo("<div class='list-group panel-body tile_background_image text_padding'>\n");
         echo("<p>$summary</p>\n");
         echo("</div>\n");
