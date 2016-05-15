@@ -5,6 +5,7 @@ Content Management System for Sam's Blog
 
 All blogs will go in the blog directory in the order
 
+```
 blogs
    |
     --> Blog1
@@ -18,6 +19,7 @@ blogs
     --> Blog2
             |
            ....
+```
 
 Note: all blogs must be text files (.txt) that follow the bellow
 order
