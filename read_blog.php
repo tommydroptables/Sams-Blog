@@ -23,11 +23,25 @@
 <body>
   <div id="menu_spacing"></div>
     <?php
+
+      # Useful functions
+      function startsWith($haystack, $needle) {
+          // search backwards starting from haystack length characters from the end
+          return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+      }
+      function endsWith($haystack, $needle) {
+          // search forward starting from end minus needle length characters
+          return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
+      }
+      
+
       # read in variables from url
       $blog_text_url = $_GET["blog_text_url"];
       $images_dir = $_GET["images_dir"];
-      // echo($blog_text_url);
-      // echo($images_dir);
+
+
+      echo($blog_text_url . "<br>");
+      echo($images_dir . "<br>");
 
       $myfile = fopen($blog_text_url, "r") or die("Unable to open file, $blog_content!");
 
@@ -41,41 +55,61 @@
 
       while(!feof($myfile)) {
         $text_line = fgets($myfile);
+        // echo($text_line);
+        
         if(startsWith($text_line, ':title:')){
-          // $title = str_replace(':title:', '', $text_line);
+          $title = str_replace(':title:', '', $text_line);
           # read in title
-          // while(!feof($myfile)){
-          //   $text_line = fgets($myfile);
-          //   if(startsWith($text_line, ':summary:')){
-          //     break;
-          //   }
-          //   $title .= $text_line;
-          // }
+          while(!feof($myfile)){
+            $text_line = fgets($myfile);
+            if(startsWith($text_line, ':summary:')){
+              break;
+            }
+            $title .= $text_line;
+          }
         }
-        // if(startsWith($text_line, ':summary:')){
-        //   $summary_image = explode(":", $text_line)[1];
-        //   echo("image: " . $summary_image);
-        //   $summary = str_replace(':summary:', '', $text_line);
-        //   # read in summary
-        //   while(!feof($myfile)){
-        //     $text_line = fgets($myfile);
-        //     if(startsWith($text_line, ':article:')){
-        //       break;
-        //     }
-        //     $summary .= $text_line; 
-        //   }
-        // }
 
-        // if(startsWith($text_line, ':article:')){
-        //   $article = str_replace(':article:', '', $text_line);
-        //   # read in article
-        //   while(!feof($myfile)){
-        //     $text_line = fgets($myfile);
-        //     $article .= $text_line; 
-        //   }
-        // }
+        if(startsWith($text_line, ':summary:')){
+          $summary_image = explode(":", $text_line)[2];
+          echo($summary_image . "<br>");
+
+          $summary = str_replace(':summary:', '', $text_line);
+          # read in summary
+          while(!feof($myfile)){
+            $text_line = fgets($myfile);
+            if(startsWith($text_line, ':article:')){
+              break;
+            }
+            $summary .= $text_line; 
+          }
+        }
+
+        if(startsWith($text_line, ':article:')){
+          $article_image = explode(":", $text_line)[2];
+          echo($article_image . "<br>");
+          
+          
+
+          $article = str_replace(':article:', '', $text_line);
+          # read in article
+          while(!feof($myfile)){
+            $text_line = fgets($myfile);
+            # Check for paragraph ending in article
+
+            # Check for images in article
+            if(startsWith($text_line, ':image:')){
+              $temp_image = explode(":", $text_line)[2];
+              echo($article_image . "<br>");
+              $text_line = '<div style="background-image:' . $images_dir . $temp_image . '" class="basic_image_attributes inpage_image_right"></div>';
+              continue;
+            }
+
+            $article .= $text_line; 
+          }
+        }
+
       }
-
+        
 
       $image_title = '';
       echo("<div style='background-image: \"" . $images_dir . $image_title . "\"' class='basic_image_attributes' id='title_image_container'></div>");
