@@ -15,7 +15,7 @@
       <div class="navbar-header navbar-center">
         <a class="navbar-brand" id="title_t_pearl" href="?">Thanks Pearl ...</a>
     </div>  
-        <p id="slogan"><span id="slogan_inner">A blog about all things I wish someone had told me.</span></p>
+        <p id="slogan"><span id="slogan_inner"></span></p>
   </nav>
 </head>
 
@@ -103,7 +103,6 @@
 
             $title       = '';
             $summary     = '';
-            $article     = '';
             
             while(!feof($myfile)) {
               $text_line = fgets($myfile);
@@ -119,6 +118,8 @@
                 }
               }
               if(startsWith($text_line, ':summary:')){
+                $summary_image = explode(":", $text_line)[2];
+                
                 $summary = str_replace(':summary:', '', $text_line);
                 # read in summary
                 while(!feof($myfile)){
@@ -127,15 +128,6 @@
                     break;
                   }
                   $summary .= $text_line; 
-                }
-              }
-
-              if(startsWith($text_line, ':article:')){
-                $article = str_replace(':article:', '', $text_line);
-                # read in article
-                while(!feof($myfile)){
-                  $text_line = fgets($myfile);
-                  $article .= $text_line; 
                 }
               }
             }
@@ -169,6 +161,8 @@
     </div>
     </div>
   </div>
-
 </body>
+<footer>
+  
+</footer>
 </html>

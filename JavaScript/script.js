@@ -5,6 +5,14 @@ $(document).ready(function()
 
     // Fit title area to size of title
     size_titles();
+
+    // Set on hover of title so the line under it changes
+    // color as well
+    $('#title_t_pearl').hover(function(){
+        $('#slogan_inner').css('border-color', 'white');
+    }, function() {
+        $('#slogan_inner').css('border-color', '#3b3d3c');
+    });
 });
 
 // ------------------------------------------------------------------
@@ -56,15 +64,15 @@ $(document).scroll(function() {
         $("#title_t_pearl").css("font-size", "2em");
         $("#slogan").css("height", "1px");
         $("#slogan").css("margin-bottom", "0rem");
-        $("#slogan_inner").css("border-color", "rgba(255,255,255,1)");
+        // $("#slogan_inner").css("border-color", "rgba(255,255,255,1)");
         $("#slogan_inner").css("width", "200px");
     } else {
         $("#slogan").css("transition", "height 1s 1s, margin-bottom 1s 1s");
         $("#title_t_pearl").css("font-size", "4em");
-        $("#slogan").css("height", "25px");
+        $("#slogan").css("height", "1px");
         $("#slogan").css("margin-bottom", "1rem");
-        $("#slogan_inner").css("border-color", "rgba(255,255,255,0)");
-        $("#slogan_inner").css("width", "366px");
+        // $("#slogan_inner").css("border-color", "rgba(255,255,255,1)");
+        $("#slogan_inner").css("width", "400px");
     }
 });
 

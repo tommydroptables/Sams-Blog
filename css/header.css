@@ -12,23 +12,31 @@
 #title_t_pearl {
 	font-size: 4em;
 	transition: font-size 1s;
+	color: #3b3d3c;
+	padding: 0;
+
+}
+#slogan_inner {
+	color: #3b3d3c;
+	font-size: 1em;
+	display: inline-block;
+	border-top: 1px #3b3d3c solid;
+	width: 366px;
+	transition: width 1s .5s;
+}
+
+#title_t_pearl:hover {
+	color: white;
 }
 
 #slogan {
 	text-align: center;
 	width: 100%;
 	overflow: hidden;
+	padding: 0;
 }
 
-#slogan_inner {
-	color: white;
-	font-size: 1em;
-	display: inline-block;
-	border-top: 1px white solid;
-	width: 366px;
-	transition: border-color 1s, width 1s 1s;
-	border-color: rgba(255,255,255,0);
-}
+
 
 #menu-spacing {
 	height: 150px;

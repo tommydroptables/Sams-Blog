@@ -12,16 +12,21 @@ body {
   background-color:#e0e0e0;
   -webkit-font-smoothing: antialiased;
 }
+.navbar {padding-top: 0; margin-top: 0}
 .navbar-default .navbar-brand { color: #fff; font-family: 'Rochester'; font-size: 4em; text-align: center; width: 100%;}
-.navbar-default .navbar-brand:hover { color: #3b3d3c;}
-.navbar-default .navbar-nav>li>a {color: white}
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
 	 color: #c5c5c5;
     background-color: purple;
 }
 
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding: 0;
+}
+
 .navbar-default {
-	background-color:rgba(186,104,200,1);
+  background-color:rgb(255,206,211);
 	opacity:1;
 	transition: opacity .25s;/*
     -moz-transition: opacity .25s ease-in-out;
@@ -95,3 +100,6 @@ textarea {
  padding-top:20px;
 }
 
+footer {
+  height: 200px;
+}
