@@ -62,6 +62,7 @@
 
 	 .article_descrption {
 	 	transition: color .25s;
+	 	text-align: left;
 	 }
 	.tile_container:hover .article_descrption {
 		visibility: visible;

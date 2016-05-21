@@ -3,7 +3,7 @@
 	transition: font-size 1s;
 	color: #3b3d3c;
 	padding: 0;
-
+    margin-bottom: -15px;
 }
 #slogan_inner {
 	color: #3b3d3c;
@@ -18,9 +18,9 @@
 }
 #slogan {
 	text-align: center;
-	width: 100%;
 	overflow: hidden;
 	padding: 0;
+	height: 1px;
 }
 #menu-spacing {
 	height: 150px;

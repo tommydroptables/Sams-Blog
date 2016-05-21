@@ -18,7 +18,6 @@
     <script type="text/javascript" src="JavaScript/script.js"></script>
 
     <title>Thanks Pearl</title>
-    
   </head>
 
 <body>
@@ -26,7 +25,7 @@
       <div class="navbar-header navbar-center">
         <a class="navbar-brand" id="title_t_pearl" href="index.php">Thanks Pearl ...</a>
     </div>  
-        <p id="slogan"><span id="slogan_inner"></span></p>
+        <div id="slogan_inner"></div>
   </nav>
   <div id="menu-spacing"></div>
   <div class="container" id="main">
@@ -40,6 +39,13 @@
         return $colors[$random_int];
       }
 
+function getPhoto($photo_url) {
+        // Verify Photo exists before displaying it
+        if (file_exists($photo_url))
+          return $photo_url;
+        else
+          return "images/default.jpg";
+      }
       function listdir_by_date($path){
         $dir = opendir($path);
         $list = array();
@@ -57,7 +63,7 @@
         return $list;
       }
      function output_cards($title, $summary, $href_blog_text, $href_blog_images_folder, $summary_image_path) {
-        $full_sum_img_pth = $href_blog_images_folder . $summary_image_path;
+        $full_sum_img_pth = getPhoto($href_blog_images_folder . $summary_image_path);
         echo("<div onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' style='background-color: " . get_random_color() . "' onMouseOver  ='add_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' onMouseOut='remove_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' class='tile_container panel panel-default'>\n");
         echo("<div style='background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(\"" . $full_sum_img_pth . "\")' class='list-group panel-body tile_background_image text_padding'>\n");
         echo("<p>$summary</p>\n");

@@ -1,7 +1,12 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <!-- Set up Mobile meta -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Sync your files bitch">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="Unkown">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
@@ -17,13 +22,12 @@
       <div class="navbar-header navbar-center">
         <a class="navbar-brand" id="title_t_pearl" href="index.php">Thanks Pearl ...</a>
     </div>  
-        <p id="slogan"><span id="slogan_inner"></span></p>
+        <div id="slogan_inner"></div>
   </nav>
 </head>
 <body>
   <div id="menu_spacing"></div>
     <?php
-
       # Useful functions
       function startsWith($haystack, $needle) {
           // search backwards starting from haystack length characters from the end
@@ -41,7 +45,6 @@
         else
           return "images/default.jpg";
       }
-      
 
       # read in variables from url
       $blog_text_url = $_GET["blog_text_url"];
