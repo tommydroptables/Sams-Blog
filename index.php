@@ -22,15 +22,15 @@
   </head>
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-header navbar-center">
-    <a class="navbar-brand" id="title_t_pearl" href="?">Thanks Pearl ...</a>
-  </div>  
-    <p id="slogan"><span id="slogan_inner"></span></p>
-</nav>
-<div id="menu-spacing"></div>
-<div class="container" id="main">
-  <div class="row">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header navbar-center">
+      <a class="navbar-brand" id="title_t_pearl" href="?">Thanks Pearl ...</a>
+    </div>  
+      <p id="slogan"><span id="slogan_inner"></span></p>
+  </nav>
+  <div id="menu-spacing"></div>
+  <div class="container" id="main">
+    <div class="row">
 
     <?php
       function get_random_color() {
@@ -59,7 +59,7 @@
      function output_cards($title, $summary, $href_blog_text, $href_blog_images_folder, $summary_image_path) {
         $full_sum_img_pth = $href_blog_images_folder . $summary_image_path;
         echo("<div onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' style='background-color: " . get_random_color() . "' onMouseOver  ='add_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' onMouseOut='remove_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' class='tile_container panel panel-default'>\n");
-        echo("<div style='background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(\"" + $full_sum_img_pth + "\")' class='list-group panel-body tile_background_image text_padding'>\n");
+        echo("<div style='background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(\"" . $full_sum_img_pth . "\")' class='list-group panel-body tile_background_image text_padding'>\n");
         echo("<p>$summary</p>\n");
         echo("</div>\n");
         echo("<div class='panel-heading-container'>\n");
@@ -168,11 +168,11 @@
       echo('</div>');
 
     ?>
-    </div>
-    </div>
-  </div>
-</body>
-<footer>
-  
-</footer>
+      </div> <!-- End Row Block  -->
+    </div> <!-- End main Block  -->
+    <footer>
+    
+    </footer>
+  </body>
+
 </html>
