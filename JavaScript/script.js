@@ -77,6 +77,19 @@ $(document).scroll(function() {
 });
 
 
+function add_linear_gradiant(element, images_path){
+    var title_height =  $(element).find(".tile_background_image");
+
+    $(title_height).css("background-image", "linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(" + images_path + ")");
+    console.log("hover");
+}
+
+function remove_linear_gradiant(element, images_path){
+    var title_height =  $(element).find(".tile_background_image");
+    $(title_height).css("background-image", "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(" + images_path + ")");
+    console.log("out");
+}
+
 // ------------------------------------------------------------------
 //                      Tile Resize Effect
 // ------------------------------------------------------------------
