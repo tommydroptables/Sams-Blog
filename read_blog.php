@@ -33,20 +33,29 @@
           // search forward starting from end minus needle length characters
           return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
       }
+
+      function getPhoto($photo_url) {
+        if (file_exists($photo_url)) {
+            return $photo_url;
+        } else {
+            return "images/default.jpg";
+        }
+      }
       
 
       # read in variables from url
       $blog_text_url = $_GET["blog_text_url"];
-      $images_dir = $_GET["images_dir"];
+      $images_dir    = $_GET["images_dir"];
 
       $myfile = fopen($blog_text_url, "r") or die("Unable to open file, $blog_content!");
 
-      $title       = '';
-      $article     = '';
-      $image_title = '';
-      $image_left  = '';
-      $image_right = '';
-      $image_full  = '';
+      // Elements we need to read in from the blog file
+      $title         = '';
+      $article       = '';
+      $article_image = '';
+      $image_left    = '';
+      $image_right   = '';
+      $image_full    = '';
 
       while(!feof($myfile)) {
         $text_line = fgets($myfile);
@@ -64,10 +73,13 @@
         }
 
         if(startsWith($text_line, ':article:')){
+          // Read in image from article 
           $article_image = explode(":", $text_line)[2];
           
+          // Replace article and image so you don't see them in blog
           $article = str_replace(':article:', '', $text_line);
-          $image_title = explode(":", $text_line)[2];
+          $article = str_replace($article_image . ':', '', $article);
+
           $text_line = "<p>" . $text_line;
           # read in article
           while(!feof($myfile)){
@@ -89,20 +101,19 @@
               if(startsWith($text_line, ':image-full')){
                 $float_class = 'inpage_image_full';
               }
-              $temp_image = explode(":", $text_line)[2];
-              $text_line = '<div style="background-image:' . $images_dir . $temp_image . '" class="basic_image_attributes ' . $float_class . '"></div>';
+              $article_image = explode(":", $text_line)[2];
+              $text_line = '<div style="background-image: url(' . getPhoto($images_dir . $article_image) . ')" class="basic_image_attributes ' . $float_class . '"></div>';
             }
             $article .= $text_line; 
           }
           $text_line .= "</p>";
         }
       }
-        
-      echo("<div style='background-image: \"" . $images_dir . $image_title . "\"' class='basic_image_attributes' id='title_image_container'></div>");
+      echo("<div style='background-image: url(" . getPhoto($images_dir . $article_image) . ")' class='basic_image_attributes' id='title_image_container'></div>");
   
       echo("<div id='text_body'>");
-      echo("<h1>" . $title . "</h1>");
-      echo("<h5>Author: Dr. Parker</h5>");
+      echo("<h1 id='article_title'>" . $title . "</h1>");
+      echo("<h5 id='article_author'>Author: Dr. Parker</h5>");
       echo($article);
     ?>
 

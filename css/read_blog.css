@@ -3,17 +3,14 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
-h1 {
+#article_title {
 	text-align: center;
 	margin: 1.5em 0 5px 0;
 }
-
-h5 {
+#article_author {
 	text-align: center;
 	margin-bottom: 1.5em;
 }
-
 #menu_spacing {
 	height: 72px;
 }
@@ -33,15 +30,12 @@ h5 {
   		0 1px 2px rgba(0,0,0, 0.20),
     	0 1px 2px rgba(0,0,0, 0.30);
 }
-
-
 #text_body {
 	display: inline-block;
 	width: 70%;
 	text-align: left;
 	line-height: 1.6em;
 }
-
 .inpage_image_left {
 	margin: 0 10px 0 10px;
 	display: inline-block;
@@ -66,7 +60,6 @@ h5 {
 	height: 40%;
 	background-image: url(../images/1.jpg);
 }
-
 @media (max-width: 500px) {
  #text_body {
   width: 90%;

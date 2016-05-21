@@ -23,10 +23,10 @@
 
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header navbar-center">
-      <a class="navbar-brand" id="title_t_pearl" href="?">Thanks Pearl ...</a>
+      <div class="navbar-header navbar-center">
+        <a class="navbar-brand" id="title_t_pearl" href="index.php">Thanks Pearl ...</a>
     </div>  
-      <p id="slogan"><span id="slogan_inner"></span></p>
+        <p id="slogan"><span id="slogan_inner"></span></p>
   </nav>
   <div id="menu-spacing"></div>
   <div class="container" id="main">
@@ -166,7 +166,6 @@
         output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
       }
       echo('</div>');
-
     ?>
       </div> <!-- End Row Block  -->
     </div> <!-- End main Block  -->
