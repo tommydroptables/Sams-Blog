@@ -35,11 +35,11 @@
       }
 
       function getPhoto($photo_url) {
-        if (file_exists($photo_url)) {
-            return $photo_url;
-        } else {
-            return "images/default.jpg";
-        }
+        // Verify Photo exists before displaying it
+        if (file_exists($photo_url))
+          return $photo_url;
+        else
+          return "images/default.jpg";
       }
       
 
