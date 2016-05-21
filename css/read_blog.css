@@ -70,3 +70,13 @@ body {
   width: 70%;
  }
 }
+@media (max-width: 450px) {
+ #menu-spacing {
+ 	height: 30px;
+ }
+}
+@media (min-width: 450px) {
+ #menu-spacing {
+ 	height: 65px;
+ }
+}

@@ -3,7 +3,7 @@
 	transition: font-size 1s;
 	color: #3b3d3c;
 	padding: 0;
-    margin-bottom: -15px;
+    margin-bottom: -22px;
 }
 #slogan_inner {
 	color: #3b3d3c;
@@ -29,4 +29,21 @@
 .navbar {
 	padding-bottom: 1rem;
 	transition: padding-bottom 1s;
+}
+
+@media (max-width: 450px) {
+ #title_t_pearl {
+	font-size: 3em;
+ }
+ #slogan_inner {
+ 	width: 275px;
+ }
+}
+@media (min-width: 450px) {
+ #title_t_pearl {
+	font-size: 4em;
+ }
+ #slogan_inner {
+ 	width: 400px;
+ }
 }

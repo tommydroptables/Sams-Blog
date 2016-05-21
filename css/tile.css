@@ -128,3 +128,15 @@
 	.text_padding {
 		padding: 20px 0 40px 0;
 	}
+
+@media (max-width: 450px) {
+ body {
+  margin: 0;
+ }
+}
+@media (min-width: 450px) {
+ body {
+  margin: 0 3em 0 3em;
+ }
+}
+	

@@ -59,16 +59,18 @@ function size_titles(){
 //                 Scroll Effect for Nav Bar
 // ------------------------------------------------------------------
 $(document).scroll(function() {
+    var text_size = (window.innerWidth > 450 ? '4em' : '3em'); 
+    var line_width = (window.innerWidth > 450 ? '400px' : '275px'); 
     if (window.scrollY > 10) {
         $(".navbar").css("transition", "padding-bottom 1s");
-        $("#title_t_pearl").css("font-size", "2em");
+        $("#title_t_pearl").css("font-size", '2em');
         $(".navbar").css("padding-bottom", "0rem");
         $("#slogan_inner").css("width", "200px");
     } else {
         $(".navbar").css("transition", "padding-bottom 1s .5s");
-        $("#title_t_pearl").css("font-size", "4em");
+        $("#title_t_pearl").css("font-size", text_size);
         $(".navbar").css("padding-bottom", "1rem");
-        $("#slogan_inner").css("width", "400px");
+        $("#slogan_inner").css("width", line_width);
     }
 });
 
