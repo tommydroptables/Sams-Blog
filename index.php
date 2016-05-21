@@ -17,7 +17,7 @@
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="JavaScript/script.js"></script>
 
-    <title>Thanks Pearl</title>
+    <title>Thanks Pearl...</title>
   </head>
 
 <body>
@@ -34,7 +34,7 @@
     <?php
       function get_random_color() {
         // $colors = array('#C6ACC7', '#ECB4BF', '#FBD7B7', '#FDF3B8', '#C2E3EC');
-        $colors = array('#EF9EA4', '#9A89BF', '#89D2F3', '#D5E29D', '#F9CB8D', '#F0997B', '#F3ECDC', '#CA95BF', '#93B0DC', '#96CB9D', '#FFF59C', '#F4B488');
+        $colors = array('#EF9EA4', '#9A89BF', '#89D2F3', '#D5E29D', '#F9CB8D', '#F0997B', '#F3ECDC', '#CA95BF', '#93B0DC', '#96CB9D', '#FFF59C', '#F4B488', 'rgb(235,226,226)', 'rgb(228,205,221)', 'rgb(159,148,214)', 'rgb(253,245,248)', 'rgb(182,214,208)', 'rgb(217,139,155)', 'rgb(165,140,129)', 'rgb(224,246,251)', 'rgb(210,233,238)', 'rgb(207,234,252)', 'rgb(184,212,250)', 'rgb(169,229,255)', 'rgb(225,198,254)', 'rgb(231,202,247)', 'rgb(205,201,254)', 'rgb(234,185,254)', 'rgb(250,216,250)', 'rgb(252,207,236)', 'rgb(255,193,219)', 'rgb(253,248,213)', 'rgb(252,225,202)', 'rgb(251,247,218)', 'rgb(255,239,198)', 'rgb(255,235,217)', 'rgb(222,208,181)', 'rgb(252,216,209)', 'rgb(227,233,233)', 'rgb(108,197,186)', 'rgb(168,217,208)', 'rgb(146,226,254)', 'rgb(137,223,253)', 'rgb(130,202,224)');
         $random_int = rand(0, count($colors));
         return $colors[$random_int];
       }

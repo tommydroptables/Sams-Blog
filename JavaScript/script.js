@@ -60,18 +60,14 @@ function size_titles(){
 // ------------------------------------------------------------------
 $(document).scroll(function() {
     if (window.scrollY > 10) {
-        $("#slogan").css("transition", "height 1s, margin-bottom 1s");
+        $(".navbar").css("transition", "padding-bottom 1s");
         $("#title_t_pearl").css("font-size", "2em");
-        $("#slogan").css("height", "1px");
-        $("#slogan").css("margin-bottom", "0rem");
-        // $("#slogan_inner").css("border-color", "rgba(255,255,255,1)");
+        $(".navbar").css("padding-bottom", "0rem");
         $("#slogan_inner").css("width", "200px");
     } else {
-        $("#slogan").css("transition", "height 1s 1s, margin-bottom 1s 1s");
+        $(".navbar").css("transition", "padding-bottom 1s .5s");
         $("#title_t_pearl").css("font-size", "4em");
-        $("#slogan").css("height", "1px");
-        $("#slogan").css("margin-bottom", "1rem");
-        // $("#slogan_inner").css("border-color", "rgba(255,255,255,1)");
+        $(".navbar").css("padding-bottom", "1rem");
         $("#slogan_inner").css("width", "400px");
     }
 });
