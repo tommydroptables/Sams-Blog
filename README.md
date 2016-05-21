@@ -35,10 +35,13 @@ The image specifed here will be shown on the home page.
 :image-title:<IMAGE-NAME>: will be a full screen image when you move to the page
 When you have 2 spaces it will count as a paragraph break.
 
-:image-left:<IMAGE-NAME>: Will split the image towards the left
+:image-left:<IMAGE-NAME>:
+Will split the image towards the left
 half of the page
-:image-right:<IMAGE-NAME>: Will split the image towards the right
+:image-right:<IMAGE-NAME>:
+Will split the image towards the right
 half of the page
-:image-full:<IMAGE-NAME>: Will allow the image to take up the full
+:image-full:<IMAGE-NAME>:
+Will allow the image to take up the full
 with of the page.
 ```
