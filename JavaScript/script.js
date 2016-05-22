@@ -1,6 +1,8 @@
 $(document).ready(function() 
 {
-    // Call on page load so tiles are scalled correctly
+    read_in_cards();
+
+    // Call on page load so cards are scalled correctly
 	onWindowResize();
 
     // Fit title area to size of title
@@ -13,16 +15,12 @@ $(document).ready(function()
     }, function() {
         $('#slogan_inner').css('border-color', '#3b3d3c');
     });
+
 });
 
-// ------------------------------------------------------------------
-//                 Remove the read more button from
-//                 blog if the user is NOT mobile
-// ------------------------------------------------------------------
-function remove_readmore(){
-
-}
-
+// Cache 2 colomn and 3 colomn html when user resizes the page
+var Global_two_column_cards = "";
+var Global_three_column_cards = "";
 
 // ------------------------------------------------------------------
 //                 Navigation to get to full blog
@@ -34,6 +32,8 @@ function read_more(href_blog_text, href_blog_images_folder){
 
 // ------------------------------------------------------------------
 //                 Size Title to fit in title area
+//       1) Set the size of containers to show Text correctly
+//       2) Set hover of tile so text slides in
 // ------------------------------------------------------------------
 function size_titles(){
     $(".tile_container").each(function(){
@@ -74,37 +74,44 @@ $(document).scroll(function() {
     }
 });
 
-
+// ------------------------------------------------------------------
+//           Make background dark when card is hovered
+// ------------------------------------------------------------------
 function add_linear_gradiant(element, images_path){
     var title_height =  $(element).find(".tile_background_image");
 
     $(title_height).css("background-image", "linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(" + images_path + ")");
-    console.log("hover");
 }
-
 function remove_linear_gradiant(element, images_path){
     var title_height =  $(element).find(".tile_background_image");
     $(title_height).css("background-image", "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(" + images_path + ")");
-    console.log("out");
 }
 
 // ------------------------------------------------------------------
-//                      Tile Resize Effect
+//   Correctly show correct columns of cards when page is resized
 // ------------------------------------------------------------------
+function read_in_cards(){
+    Global_two_column_cards = document.getElementById("two_column_cards").innerHTML;
+    Global_three_column_cards = document.getElementById("three_column_cards").innerHTML;
+}
+
 $(window).resize(function () {
 	/* jQuery toggle layout */
 	onWindowResize();
+
+    // card hover needs to be re-caluculated every time page is resized
+    // 
+    size_titles();
 }); 
+
 function onWindowResize() {
 	if(window.innerWidth > 1050) {
-        $('body .col-md-6').addClass('col-sm-6').addClass('col-md-4').removeClass('col-md-6').removeClass('col-md-12');
-        $('body .col-md-12').addClass('col-sm-6').addClass('col-md-4').removeClass('col-md-6').removeClass('col-md-12');
+        $('#row').html(Global_three_column_cards);
     }
-    else if(window.innerWidth < 1050 && window.innerWidth > 750) {
-        $('body .col-md-4').addClass('col-sm-6').addClass('col-md-6').removeClass('col-md-4').removeClass('col-md-12');
-        $('body .col-md-12').addClass('col-sm-6').addClass('col-md-6').removeClass('col-md-4').removeClass('col-md-12');
+    else if(window.innerWidth < 1050 && window.innerWidth > 550) {
+        $('#row').html(Global_two_column_cards);
     }
-    else if(window.innerWidth < 768) {
+    else if(window.innerWidth < 550) {
         $('body .col-md-4').addClass('col-md-12').removeClass('col-md-4').removeClass('col-md-6').removeClass('col-sm-6');
         $('body .col-md-6').addClass('col-md-12').removeClass('col-md-4').removeClass('col-md-6').removeClass('col-sm-6');
     }

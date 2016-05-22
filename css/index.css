@@ -1,0 +1,10 @@
+@media (max-width: 450px) {
+ #menu-spacing {
+ 	height: 80px;
+ }
+}
+@media (min-width: 450px) {
+ #menu-spacing {
+ 	height: 130px;
+ }
+}

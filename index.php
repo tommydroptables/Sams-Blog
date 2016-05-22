@@ -30,7 +30,7 @@
   </nav>
   <div id="menu-spacing"></div>
   <div class="container" id="main">
-    <div class="row">
+    <div id="row" class="row">
 
     <?php
 
@@ -80,21 +80,25 @@ function getPhoto($photo_url) {
         krsort($list);
         return $list;
       }
+
      function output_cards($title, $summary, $href_blog_text, $href_blog_images_folder, $summary_image_path) {
+        $html_card = "";
         $full_sum_img_pth = getPhoto($href_blog_images_folder . $summary_image_path);
-        echo("<div onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' style='background-color: " . get_random_color() . "' onMouseOver  ='add_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' onMouseOut='remove_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' class='tile_container panel panel-default'>\n");
-        echo("<div style='background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(\"" . $full_sum_img_pth . "\")' class='list-group panel-body tile_background_image text_padding'>\n");
-        echo("<p>$summary</p>\n");
-        echo("</div>\n");
-        echo("<div class='panel-heading-container'>\n");
-        echo("<div class='panel-heading-container-absolute'>\n");
-        echo("<div class='panel-heading'><h4 class='panel-heading-header'><span class='panel_heading_span'>$title</span></h4></div>\n");
-        echo("<div class='article_descrption_container list-group panel-body'>\n");
-        echo("<p class='article_descrption text_padding'>$summary</p>\n");
-        echo("</div>\n");
-        echo("</div>\n");
-        echo("</div>\n");
-        echo("</div>\n");
+        $html_card .= ("<div onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' style='background-color: " . get_random_color() . "' onMouseOver  ='add_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' onMouseOut='remove_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' class='tile_container panel panel-default'>\n");
+        $html_card .= ("<div style='background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(\"" . $full_sum_img_pth . "\")' class='list-group panel-body tile_background_image text_padding'>\n");
+        $html_card .= ("<p>$summary</p>\n");
+        $html_card .= ("</div>\n");
+        $html_card .= ("<div class='panel-heading-container'>\n");
+        $html_card .= ("<div class='panel-heading-container-absolute'>\n");
+        $html_card .= ("<div class='panel-heading'><h4 class='panel-heading-header'><span class='panel_heading_span'>$title</span></h4></div>\n");
+        $html_card .= ("<div class='article_descrption_container list-group panel-body'>\n");
+        $html_card .= ("<p class='article_descrption text_padding'>$summary</p>\n");
+        $html_card .= ("</div>\n");
+        $html_card .= ("</div>\n");
+        $html_card .= ("</div>\n");
+        $html_card .= ("</div>\n");
+
+        return $html_card;
       }
 
       function startsWith($haystack, $needle) {
@@ -107,18 +111,26 @@ function getPhoto($photo_url) {
       }
       $dir   = 'blogs';
       $blogs = scandir($dir);
+      $blog_row1_col_2 = array();
+      $blog_row2_col_2 = array();
+
+
       $blog_row1 = array();
       $blog_row2 = array();
       $blog_row3 = array();
 
-      $blog_counter = 0;
+      $blog_counter_3_rows = 0;
+      $blog_counter_2_rows = 0;
       foreach($blogs as &$blog){
         # since this is linux we will need to skip '.' and '..'
         if($blog == '.' || $blog == '..') {
           continue;
         }
-        if($blog_counter == 3) {
-          $blog_counter = 0;
+        if($blog_counter_3_rows == 3) {
+          $blog_counter_3_rows = 0;
+        }
+        if($blog_counter_2_rows == 2) {
+          $blog_counter_2_rows = 0;
         }
         $blog_str = "$dir/$blog";
         $blog_contents = scandir($blog_str);
@@ -165,32 +177,60 @@ function getPhoto($photo_url) {
                 }
               }
             }
-            if($blog_counter == 0)
+
+            
+            if($blog_counter_2_rows == 0)
+              array_push($blog_row1_col_2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
+            if($blog_counter_2_rows == 1)
+              array_push($blog_row2_col_2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
+            
+
+            if($blog_counter_3_rows == 0)
               array_push($blog_row1, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
-            if($blog_counter == 1)
+            if($blog_counter_3_rows == 1)
               array_push($blog_row2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
-            if($blog_counter == 2)
+            if($blog_counter_3_rows == 2)
               array_push($blog_row3, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
             fclose($myfile);
           }
         }
-        $blog_counter++;
+        $blog_counter_3_rows++;
+        $blog_counter_2_rows++;
       } # end reading in all blogs from dir
 
-      echo('<div class="col-md-4 col-sm-6">');
+      // create cards in 2 columns for smaller screens
+      $two_column_cards = "";
+      $two_column_cards .= ("<div class='col-md-6 col-sm-6'>");
+      foreach($blog_row1_col_2 as &$each_blog_info){
+        $two_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+      }
+      $two_column_cards .= ("</div><div class='col-md-6 col-sm-6'>");
+      foreach($blog_row2_col_2 as &$each_blog_info){
+        $two_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+      }
+      $two_column_cards .= ('</div>');
+
+      
+      // create cards in 3 columns for smaller screens
+      $three_column_cards = "";
+      $three_column_cards .= ("<div class='col-md-4 col-sm-6'>");
       foreach($blog_row1 as &$each_blog_info){
-        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+        $three_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
       }
-      echo('</div><div class="col-md-4 col-sm-6">');
+      $three_column_cards .= ("</div><div class='col-md-4 col-sm-6'>");
       foreach($blog_row2 as &$each_blog_info){
-        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+        $three_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
       }
-      echo('</div><div class="col-md-4 col-sm-6">');
+      $three_column_cards .= ("</div><div class='col-md-4 col-sm-6'>");
       foreach($blog_row3 as &$each_blog_info){
-        output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+        $three_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
       }
-      echo('</div>');
+      $three_column_cards .= ('</div>');
+
+      echo ('<div style="display:none" id="two_column_cards">' . $two_column_cards . '</div>');
+      echo ('<div style="display:none" id="three_column_cards">' . $three_column_cards . '</div>');
     ?>
+
       </div> <!-- End Row Block  -->
     </div> <!-- End main Block  -->
     <footer>
