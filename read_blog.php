@@ -124,11 +124,8 @@
 
 </body>
 <footer>
-    <p  style="top: 150px;
-               position: relative;
-               text-align:center;
-               float: bottom">
-      <a href="https://github.com/cocoztho000/Sams-Blog">© 2016 by Tom Cocozzello</a>
+    <p  id="creator">
+      <a href="http://www.cocozzello.com">© 2016 by Tom Cocozzello</a>
     </p>
 </footer>
 </html>

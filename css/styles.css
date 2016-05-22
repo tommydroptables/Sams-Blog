@@ -103,3 +103,8 @@ textarea {
 footer {
   height: 200px;
 }
+#creator {
+  top: 150px;
+  position: relative;
+  text-align:center;
+}
