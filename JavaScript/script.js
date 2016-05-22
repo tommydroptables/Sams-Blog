@@ -1,5 +1,6 @@
 $(document).ready(function() 
 {
+    // Read in card on page and cache them
     read_in_cards();
 
     // Call on page load so cards are scalled correctly
@@ -7,15 +8,6 @@ $(document).ready(function()
 
     // Fit title area to size of title
     size_titles();
-
-    // Set on hover of title so the line under it changes
-    // color as well
-    $('#title_t_pearl').hover(function(){
-        $('#slogan_inner').css('border-color', 'white');
-    }, function() {
-        $('#slogan_inner').css('border-color', '#3b3d3c');
-    });
-
 });
 
 // Cache 2 colomn and 3 colomn html when user resizes the page

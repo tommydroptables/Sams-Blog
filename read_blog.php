@@ -86,11 +86,13 @@
           $article = str_replace($article_image . ':', '', $article);
 
           $text_line = "<p>" . $text_line;
+
           # read in article
           while(!feof($myfile)){
+            $previous_line = $text_line;
             $text_line = fgets($myfile);
             # Check for paragraph ending in article
-            if(startsWith($text_line, '')){
+            if(trim($text_line) == ''){
               $text_line .= "</p><p>";
             }
             

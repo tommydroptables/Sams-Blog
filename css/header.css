@@ -16,6 +16,11 @@
 #title_t_pearl:hover {
 	color: white;
 }
+
+#title_t_pearl #slogan_inner{
+	border-color: white;
+}
+
 #slogan {
 	text-align: center;
 	overflow: hidden;
