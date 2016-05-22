@@ -35,7 +35,7 @@ The image specifed here will be shown in the cards on the home page.
 :article:<IMAGE-NAME>: full artile. 
 The image specifed here will be shown on the article page at the top.
 
-<b>Note: The elements bellow are part of the article</b>
+NOTE: The elements below are part of the article
 :image-left:<IMAGE-NAME>:
 This is a smaller image that will be part of the artcile on the left side of the page
 :image-right:<IMAGE-NAME>:
