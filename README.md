@@ -26,7 +26,7 @@ order
 
 # Format
 Bellow is the format that the blog-name.txt files shoud be in. <b> Note:
-<IMAGE-NAME> needs to include the type of the image e.g. test.jpg</b>
+\<IMAGE-NAME> needs to include the type of the image e.g. ```test.jpg```</b>
 
 ```
 :title: best title ever
