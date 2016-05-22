@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Set up Mobile meta -->
-    <meta charset="UTF-8">
-    <meta name="description" content="Sync your files bitch">
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-    <meta name="author" content="Unkown">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Set up Mobile meta -->
+  <meta charset="UTF-8">
+  <meta name="description" content="Things I wish people have told me">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  <meta name="author" content="Dr. Parker">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/tile.css">
   <link rel="stylesheet" type="text/css" href="css/read_blog.css">
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="JavaScript/script.js"></script>
@@ -122,6 +124,11 @@
 
 </body>
 <footer>
-  
+    <p  style="top: 150px;
+               position: relative;
+               text-align:center;
+               float: bottom">
+      <a href="https://github.com/cocoztho000/Sams-Blog">© 2016 by Tom Cocozzello</a>
+    </p>
 </footer>
 </html>
