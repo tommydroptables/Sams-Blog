@@ -30,19 +30,16 @@ Bellow is the format that the Blog1-name.txt files shoud be in. <b> Note:
 
 ```
 :title: best title ever
-:summary:<IMAGE-NAME>: short summary of why this is the best article ever made.
-The image specifed here will be shown on the home page.
-:article:<IMAGE-NAME>: full artile on why this is the best article. 
-:image-title:<IMAGE-NAME>: will be a full screen image when you move to the page
-When you have 2 spaces it will count as a paragraph break.
+:summary:<IMAGE-NAME>: short summary of why the article. This will be show 'onHover' on the home page
+The image specifed here will be shown in the cards on the home page.
+:article:<IMAGE-NAME>: full artile. 
+The image specifed here will be shown on the article page at the top.
 
+<b>Note: The elements bellow are part of the article</b>
 :image-left:<IMAGE-NAME>:
-Will split the image towards the left
-half of the page
+This is a smaller image that will be part of the artcile on the left side of the page
 :image-right:<IMAGE-NAME>:
-Will split the image towards the right
-half of the page
+This is a smaller image that will be part of the artcile on the left side of the page
 :image-full:<IMAGE-NAME>:
-Will allow the image to take up the full
-with of the page.
+This is a larger image that will be part of the artcile that will be full width of the page
 ```
