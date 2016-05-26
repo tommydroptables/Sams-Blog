@@ -5,13 +5,26 @@ $(document).ready(function()
 
     // Call on page load so cards are scalled correctly
 	onWindowResize();
-
     // Fit title area to size of title
     if(mobileAndTabletcheck())
         size_titles_mobile();
     else
         size_titles();
+
+    set_on_hover_title();
+
 });
+
+window.set_on_hover_title = function() {
+    console.log("here");
+    $("#title_t_pearl").hover(function() {
+        $("#title_t_pearl").css("color","white");
+        $("#slogan_inner").css("border-color","white");
+    },function() {
+        $("#title_t_pearl").css("color","#3b3d3c");
+        $("#slogan_inner").css("border-color","#3b3d3c");
+    });
+}
 
 // Cache 2 colomn and 3 colomn html when user resizes the page
 var Global_two_column_cards = "";
