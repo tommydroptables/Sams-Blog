@@ -6,6 +6,15 @@
 </head>
 <body>
 <?php 
+    session_start();
+    # verified user is logged in
+    var_dump($_SESSION);
+    if ($_SESSION['valid'] == false && $_SESSION['timeout'] < time()) {
+        header('Refresh: 0; URL = test-login.php');
+        die;
+    }
+
+
     function startsWith($haystack, $needle) {
         // search backwards starting from haystack length characters from the end
         return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
@@ -81,11 +90,18 @@ $text = file_get_contents($file);
 ?>
 <!-- HTML form -->
 <div id="blog_titles"><?php foreach($blog_titles as &$blog_title){echo '<a href="">' . $blog_title . "</a><br>";} ?></div>
-	<form>
+<form>
 	<textarea name="text"><?php echo htmlspecialchars($text) ?></textarea>
 	<br>
 	<input type="submit" />
 	<input type="reset" />
-	</form>
+</form>
+<div id="images"></div>
+    <input type="submit" value="delete" />
+
+<form action="accept-file.php" method="post" enctype="multipart/form-data">
+    <input type="file" value="add" />
+    <input type="submit" name="submit" value="Submit" />
+</form>
 </body>
 </html>
