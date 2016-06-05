@@ -58,7 +58,7 @@
         return $colors[get_random_int(0, count($colors))];
       }
 
-function getPhoto($photo_url) {
+      function getPhoto($photo_url) {
         // Verify Photo exists before displaying it
         if (file_exists($photo_url))
           return $photo_url;
@@ -110,6 +110,7 @@ function getPhoto($photo_url) {
           // search forward starting from end minus needle length characters
           return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
       }
+      
       $dir   = 'blogs';
       $blogs = scandir($dir);
       $blog_row1_col_2 = array();

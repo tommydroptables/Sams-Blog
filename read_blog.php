@@ -109,7 +109,7 @@
                 $float_class = 'inpage_image_full';
               }
               $article_image = explode(":", $text_line)[2];
-              $text_line = '<div style="background-image: url(' . getPhoto($images_dir . $article_image) . ')" class="basic_image_attributes ' . $float_class . '"></div>';
+              $text_line = '</p><div style="background-image: url(' . getPhoto($images_dir . $article_image) . ')" class="basic_image_attributes ' . $float_class . '"></div><p>';
             }
             $article .= $text_line; 
           }
