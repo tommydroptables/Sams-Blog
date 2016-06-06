@@ -1,9 +1,8 @@
 <?php
 	session_start();
     # verified user is logged in
-    var_dump($_SESSION);
     if ($_SESSION['valid'] == false && $_SESSION['timeout'] < time()) {
-        header('Refresh: 0; URL = test-login.php');
+        header('Refresh: 0; URL = test-login.php?previous=admin.php');
         die;
     }
     
@@ -26,7 +25,7 @@
       }
       
       if(empty($errors)==true){
-         move_uploaded_file($file_tmp,"images/".$file_name);
+         move_uploaded_file($file_tmp,"images/" . $file_name);
          echo "Success";
       }else{
          print_r($errors);

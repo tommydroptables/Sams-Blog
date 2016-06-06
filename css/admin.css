@@ -3,15 +3,42 @@ textarea {
 	width: 85vw;
 }
 
-
-
 #blog_titles{
 	float: right;
 	display: inline-block;
 }
 
 #images {
-	height: 18vh;
 	border: solid rgb(169, 169, 169) 1px;
 	margin: 5px;
+	padding: 5px;
+}
+
+#delete_photo {
+	display: inline-block;
+}
+
+#upload_img {
+	display: inline-block;
+}
+
+.container {
+	display: inline-block;
+	text-align: center;
+}
+#test {
+	border-radius: 5px;
+    color: white;
+    background-repeat: no-repeat;
+    background-origin: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 1px 2px rgba(0,0,0, 0.12), 0 1px 2px rgba(0,0,0, 0.24);
+    background-image: url("../blogs/0/images/1.jpg");
+}
+
+.test1, .test2 {
+	cursor: pointer;
 }

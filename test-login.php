@@ -11,8 +11,14 @@
 <html lang = "en">
    
    <head>
-      <title>Tutorialspoint.com</title>
+      <title>Thanks Pearl</title>
       <link href = "css/bootstrap.min.css" rel = "stylesheet">
+      <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="css/styles.css">
+      <link rel="stylesheet" type="text/css" href="css/header.css">
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+      <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="JavaScript/header.js"></script>
       
       <style>
          body {
@@ -25,7 +31,7 @@
             max-width: 330px;
             padding: 15px;
             margin: 0 auto;
-            color: #017572;
+            color: rgb(59, 61, 60);
          }
          
          .form-signin .form-signin-heading,
@@ -50,35 +56,53 @@
          .form-signin .form-control:focus {
             z-index: 2;
          }
-         
-         .form-signin input[type="email"] {
+
+         .form-signin input[type="text"] {
             margin-bottom: -1px;
+            border-width: .5px;
             border-bottom-right-radius: 0;
             border-bottom-left-radius: 0;
-            border-color:#017572;
+            border-color: rgb(255,88,105);
          }
          
          .form-signin input[type="password"] {
             margin-bottom: 10px;
+            border-width: .5px;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
-            border-color:#017572;
+            border-color: rgb(255,88,105);
          }
          
-         h2{
-            text-align: center;
-            color: #017572;
+         .btn-primary {
+            background-color: rgb(255,206,211);
+            color: rgb(59, 61, 60);
+         }
+         .btn-primary:hover {
+            background-color: rgb(255,88,105);
+            border-color: rgb(255,88,105);
+            color: rgb(59, 61, 60);
          }
       </style>
       
    </head>
 	
    <body>
-      
-      <h2>Login Thanks Pearl</h2> 
+      <nav class="navbar navbar-default navbar-fixed-top">
+         <div class="navbar-header navbar-center">
+            <a class="navbar-brand" id="title_t_pearl" href="index.php">Thanks Pearl ...</a>
+         </div>  
+         <div id="slogan_inner"></div>
+      </nav>
+
       <div class = "container form-signin">
          
          <?php
+            $redirect_to = '';
+            if (isset($_GET['previous'])) {
+                $redirect_to = $_GET['previous'];
+            }else{
+               $redirect_to = 'admin.php';
+            }
             $msg = '';
             
             if (isset($_POST['login']) && !empty($_POST['username']) 
@@ -90,6 +114,7 @@
                   $_SESSION['timeout'] = time() + 3600;
                   $_SESSION['username'] = 'tutorialspoint';
                   echo 'You have entered valid username and password';
+                  header("Refresh: 0; URL = $redirect_to");
                } else {
                   $msg = 'Wrong username or password';
                }
@@ -97,6 +122,8 @@
          ?>
       </div> <!-- /container -->
       
+  <div id="menu-spacing"></div>
+
       <div class = "container">
       
          <form class = "form-signin" role = "form" 
@@ -110,9 +137,10 @@
                name = "password" placeholder = "password" required>
             <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
                name = "login">Login</button>
+            Click here to <a href = "logout.php" tite = "Logout">Logout.
          </form>
 			
-         Click here to <a href = "logout.php" tite = "Logout">Logout.
+         
          
       </div> 
       
