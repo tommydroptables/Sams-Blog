@@ -28,7 +28,7 @@
 
     function get_thumbnail_photo_html($photo, $photo_full_path) {
       return "<div class='container'>" .
-             "  <label style='background-image=url($photo_full_path)' class='add_cursor' for='$photo' id='test'></label><br>" .
+             "  <label style='background-image: url($photo_full_path)' class='add_cursor' for='$photo' id='test'></label><br>" .
              "  <input class='add_cursor' id='$photo' type='checkbox' name='test' value='test' /><label class='add_cursor' for='$photo'>$photo</label>" .
              "</div>";
     }
@@ -147,7 +147,7 @@ if($_SESSION['blog']) {
         if($blog_image == '.' || $blog_image == '..') {
           continue;
         }
-        array_push($image_thumbnails, get_thumbnail_photo_html($blog_image, $blog_image_dir . '/' . $blog_image));
+        array_push($image_thumbnails, get_thumbnail_photo_html($blog_image, './' . $blog_image_dir . '/' . $blog_image));
       }
     }
   }
