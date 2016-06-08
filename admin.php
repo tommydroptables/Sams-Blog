@@ -3,18 +3,35 @@
 <head>
 	<title></title>
     <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="JavaScript/admin.js"></script>
 </head>
 <body>
 <?php
     session_start();
     # verified user is logged in
-    if ($_SESSION['valid'] == false && $_SESSION['timeout'] < time()) {
+    if ($_SESSION['valid'] == false || $_SESSION['timeout'] < time()) {
         header('Refresh: 0; URL = test-login.php');
         die;
     }
 
     if (isset($_GET['blog'])) {
       $blog_name = $_GET['blog'];
+    }
+
+    if (isset($_GET['save'])) {
+      $save_blog_name = $_GET['save'];
+      $body_to_save = detectRequestBody();
+      var_dump($body_to_save);
+    }
+
+    function detectRequestBody() {
+      $rawInput = fopen('php://input', 'r');
+      $tempStream = fopen('php://temp', 'r+');
+      stream_copy_to_stream($rawInput, $tempStream);
+      rewind($tempStream);
+
+      return $tempStream;
     }
 
     function startsWith($haystack, $needle) {
@@ -34,7 +51,7 @@
     }
 
     $blog_titles = array();
-    $dir   = 'blogs';
+    $dir   = "blogs";
     $blogs = scandir($dir);
     foreach($blogs as &$blog){
       # since this is linux we will need to skip '.' and '..'
@@ -62,6 +79,7 @@
           		$title = trim(str_replace(':title:', '', $text_line));
               if($title === $blog_name){
                 $_SESSION['blog'] = $blog_str;
+                $_SESSION['blog_text_file'] = $blog_file;
               }
           		# read in title
           		while(!feof($myfile)){
@@ -114,7 +132,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
          print_r($errors);
       }
    }
-
 }
 
 //-------------------------------------------------------------------------
@@ -160,10 +177,10 @@ if($_SESSION['blog']) {
 <!-- HTML form -->
 <div id="blog_titles"><?php foreach($blog_titles as &$blog_title){echo "<a href='?blog=$blog_title[0]'>" . $blog_title[0] . "</a><br>";} ?></div>
 <form>
-	<textarea name="text"><?php echo htmlspecialchars($text) ?></textarea>
+	<textarea id="edit_blog" name="text"><?php echo htmlspecialchars($text) ?></textarea>
 	<br>
-	<input type="submit" />
-	<input type="reset" />
+	<input type="submit" onclick="on_page_submit(<?php echo $_SESSION['blog_text_file'] ?>)" />
+	<input type='reset' /> <!-- A page refresh will reset the editing section -->
 </form>
 <div id="images">
     <form id="images_form">
@@ -175,7 +192,7 @@ if($_SESSION['blog']) {
 
 <form id="upload_img" action="" method="POST" enctype="multipart/form-data">
     <input type="file" name="image" />
-    <input type="submit" value="Upload" />
+    <input type="submit" value="Upload"  />
 </form>
 </body>
 </html>
