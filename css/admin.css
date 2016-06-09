@@ -14,8 +14,13 @@ textarea {
 	padding: 5px;
 }
 
+#reset {
+	float: right;
+}
+
 #delete_photo {
 	display: inline-block;
+	float: right;
 }
 
 #upload_img {

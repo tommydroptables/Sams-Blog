@@ -5,7 +5,8 @@
    unset($_SESSION["username"]);
    unset($_SESSION["password"]);
    unset($_SESSION['blog']);
-   
+
    echo 'You have cleaned session';
-   header('Refresh: 2; URL = test-login.php');
+   header('URL = test-login.php');
+
 ?>

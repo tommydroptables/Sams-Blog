@@ -5,9 +5,11 @@
     <link rel="stylesheet" type="text/css" href="css/admin.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="JavaScript/admin.js"></script>
+      <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 <?php
+
     session_start();
     # verified user is logged in
     if ($_SESSION['valid'] == false || $_SESSION['timeout'] < time()) {
@@ -22,7 +24,25 @@
     if (isset($_GET['save'])) {
       $save_blog_name = $_GET['save'];
       $body_to_save = detectRequestBody();
+      file_put_contents($save_blog_name, $body_to_save);
       var_dump($body_to_save);
+    }
+
+    if (isset($_GET['delete'])) {
+      $ary_of_imgs = explode(",", $_GET['delete']);
+      foreach($ary_of_imgs as &$img){
+        $delete_image_name = $_SESSION['blog'] . "/images/" . $img;
+        if(is_malicious_name($delete_image_name))
+          if(is_correct_file_extension($delete_image_name))
+            if(file_exists($delete_image_name))
+              unlink($delete_image_name);
+      }
+    }
+
+    function is_malicious_name($file_name) {
+      if(strpos($file_name, '..') || strpos($file_name, 'www') || strpos($file_name, 'rm '))
+        die;
+      return true;
     }
 
     function detectRequestBody() {
@@ -32,6 +52,15 @@
       rewind($tempStream);
 
       return $tempStream;
+    }
+
+    function is_correct_file_extension($file){
+      $extensions= array("jpeg","jpg","png", "gif");
+      $file_ext  = strtolower(end(explode('.', $file)));
+      // var_dump(in_array($file_ext, $extensions) === false);
+      if(in_array($file_ext, $extensions) === false)
+         return false;
+      return true;
     }
 
     function startsWith($haystack, $needle) {
@@ -104,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     # verified user is logged in
     if ($_SESSION['valid'] == false && $_SESSION['timeout'] < time()) {
-        header('Refresh: 0; URL = test-login.php?previous=admin.php');
+        header('URL = test-login.php?previous=test-login.php');
         die;
     }
 
@@ -114,22 +143,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       $file_size = $_FILES['image']['size'];
       $file_tmp  = $_FILES['image']['tmp_name'];
       $file_type = $_FILES['image']['type'];
-      $file_ext  = strtolower(end(explode('.', $_FILES['image']['name'])));
+      $file_path =  $_SESSION["blog"] . "/images/" . $file_name;
 
-      $extensions= array("jpeg","jpg","png", "gif");
-
-      if(in_array($file_ext,$extensions) === false){
+      if(!is_correct_file_extension($_FILES['image']['name'])){
          $errors[] = "File not allowed";
       }
+
+      if(!file_exists($file_path))
+        $errors[] = 'File already Exists';
+
 
       if($file_size > 2097152){
          $errors[] = 'File size must be less than 2 MB';
       }
 
       if(empty($errors) == true){
-         move_uploaded_file($file_tmp, "images/" . $file_name);
+         move_uploaded_file($file_tmp, $file_path);
       }else{
+         print("<p style='color:red'>");
          print_r($errors);
+         print("</p>");
       }
    }
 }
@@ -179,9 +212,10 @@ if($_SESSION['blog']) {
 <form>
 	<textarea id="edit_blog" name="text"><?php echo htmlspecialchars($text) ?></textarea>
 	<br>
-	<input type="submit" onclick="on_page_submit(<?php echo $_SESSION['blog_text_file'] ?>)" />
-	<input type='reset' /> <!-- A page refresh will reset the editing section -->
-</form>
+	<input type="button" value="Save" onclick="on_page_submit(<?php echo "'" . $_SESSION['blog_text_file'] . "'" ?>)" />
+  <input id="reset" type='reset' value="Reset Text" /> <!-- A page refresh will reset the editing section -->
+	<input type='button' value="Go To This Blog" onclick='on_go_to_page(<?php echo "\"read_blog.php?blog_text_url=" . $_SESSION["blog_text_file"] . "&images_dir=" . $_SESSION["blog"] . "/images/\"" ?>)' />
+
 <div id="images">
     <form id="images_form">
        <?php foreach($image_thumbnails as &$image_thumbnail){echo $image_thumbnail;} ?>
