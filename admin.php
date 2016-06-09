@@ -75,7 +75,7 @@
     function get_thumbnail_photo_html($photo, $photo_full_path) {
       return "<div class='container'>" .
              "  <label style='background-image: url($photo_full_path)' class='add_cursor' for='$photo' id='test'></label><br>" .
-             "  <input class='add_cursor' id='$photo' type='checkbox' name='test' value='test' /><label class='add_cursor' for='$photo'>$photo</label>" .
+             "  <input class='add_cursor' id='$photo' type='checkbox' /><label class='add_cursor' for='$photo'>$photo</label>" .
              "</div>";
     }
 
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
          $errors[] = "File not allowed";
       }
 
-      if(!file_exists($file_path))
+      if(file_exists($file_path))
         $errors[] = 'File already Exists';
 
 
@@ -222,7 +222,7 @@ if($_SESSION['blog']) {
     </form>
 </div>
 
-<input id="delete_photo" type="submit" value="Delete Photo" />
+<input id="delete_photo" type="submit" value="Delete Photo"  onclick="on_delete_image()" />
 
 <form id="upload_img" action="" method="POST" enctype="multipart/form-data">
     <input type="file" name="image" />
