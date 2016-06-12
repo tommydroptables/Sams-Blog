@@ -7,14 +7,14 @@
   <meta name="keywords" content="HTML,CSS,XML,JavaScript">
   <meta name="author" content="Dr. Parker">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/tile.css">
   <link rel="stylesheet" type="text/css" href="css/read_blog.css">
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="JavaScript/header.js"></script>
@@ -23,7 +23,7 @@
   <nav class="navbar navbar-default navbar-fixed-top">
       <div class="navbar-header navbar-center">
         <a class="navbar-brand" id="title_t_pearl" href="index.php">Thanks Pearl ...</a>
-    </div>  
+    </div>
         <div id="slogan_inner"></div>
   </nav>
 </head>
@@ -64,7 +64,7 @@
 
       while(!feof($myfile)) {
         $text_line = fgets($myfile);
-        
+
         if(startsWith($text_line, ':title:')){
           $title = str_replace(':title:', '', $text_line);
           # read in title
@@ -78,9 +78,9 @@
         }
 
         if(startsWith($text_line, ':article:')){
-          // Read in image from article 
+          // Read in image from article
           $article_image = explode(":", $text_line)[2];
-          
+
           // Replace article and image so you don't see them in blog
           $article = str_replace(':article:', '', $text_line);
           $article = str_replace($article_image . ':', '', $article);
@@ -95,7 +95,7 @@
             if(trim($text_line) == ''){
               $text_line .= "</p><p>";
             }
-            
+
             # Check for images in article
             if(startsWith($text_line, ':image-')){
               $float_class = '';
@@ -108,22 +108,27 @@
               if(startsWith($text_line, ':image-full')){
                 $float_class = 'inpage_image_full';
               }
-              $article_image = explode(":", $text_line)[2];
-              $text_line = '</p><div style="background-image: url(' . getPhoto($images_dir . $article_image) . ')" class="basic_image_attributes ' . $float_class . '"></div><p>';
+              $article_small_image = explode(":", $text_line)[2];
+              $text_line = '</p><div style="background-image: url(' . getPhoto($images_dir . $article_small_image) . ')" class="basic_image_attributes ' . $float_class . '"></div><p>';
             }
-            $article .= $text_line; 
+            $article .= $text_line;
           }
           $text_line .= "</p>";
         }
       }
       echo("<div style='background-image: url(" . getPhoto($images_dir . $article_image) . ")' class='basic_image_attributes' id='title_image_container'></div>");
-  
+
       echo("<div id='text_body'>");
       echo("<h1 id='article_title'>" . $title . "</h1>");
       echo("<h5 id='article_author'>Author: Dr. Parker</h5>");
       echo($article);
-    ?>
 
+      session_start();
+      if ($_SESSION['valid'] == true || $_SESSION['timeout'] > time()) {
+        echo("<a id='back_to_editing' class='btn btn-primary' href='admin.php' role='button'>Back To Edit Blog</a>");
+      }
+
+    ?>
 </body>
 <footer>
     <p  id="creator">

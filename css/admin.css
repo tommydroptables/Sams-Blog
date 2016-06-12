@@ -4,8 +4,11 @@ textarea {
 }
 
 #blog_titles{
+	margin-top: 2px;
 	float: right;
 	display: inline-block;
+	overflow-y: scroll;
+    max-height: 70vh;
 }
 
 #images {
@@ -14,13 +17,9 @@ textarea {
 	padding: 5px;
 }
 
-#reset {
+#reset, #new_blog, #delete_photo {
 	float: right;
-}
-
-#delete_photo {
-	display: inline-block;
-	float: right;
+	margin-right: 5px;
 }
 
 #upload_img {
@@ -44,6 +43,33 @@ textarea {
     box-shadow: 0 1px 2px rgba(0,0,0, 0.12), 0 1px 2px rgba(0,0,0, 0.24);
 }
 
+.add_left_margin {
+	margin-left: 5px;
+}
+
+.add_top_margin {
+	margin-top: 5px;
+}
+
 .add_cursor{
 	cursor: pointer;
 }
+
+.blog_links {
+	margin: 3px 5px 3px 0px;
+	padding: 3px 5px;
+	width: 90%;
+	max-width: 11vw;
+    overflow: hidden;
+}
+
+@media (max-width: 950px) {
+ textarea {
+ 	width: 75vw;
+ }
+}
+@media (min-width: 950px) {
+ textarea {
+ 	width: 85vw;
+ }
+

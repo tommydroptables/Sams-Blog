@@ -2,18 +2,19 @@
 <html>
 <head>
 	<title></title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="JavaScript/admin.js"></script>
-      <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 <?php
 
     session_start();
-    # verified user is logged in
+    # verifiy user is logged in
     if ($_SESSION['valid'] == false || $_SESSION['timeout'] < time()) {
-        header('Refresh: 0; URL = test-login.php');
+        header('URL = test-login.php');
         die;
     }
 
@@ -21,11 +22,23 @@
       $blog_name = $_GET['blog'];
     }
 
+    if (isset($_GET['create'])) {
+      $create_blog_name = $_GET['create'];
+      // create directories for new blog
+      $blog_dir_name = number_of_blogs();
+      mkdir("blogs/$blog_dir_name/images", 0777, true);
+      $myfile = fopen("blogs/$blog_dir_name/$create_blog_name.txt", "w") or die("Unable to create file!");
+      $txt = ":title: $create_blog_name\n";
+      fwrite($myfile, $txt);
+      fclose($myfile);
+      // Set blog_name details to new blog so it will be read in bellow
+      $blog_name = $create_blog_name;
+    }
+
     if (isset($_GET['save'])) {
       $save_blog_name = $_GET['save'];
       $body_to_save = detectRequestBody();
       file_put_contents($save_blog_name, $body_to_save);
-      var_dump($body_to_save);
     }
 
     if (isset($_GET['delete'])) {
@@ -37,6 +50,19 @@
             if(file_exists($delete_image_name))
               unlink($delete_image_name);
       }
+    }
+
+    function number_of_blogs() {
+      $blogs_dir = scandir("blogs");
+      $count = 0;
+      foreach($blogs_dir as &$blogs_){
+        # since this is linux we will need to skip '.' and '..'
+        if($blogs_ == '.' || $blogs_ == '..') {
+          continue;
+        }
+        $count++;
+      }
+      return $count;
     }
 
     function is_malicious_name($file_name) {
@@ -207,13 +233,22 @@ if($_SESSION['blog']) {
 
 
 ?>
-<!-- HTML form -->
-<div id="blog_titles"><?php foreach($blog_titles as &$blog_title){echo "<a href='?blog=$blog_title[0]'>" . $blog_title[0] . "</a><br>";} ?></div>
+
+<!-- Output blog buttons -->
+<div id="blog_titles">
+  <?php
+    foreach($blog_titles as &$blog_title){
+      echo "<a href='?blog=$blog_title[0]' class='blog_links btn btn-primary' >" . $blog_title[0] . "</a><br>";
+    }
+  ?>
+</div>
+
 <form>
-	<textarea id="edit_blog" name="text"><?php echo htmlspecialchars($text) ?></textarea>
+	<textarea id="edit_blog" class="add_left_margin add_top_margin" name="text"><?php echo htmlspecialchars($text) ?></textarea>
 	<br>
-	<input type="button" value="Save" onclick="on_page_submit(<?php echo "'" . $_SESSION['blog_text_file'] . "'" ?>)" />
-  <input id="reset" type='reset' value="Reset Text" /> <!-- A page refresh will reset the editing section -->
+	<input type="button" value="Save" class="add_left_margin" onclick="on_page_submit(<?php echo "'" . $_SESSION['blog_text_file'] . "'" ?>)" />
+  <input type="button" value="Add Blog" id="new_blog"  data-toggle="modal" data-target=".bd-example-modal-sm" />
+  <input type='reset' id="reset"  value="Reset Text" /> <!-- A page refresh will reset the editingsection -->
 	<input type='button' value="Go To This Blog" onclick='on_go_to_page(<?php echo "\"read_blog.php?blog_text_url=" . $_SESSION["blog_text_file"] . "&images_dir=" . $_SESSION["blog"] . "/images/\"" ?>)' />
 
 <div id="images">
@@ -225,8 +260,29 @@ if($_SESSION['blog']) {
 <input id="delete_photo" type="submit" value="Delete Photo"  onclick="on_delete_image()" />
 
 <form id="upload_img" action="" method="POST" enctype="multipart/form-data">
-    <input type="file" name="image" />
+    <input type="file" name="image" class="add_left_margin"/>
     <input type="submit" value="Upload"  />
 </form>
+
+<div id="new_blog_modal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Enter Blog Name</h4>
+      </div>
+      <div class="modal-body">
+        <input id="new_blog_name" style="text-align: center; width: 100%" type="text" name="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="on_create_blog_submit()" data-dismiss="modal">Create Blog</a>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
