@@ -4,9 +4,9 @@
 	<title></title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="JavaScript/jquery.min.js"></script>
     <script type="text/javascript" src="JavaScript/admin.js"></script>
-    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="JavaScript/bootstrap.min.js"></script>
 </head>
 <body>
 <?php
@@ -14,9 +14,10 @@
     session_start();
     # verifiy user is logged in
     if ($_SESSION['valid'] == false || $_SESSION['timeout'] < time()) {
-        header('URL = test-login.php');
+        header('Location: test-login.php');
         die;
     }
+    echo "here";
 
     if (isset($_GET['blog'])) {
       $blog_name = $_GET['blog'];

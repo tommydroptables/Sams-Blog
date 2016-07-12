@@ -24,7 +24,12 @@
          body {
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #ADABAB;
+            background-image: url(images/pearl.jpg);
+                background-repeat: no-repeat;
+             background-origin: 50% 50%;
+             background-size: cover;
+             display: inline-block;
+             font-color: #181818;
          }
 
          .form-signin {
@@ -58,28 +63,30 @@
          }
 
          .form-signin input[type="text"] {
-            margin-bottom: -1px;
-            border-width: .5px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-            border-color: rgb(255,88,105);
+            margin-bottom: -15px;
+            border-width: 2px;
+            border-color: rgb(255,206,211);
+            background-color: transparent;
+            color: #f5f5f5;
          }
 
          .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-width: .5px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            border-color: rgb(255,88,105);
+            margin-bottom: 20px;
+            border-width: 2px;
+            border-color: rgb(255,206,211);
+            background-color: transparent;
+            color: #f5f5f5;
          }
 
          .btn-primary {
-            background-color: rgb(255,206,211);
-            color: rgb(59, 61, 60);
+            background-color: transparent;
+            color: #f5f5f5;
+            border-color: rgb(255,206,211);
          }
+
          .btn-primary:hover {
-            background-color: rgb(255,88,105);
-            border-color: rgb(255,88,105);
+            background-color: rgb(255,206,211);
+            border-color: rgb(255,206,211);
             color: rgb(59, 61, 60);
          }
       </style>

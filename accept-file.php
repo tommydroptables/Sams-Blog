@@ -2,7 +2,7 @@
 	session_start();
     # verified user is logged in
     if ($_SESSION['valid'] == false || $_SESSION['timeout'] < time()) {
-        header('URL = test-login.php?previous=admin.php');
+        header('Location: test-login.php?previous=admin.php');
         die;
     }
 
