@@ -119,8 +119,7 @@
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time() + 3600;
                   $_SESSION['username'] = 'tutorialspoint';
-                  echo 'You have entered valid username and password';
-                  header("URL = $redirect_to");
+                  header("Location: $redirect_to");
                } else {
                   $msg = 'Wrong username or password';
                }

@@ -7,7 +7,7 @@
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta name="author" content="Unkown">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
@@ -24,9 +24,10 @@
 
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
+      <a href="admin.php"><div id="admin_button"></div></a>
       <div class="navbar-header navbar-center">
         <a class="navbar-brand" id="title_t_pearl" href="index.php">Thanks Pearl ...</a>
-    </div>  
+    </div>
         <div id="slogan_inner"></div>
   </nav>
   <div id="menu-spacing"></div>
@@ -45,7 +46,7 @@
           $random_int = get_random_int($number_recusions++, $size_of_list);
 
         array_push($colors_used, $random_int);
-        return $random_int; 
+        return $random_int;
       }
 
       function get_random_color() {
@@ -53,7 +54,7 @@
         $colors = array('rgb(239,158,164)', 'rgb(154,137,191)', 'rgb(137,210,243)', 'rgb(213,226,157)', 'rgb(249,203,141)', 'rgb(240,153,123)', 'rgb(243,236,220)', 'rgb(202,149,191)', 'rgb(147,176,220)', 'rgb(150,203,157)', 'rgb(255,245,156)', 'rgb(244,180,136)', 'rgb(235,226,226)', 'rgb(228,205,221)', 'rgb(159,148,214)', 'rgb(253,245,248)', 'rgb(182,214,208)', 'rgb(217,139,155)', 'rgb(165,140,129)', 'rgb(224,246,251)', 'rgb(210,233,238)', 'rgb(207,234,252)', 'rgb(184,212,250)', 'rgb(169,229,255)', 'rgb(225,198,254)', 'rgb(231,202,247)', 'rgb(205,201,254)', 'rgb(234,185,254)', 'rgb(250,216,250)', 'rgb(252,207,236)', 'rgb(255,193,219)', 'rgb(253,248,213)', 'rgb(252,225,202)', 'rgb(255,239,198)', 'rgb(255,235,217)', 'rgb(222,208,181)', 'rgb(252,216,209)', 'rgb(227,233,233)', 'rgb(108,197,186)', 'rgb(168,217,208)', 'rgb(146,226,254)', 'rgb(137,223,253)', 'rgb(130,202,224)');
 
          // 'rgb(251,247,218)'
-        
+
 
         return $colors[get_random_int(0, count($colors))];
       }
@@ -110,7 +111,7 @@
           // search forward starting from end minus needle length characters
           return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
       }
-      
+
       $dir   = 'blogs';
       $blogs = scandir($dir);
       $blog_row1_col_2 = array();
@@ -150,7 +151,7 @@
 
             $title       = '';
             $summary     = '';
-            
+
             while(!feof($myfile)) {
               $text_line = fgets($myfile);
               if(startsWith($text_line, ':title:')){
@@ -166,7 +167,7 @@
               }
               if(startsWith($text_line, ':summary:')){
                 $summary_image = explode(":", $text_line)[2];
-                
+
                 $summary = str_replace(':summary:', '', $text_line);
                 $summary = str_replace($summary_image . ':', '', $summary);
                 # read in summary
@@ -175,17 +176,17 @@
                   if(startsWith($text_line, ':article:')){
                     break;
                   }
-                  $summary .= $text_line; 
+                  $summary .= $text_line;
                 }
               }
             }
 
-            
+
             if($blog_counter_2_rows == 0)
               array_push($blog_row1_col_2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
             if($blog_counter_2_rows == 1)
               array_push($blog_row2_col_2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
-            
+
 
             if($blog_counter_3_rows == 0)
               array_push($blog_row1, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
@@ -212,7 +213,7 @@
       }
       $two_column_cards .= ('</div>');
 
-      
+
       // create cards in 3 columns for smaller screens
       $three_column_cards = "";
       $three_column_cards .= ("<div class='col-md-4 col-sm-6'>");

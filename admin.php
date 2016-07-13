@@ -17,7 +17,6 @@
         header('Location: test-login.php');
         die;
     }
-    echo "here";
 
     if (isset($_GET['blog'])) {
       $blog_name = $_GET['blog'];
@@ -84,7 +83,6 @@
     function is_correct_file_extension($file){
       $extensions= array("jpeg","jpg","png", "gif");
       $file_ext  = strtolower(end(explode('.', $file)));
-      // var_dump(in_array($file_ext, $extensions) === false);
       if(in_array($file_ext, $extensions) === false)
          return false;
       return true;
@@ -113,7 +111,7 @@
       # since this is linux we will need to skip '.' and '..'
       if($blog == '.' || $blog == '..') {
         continue;
-      }
+     }
 
 
       $blog_str = "$dir/$blog";
@@ -160,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     # verified user is logged in
     if ($_SESSION['valid'] == false && $_SESSION['timeout'] < time()) {
-        header('URL = test-login.php?previous=test-login.php');
+        header('Location: test-login.php?previous=test-login.php');
         die;
     }
 
