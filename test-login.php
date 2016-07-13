@@ -109,7 +109,7 @@
             if (isset($_GET['previous'])) {
                 $redirect_to = $_GET['previous'];
             }else{
-               $redirect_to = 'admin.php';
+               $redirect_to = 'http://www.cocozzello.com/Sams-Blog/admin.php';
             }
             $msg = '';
             if (isset($_POST['login']) && !empty($_POST['username'])

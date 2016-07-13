@@ -8,6 +8,6 @@
 
    echo 'You have cleaned session';
    // header('Location: test-login.php');
-   echo("<script> location.replace('test-login.php'); </script>");
+   echo("<script> location.replace('http://www.cocozzello.com/Sams-Blog/test-login.php'); </script>");
 
 ?>

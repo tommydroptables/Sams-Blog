@@ -3,7 +3,7 @@
     # verified user is logged in
     if ($_SESSION['valid'] == false || $_SESSION['timeout'] < time()) {
         // header('Location: test-login.php?previous=admin.php');
-        echo("<script> location.replace('test-login.php?previous=admin.php'); </script>");
+        echo("<script> location.replace('http://www.cocozzello.com/Sams-Blog/test-login.php?previous=http://www.cocozzello.com/Sams-Blog/admin.php'); </script>");
         die;
     }
 
