@@ -42,6 +42,7 @@
          .form-signin .form-signin-heading,
          .form-signin .checkbox {
             margin-bottom: 10px;
+            color: rgb(255,206,211);
          }
 
          .form-signin .checkbox {
@@ -111,7 +112,6 @@
                $redirect_to = 'admin.php';
             }
             $msg = '';
-
             if (isset($_POST['login']) && !empty($_POST['username'])
                && !empty($_POST['password'])) {
 
@@ -119,7 +119,8 @@
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time() + 3600;
                   $_SESSION['username'] = 'tutorialspoint';
-                  header("Location: $redirect_to");
+                  echo("<script> location.replace('$redirect_to'); </script>");
+
                } else {
                   $msg = 'Wrong username or password';
                }

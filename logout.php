@@ -7,6 +7,7 @@
    unset($_SESSION['blog']);
 
    echo 'You have cleaned session';
-   header('Location: test-login.php');
+   // header('Location: test-login.php');
+   echo("<script> location.replace('test-login.php'); </script>");
 
 ?>

@@ -14,7 +14,8 @@
     session_start();
     # verifiy user is logged in
     if ($_SESSION['valid'] == false || $_SESSION['timeout'] < time()) {
-        header('Location: test-login.php');
+        echo("<script> location.replace('test-login.php'); </script>");
+        // header('Location: test-login.php');
         die;
     }
 
@@ -158,7 +159,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     # verified user is logged in
     if ($_SESSION['valid'] == false && $_SESSION['timeout'] < time()) {
-        header('Location: test-login.php?previous=test-login.php');
+        // header('Location: test-login.php?previous=test-login.php');
+        echo("<script> location.replace('test-login.php?previous=test-login.php'); </script>");
         die;
     }
 
