@@ -17,7 +17,7 @@ textarea {
 	padding: 5px;
 }
 
-#reset, #new_blog, #delete_photo {
+#reset, #new_blog, .delete {
 	float: right;
 	margin-right: 5px;
 }
