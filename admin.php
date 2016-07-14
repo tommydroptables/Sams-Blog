@@ -266,7 +266,7 @@ if($_SESSION['blog']) {
 </div>
 
 <input id="delete_photo" type="submit" value="Delete Photo"  onclick="on_delete_image()" />
-<input id="delete_photo" type="submit" value="Delete Blog"  onclick='on_delete_blog(<?php echo "$_SESSION['blog']"?>)' />
+<input id="delete_photo" type="submit" value="Delete Blog"  onclick='on_delete_blog(<?php echo htmlspecialchars($_SESSION["blog"])?>)' />
 
 <form id="upload_img" action="" method="POST" enctype="multipart/form-data">
     <input type="file" name="image" class="add_left_margin"/>
