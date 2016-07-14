@@ -54,9 +54,10 @@
     }
 
     if (isset($_GET['delete_blog'])) {
-      $blog_to_delete = explode(",", $_GET['delete_blog']);
+      $blog_to_delete = $_GET['delete_blog'];
       if (!is_dir("blogs/$blog_to_delete")) {
         rmdir("blogs/$blog_to_delete");
+      }
     }
 
     function number_of_blogs() {
