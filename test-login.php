@@ -119,7 +119,7 @@
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time() + 3600;
                   $_SESSION['username'] = 'tutorialspoint';
-                  header('Location: $redirect_to');
+                  header("Location: $redirect_to");
                   echo("<script> location.replace('$redirect_to'); </script>");
 
                } else {
