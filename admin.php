@@ -266,7 +266,7 @@ if($_SESSION['blog']) {
     </form>
 </div>
 
-<input class="delete" type="button" value="Delete Blog"  onclick='on_delete_blog(<?php echo htmlspecialchars("$_SESSION[\'blog\']")?>)' />
+<input class="delete" type="button" value="Delete Blog"  onclick=`on_delete_blog(<?php echo htmlspecialchars("$_SESSION['blog']")?>)` />
 <input class="delete" type="submit" value="Delete Photo"  onclick="on_delete_image()" />
 
 <form id="upload_img" action="" method="POST" enctype="multipart/form-data">
