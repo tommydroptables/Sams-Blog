@@ -30,3 +30,7 @@ function on_delete_image() {
 	});
 	window.location.href = "/admin.php?delete=" + images_names_to_delete;
 }
+
+function on_delete_blog(blog_names_to_delete) {
+	window.location.href = "/admin.php?delete_blog=" + blog_names_to_delete;
+}

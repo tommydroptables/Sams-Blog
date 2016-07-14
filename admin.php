@@ -53,6 +53,12 @@
       }
     }
 
+    if (isset($_GET['delete_blog'])) {
+      $blog_to_delete = explode(",", $_GET['delete_blog']);
+      if (!is_dir("blogs/$blog_to_delete")) {
+        rmdir("blogs/$blog_to_delete");
+    }
+
     function number_of_blogs() {
       $blogs_dir = scandir("blogs");
       $count = 0;
@@ -259,6 +265,7 @@ if($_SESSION['blog']) {
 </div>
 
 <input id="delete_photo" type="submit" value="Delete Photo"  onclick="on_delete_image()" />
+<input id="delete_photo" type="submit" value="Delete Blog"  onclick='on_delete_blog(<?php echo "$_SESSION['blog']"?>)' />
 
 <form id="upload_img" action="" method="POST" enctype="multipart/form-data">
     <input type="file" name="image" class="add_left_margin"/>
