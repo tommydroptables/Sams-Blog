@@ -1,4 +1,4 @@
-$(document).ready(function() 
+$(document).ready(function()
 {
 	// Read in card on page and cache them
     read_in_cards();
@@ -25,7 +25,7 @@ window.mobileAndTabletcheck = function() {
 //                 Navigation to get to full blog
 // ------------------------------------------------------------------
 function read_more(href_blog_text, href_blog_images_folder){
-    window.location.href = ('/Sams-Blog/read_blog.php?blog_text_url=' + href_blog_text +
+    window.location.href = ('/read_blog.php?blog_text_url=' + href_blog_text +
                       '&images_dir=' + href_blog_images_folder);
 }
 
@@ -36,7 +36,7 @@ function read_more(href_blog_text, href_blog_images_folder){
 // ------------------------------------------------------------------
 function set_up_cards_sizes(){
     $(".tile_container").each(function(){
-        var title_height =  $(this).find(".panel_heading_span").height(); 
+        var title_height =  $(this).find(".panel_heading_span").height();
         $(this).find(".panel-heading-container").css("height", (title_height + 8) + "px");
         $(this).find(".article_descrption_container").css("padding-top", (title_height + 8) + "px");
         $(this).find(".panel-heading-container-absolute").css("margin-top",  "-" + (title_height + 8) + "px");
@@ -49,20 +49,20 @@ function set_up_cards_sizes(){
                 .css("margin-bottom", "0px");
             $(this).find(".panel-heading-container-absolute").css("top", "100%");
         });
-        
+
     });
 }
 function set_up_cards_sizes_mobile(){
     $(".tile_container").each(function(){
         // Set up container sizes becuase they will all be different
-        var title_height =  $(this).find(".panel_heading_span").height(); 
+        var title_height =  $(this).find(".panel_heading_span").height();
         $(this).find(".panel-heading-container").css("height", (title_height + 8) + "px");
         $(this).find(".article_descrption_container").css("padding-top", (title_height + 8) + "px");
         $(this).find(".panel-heading-container-absolute").css("margin-top",  "-" + (title_height + 8) + "px");
         $(this).find(".tile_background_image").css("padding-bottom",  ((title_height + 10) + 40)   + "px")
                      .css("margin-bottom", "-" + (title_height + 10) + "px");
         $(this).find(".panel-heading-container-absolute").css("top", ((title_height + 10) + 17) + "px");
-        
+
         // Change the text so there is not need to hover on mobile
         $(this).find(".article_descrption").css("opacity","1");
         $(this).find(".article_descrption").css("color","white");
@@ -125,4 +125,4 @@ function allign_things() {
 
 $(window).resize(function() {
 	allign_things();
-}); 
+});

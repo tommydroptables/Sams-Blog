@@ -109,7 +109,7 @@
             if (isset($_GET['previous'])) {
                 $redirect_to = $_GET['previous'];
             }else{
-               $redirect_to = 'http://www.cocozzello.com/Sams-Blog/admin.php';
+               $redirect_to = 'admin.php';
             }
             $msg = '';
             if (isset($_POST['login']) && !empty($_POST['username'])
@@ -119,6 +119,7 @@
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time() + 3600;
                   $_SESSION['username'] = 'tutorialspoint';
+                  header('Location: $redirect_to');
                   echo("<script> location.replace('$redirect_to'); </script>");
 
                } else {
