@@ -13,11 +13,50 @@
 <?php
 
     session_start();
+
+
     # verifiy user is logged in
     if ($_SESSION['valid'] == false || $_SESSION['timeout'] < time()) {
         // echo("<script> location.replace('http://www.cocozzello.com/Sams-Blog/test-login.php'); </script>");
         header('Location: test-login.php');
         die;
+    }
+
+    function is_correct_file_extension($file){
+      $extensions= array("jpeg","jpg","png", "gif");
+      $file_ext  = strtolower(end(explode('.', $file)));
+      if(in_array($file_ext, $extensions) === false)
+         return false;
+      return true;
+    }
+
+    function startsWith($haystack, $needle) {
+        // search backwards starting from haystack length characters from the end
+        return $needle === "" || strrpos($haystack, $needle, - strlen($haystack)) !== false;
+    }
+    function endsWith($haystack, $needle) {
+        // search forward starting from end minus needle length characters
+        return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
+    }
+
+    function delTree($dir) {
+     echo "<br>";
+     $files = array_diff(scandir($dir), array('.','..'));
+      # make sure to only delete images directory or a the blog .txt file
+      foreach ($files as $file) {
+        $file_ext  = strtolower(end(explode('.', $file)));
+
+        if ($file == "images" || $file_ext == ".txt" || is_correct_file_extension($file)) {
+          echo "didn't work: $file <br>";
+          echo "ends with .txt:  <br>";
+          echo  !endsWith($file, ".txt") ? 'true' : 'false';
+          (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
+          continue;
+        }
+        die;
+
+      }
+      return rmdir($dir);
     }
 
     if (isset($_GET['blog'])) {
@@ -57,7 +96,11 @@
     if (isset($_GET['delete_blog'])) {
       $blog_to_delete = $_GET['delete_blog'];
       if (!is_dir("blogs/$blog_to_delete")) {
-        rmdir("blogs/$blog_to_delete");
+        echo "deleting this blog:" . "$blog_to_delete";
+        delTree("$blog_to_delete");
+      }
+      else {
+        echo "this blog does not exit: " . "$blog_to_delete";
       }
     }
 
@@ -87,23 +130,6 @@
       rewind($tempStream);
 
       return $tempStream;
-    }
-
-    function is_correct_file_extension($file){
-      $extensions= array("jpeg","jpg","png", "gif");
-      $file_ext  = strtolower(end(explode('.', $file)));
-      if(in_array($file_ext, $extensions) === false)
-         return false;
-      return true;
-    }
-
-    function startsWith($haystack, $needle) {
-        // search backwards starting from haystack length characters from the end
-        return $needle === "" || strrpos($haystack, $needle, - strlen($haystack)) !== false;
-    }
-    function endsWith($haystack, $needle) {
-        // search forward starting from end minus needle length characters
-        return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
     }
 
     function get_thumbnail_photo_html($photo, $photo_full_path) {
@@ -266,7 +292,7 @@ if($_SESSION['blog']) {
     </form>
 </div>
 
-<input class="delete" type="button" value="Delete Blog"  onclick=`on_delete_blog(<?php echo htmlspecialchars("$_SESSION['blog']")?>)` />
+<input class="delete" type="button" value="Delete Blog"  onclick=on_delete_blog(<?php echo '"' . htmlspecialchars($_SESSION['blog']) . '"'?>) />
 <input class="delete" type="submit" value="Delete Photo"  onclick="on_delete_image()" />
 
 <form id="upload_img" action="" method="POST" enctype="multipart/form-data">

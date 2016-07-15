@@ -32,5 +32,6 @@ function on_delete_image() {
 }
 
 function on_delete_blog(blog_names_to_delete) {
+	console.log("/admin.php?delete_blog=" + blog_names_to_delete);
 	window.location.href = "/admin.php?delete_blog=" + blog_names_to_delete;
 }
