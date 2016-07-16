@@ -282,7 +282,9 @@ if($_SESSION['blog']) {
 	<textarea id="edit_blog" class="add_left_margin add_top_margin" name="text"><?php echo htmlspecialchars($text) ?></textarea>
 	<br>
 	<input type="button" value="Save" class="add_left_margin" onclick="on_page_submit(<?php echo "'" . $_SESSION['blog_text_file'] . "'" ?>)" />
-  <input type="button" value="Add Blog" id="new_blog"  data-toggle="modal" data-target=".bd-example-modal-sm" />
+  <input type="button" value="Help?" data-toggle="modal" data-target="#new_blog_modal_help" />
+  <input type="button" value="Add Blog" id="new_blog"  data-toggle="modal" data-target="#new_blog_modal_add_blog" />
+
   <input type='reset' id="reset"  value="Reset Text" /> <!-- A page refresh will reset the editingsection -->
 	<input type='button' value="Go To This Blog" onclick='on_go_to_page(<?php echo "\"read_blog.php?blog_text_url=" . $_SESSION["blog_text_file"] . "&images_dir=" . $_SESSION["blog"] . "/images/\"" ?>)' />
 
@@ -300,7 +302,7 @@ if($_SESSION['blog']) {
     <input type="submit" value="Upload"  />
 </form>
 
-<div id="new_blog_modal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div id="new_blog_modal_add_blog" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
 
     <div class="modal-content">
@@ -320,5 +322,29 @@ if($_SESSION['blog']) {
     </div>
   </div>
 </div>
+
+<div id="new_blog_modal_help" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Markdown Cheat Sheet</h4>
+      </div>
+      <div class="modal-body">
+        <div><b>:title: Your title Here</b> <- title of blog</div>
+        <div><b>:summary:image.jpg: Your Summary Here</b> <- summary and the image to show on the front page with the summary</div>
+        <div><b>:article:image.jpg: Your article Here</b> <- article and the image to show on the top of the article page</div>
+        <div><b>NOTE: The elements below are part of the article</b></div>
+        <div><b>:image-left:image.jpg:</b> <- images that show inline in the article on the left side of the page</div>
+        <div><b>:image-right:image.jpg:</b> <- images that show inline in the article on the right side of the page</div>
+        <div><b>:image-full:image.jpg:</b> <- images that show inline in the article that will be full width of the article</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
