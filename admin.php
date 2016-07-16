@@ -296,6 +296,7 @@ if($_SESSION['blog']) {
 
 <input class="delete" type="button" value="Delete Blog"  onclick=on_delete_blog(<?php echo '"' . htmlspecialchars($_SESSION['blog']) . '"'?>) />
 <input class="delete" type="submit" value="Delete Photo"  onclick="on_delete_image()" />
+<input class="delete" type="submit" value="Log Out"  onclick="log_out()" />
 
 <form id="upload_img" action="" method="POST" enctype="multipart/form-data">
     <input type="file" name="image" class="add_left_margin"/>
