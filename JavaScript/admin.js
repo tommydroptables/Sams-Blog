@@ -40,3 +40,17 @@ function log_out() {
 	console.log("logging out");
 	window.location.href = "/logout.php";
 }
+
+$(document).ready(function()
+{
+	$(":checkbox").change(function() {
+	    if(this.checked) {
+	    	var link = $(this).closest(".container");
+			$(link).css("border-color", "red");
+	    }
+	    else {
+	    	var link = $(this).closest(".container");
+			$(link).css("border-color", "transparent");
+	    }
+	});
+});

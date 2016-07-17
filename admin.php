@@ -134,7 +134,7 @@
 
     function get_thumbnail_photo_html($photo, $photo_full_path) {
       return "<div class='container'>" .
-             "  <label style='background-image: url($photo_full_path)' class='add_cursor' for='$photo' id='test'></label><br>" .
+             "  <label style='background-image: url($photo_full_path)' class='add_cursor' for='$photo' id='image_thumbnail'></label><br>" .
              "  <input class='add_cursor' id='$photo' type='checkbox' /><label class='add_cursor' for='$photo'>$photo</label>" .
              "</div>";
     }
@@ -269,24 +269,17 @@ if($_SESSION['blog']) {
 
 ?>
 
-<!-- Output blog buttons -->
-<div id="blog_titles">
-  <?php
-    foreach($blog_titles as &$blog_title){
-      echo "<a href='?blog=$blog_title[0]' class='blog_links btn btn-primary' >" . $blog_title[0] . "</a><br>";
-    }
-  ?>
-</div>
-
 <form>
-	<textarea id="edit_blog" class="add_left_margin add_top_margin" name="text"><?php echo htmlspecialchars($text) ?></textarea>
+	<textarea id="edit_blog" class="add_left_margin add_top_margin add_right_margin" name="text"><?php echo htmlspecialchars($text) ?></textarea>
 	<br>
-	<input type="button" value="Save" class="add_left_margin" onclick="on_page_submit(<?php echo "'" . $_SESSION['blog_text_file'] . "'" ?>)" />
-  <input type="button" value="Help?" data-toggle="modal" data-target="#new_blog_modal_help" />
-  <input type="button" value="Add Blog" id="new_blog"  data-toggle="modal" data-target="#new_blog_modal_add_blog" />
+	<input type="button" value="Save" class="button_left add_left_margin" onclick="on_page_submit(<?php echo "'" . $_SESSION['blog_text_file'] . "'" ?>)" />
+  <input type="button" value="Help?" class="add_left_margin button_left" data-toggle="modal" data-target="#new_blog_modal_help" />
+    <input type='button' value="Go To This Blog" class="add_left_margin button_left" onclick='on_go_to_page(<?php echo "\"read_blog.php?blog_text_url=" . $_SESSION["blog_text_file"] . "&images_dir=" . $_SESSION["blog"] . "/images/\"" ?>)' />
 
-  <input type='reset' id="reset"  value="Reset Text" /> <!-- A page refresh will reset the editingsection -->
-	<input type='button' value="Go To This Blog" onclick='on_go_to_page(<?php echo "\"read_blog.php?blog_text_url=" . $_SESSION["blog_text_file"] . "&images_dir=" . $_SESSION["blog"] . "/images/\"" ?>)' />
+  <input type="button" value="Select or Create Blog" class="button_right"  data-toggle="modal" data-target="#new_blog_modal_select_blog" />
+
+
+
 
 <div id="images">
     <form id="images_form">
@@ -298,7 +291,7 @@ if($_SESSION['blog']) {
 <input class="delete" type="submit" value="Delete Photo"  onclick="on_delete_image()" />
 <input class="delete" type="submit" value="Log Out"  onclick="log_out()" />
 
-<form id="upload_img" action="" method="POST" enctype="multipart/form-data">
+<form id="upload_img" action="" method="POST" class="button_left" enctype="multipart/form-data">
     <input type="file" name="image" class="add_left_margin"/>
     <input type="submit" value="Upload"  />
 </form>
@@ -342,6 +335,32 @@ if($_SESSION['blog']) {
         <div><b>:image-left:image.jpg:</b> <- images that show inline in the article on the left side of the page</div>
         <div><b>:image-right:image.jpg:</b> <- images that show inline in the article on the right side of the page</div>
         <div><b>:image-full:image.jpg:</b> <- images that show inline in the article that will be full width of the article</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="new_blog_modal_select_blog" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Select Blog</h4>
+      </div>
+      <div class="modal-body">
+        <input type="button" value="Create New Blog" class="button_right"  data-toggle="modal" data-target="#new_blog_modal_add_blog" />
+        <!-- Output blog buttons -->
+        <div id="blog_titles">
+          <?php
+            foreach($blog_titles as &$blog_title){
+              echo "<a href='?blog=$blog_title[0]' class='blog_links btn btn-primary' >" . $blog_title[0] . "</a><br>";
+            }
+          ?>
+        </div>
+
       </div>
     </div>
   </div>
