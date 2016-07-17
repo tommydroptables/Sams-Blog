@@ -46,7 +46,7 @@ $(document).ready(function()
 	$(":checkbox").change(function() {
 	    if(this.checked) {
 	    	var link = $(this).closest(".container");
-			$(link).css("border-color", "red");
+			$(link).css("border-color", "rgb(255,206,211)");
 	    }
 	    else {
 	    	var link = $(this).closest(".container");

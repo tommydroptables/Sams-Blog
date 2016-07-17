@@ -4,6 +4,7 @@ textarea {
 }
 body {
 	text-align: center;
+	/*background-color: rgb(255,206,211);*/
 }
 
 #blog_titles{
@@ -75,10 +76,39 @@ body {
 .blog_links {
 	margin: 3px 5px 3px 0px;
 	padding: 3px 5px;
-	width: 90%;
-	max-width: 11vw;
+	max-width: 100%;
     overflow: hidden;
 }
+
 input[type=checkbox] {
 	display: none;
+}
+
+.select_blog {
+	background-image: url(../images/pearl2.jpg);
+    background-repeat: no-repeat;
+    background-origin: 50% 50%;
+    background-size: cover;
+}
+
+.select_blog_header {
+	background-color: rgba(255,206,211, .3);
+	color: #313131;
+}
+
+.btn-primary {
+    color: black;
+	background-color: rgba(255,206,211, .2);
+    border-color: rgb(255,206,211);
+    padding-right: 5px;
+}
+
+.btn-primary:hover {
+	background-color: rgba(255,206,211, .6);
+    border-color: rgb(255,206,211);
+    color: black;
+}
+
+.modal-title {
+	color: #313131;
 }

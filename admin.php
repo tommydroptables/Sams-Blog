@@ -343,23 +343,20 @@ if($_SESSION['blog']) {
 <div id="new_blog_modal_select_blog" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
 
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content select_blog">
+      <div class="modal-header select_blog_header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title">Select Blog</h4>
       </div>
       <div class="modal-body">
-        <input type="button" value="Create New Blog" class="button_right"  data-toggle="modal" data-target="#new_blog_modal_add_blog" />
         <!-- Output blog buttons -->
-        <div id="blog_titles">
           <?php
             foreach($blog_titles as &$blog_title){
-              echo "<a href='?blog=$blog_title[0]' class='blog_links btn btn-primary' >" . $blog_title[0] . "</a><br>";
+              echo "<div><a href='?blog=$blog_title[0]' class='blog_links btn btn-primary' >" . $blog_title[0] . "</a></div>";
             }
           ?>
-        </div>
 
       </div>
     </div>
