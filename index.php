@@ -86,7 +86,7 @@
      function output_cards($title, $summary, $href_blog_text, $href_blog_images_folder, $summary_image_path) {
         $html_card = "";
         $full_sum_img_pth = getPhoto($href_blog_images_folder . $summary_image_path);
-        $html_card .= ("<div onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' style='background-color: " . get_random_color() . "' onMouseOver  ='add_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' onMouseOut='remove_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' class='tile_container panel panel-default'>\n");
+        $html_card .= ("<div dragable=true onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' style='background-color: " . get_random_color() . "' onMouseOver  ='add_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' onMouseOut='remove_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' class='tile_container panel panel-default'>\n");
         $html_card .= ("<div style='background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(\"" . $full_sum_img_pth . "\")' class='list-group panel-body tile_background_image text_padding'>\n");
         $html_card .= ("<p>$summary</p>\n");
         $html_card .= ("</div>\n");

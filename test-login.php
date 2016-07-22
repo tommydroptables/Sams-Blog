@@ -88,7 +88,7 @@
             border-color: rgb(255,206,211);
          }
 
-         .btn-primary:hover, .btn-primary:focus {
+         .btn-primary:hover, .btn-primary:active {
             background-color: rgb(255,206,211);
             border-color: rgb(255,206,211);
             color: rgb(59, 61, 60);
