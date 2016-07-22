@@ -106,7 +106,7 @@
    <body>
       <nav class="navbar navbar-default navbar-fixed-top">
          <div class="navbar-header navbar-center">
-            <a class="navbar-brand" id="title_t_pearl" href="index.php">Thanks Pearl ...</a>
+            <a class="navbar-brand" id="title_t_pearl" href="">Thanks Pearl ...</a>
          </div>
          <div id="slogan_inner"></div>
       </nav>

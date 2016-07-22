@@ -39,23 +39,24 @@
         return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
     }
 
+    function is_malicious_file_name($file_name) {
+      if(strpos($file_name, '..') || strpos($file_name, 'blogs') === false)
+        die;
+      return true;
+    }
+
+    function isnt_malicious_dir_name($dir_name) {
+      if(strpos($dir_name, '..') || strpos($file_name, 'www') || strpos($file_name, 'rm ') || startsWith($text_line, '/') || startsWith($text_line, ' '))
+        die;
+      return true;
+    }
+
     function delTree($dir) {
-     echo "<br>";
      $files = array_diff(scandir($dir), array('.','..'));
       # make sure to only delete images directory or a the blog .txt file
       foreach ($files as $file) {
-        $file_ext  = strtolower(end(explode('.', $file)));
-
-        if ($file == "images" || $file_ext == ".txt" || is_correct_file_extension($file)) {
-          echo "didn't work: $file <br>";
-          echo "ends with .txt:  <br>";
-          echo  !endsWith($file, ".txt") ? 'true' : 'false';
           (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
-          continue;
         }
-        die;
-
-      }
       return rmdir($dir);
     }
 
@@ -86,7 +87,7 @@
       $ary_of_imgs = explode(",", $_GET['delete']);
       foreach($ary_of_imgs as &$img){
         $delete_image_name = $_SESSION['blog'] . "/images/" . $img;
-        if(is_malicious_name($delete_image_name))
+        if(is_malicious_file_name($delete_image_name))
           if(is_correct_file_extension($delete_image_name))
             if(file_exists($delete_image_name))
               unlink($delete_image_name);
@@ -96,11 +97,11 @@
     if (isset($_GET['delete_blog'])) {
       $blog_to_delete = $_GET['delete_blog'];
       if (!is_dir("blogs/$blog_to_delete")) {
-        echo "deleting this blog:" . "$blog_to_delete";
-        delTree("$blog_to_delete");
-      }
-      else {
-        echo "this blog does not exit: " . "$blog_to_delete";
+        if (isnt_malicious_dir_name($blog_to_delete)) {
+          echo "deleting this blog:" . "$blog_to_delete";
+          delTree("$blog_to_delete");
+        }
+        header('Location: admin.php');
       }
     }
 
@@ -115,12 +116,6 @@
         $count++;
       }
       return $count;
-    }
-
-    function is_malicious_name($file_name) {
-      if(strpos($file_name, '..') || strpos($file_name, 'www') || strpos($file_name, 'rm '))
-        die;
-      return true;
     }
 
     function detectRequestBody() {
@@ -308,7 +303,7 @@ if($_SESSION['blog']) {
       <div class="modal-body">
         <input id="new_blog_name" style="text-align: center; width: 100%" type="text" name="">
       </div>
-      <div class="modal-footer">
+      <div class="modal-footerf">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" onclick="on_create_blog_submit()" data-dismiss="modal">Create Blog</a>
       </div>
