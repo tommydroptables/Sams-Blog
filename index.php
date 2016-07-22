@@ -10,12 +10,12 @@
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/tile.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' type='text/css' href="fonts/rochester">
+    <script type="text/javascript" src="JavaScript/jquery.min.js"></script>
+    <script type="text/javascript" src="JavaScript/bootstrap.min.js"></script>
     <script type="text/javascript" src="JavaScript/header.js"></script>
     <script type="text/javascript" src="JavaScript/index.js"></script>
 

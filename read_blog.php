@@ -10,13 +10,13 @@
 
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/tile.css">
   <link rel="stylesheet" type="text/css" href="css/read_blog.css">
+    <link rel='stylesheet' type='text/css' href="fonts/rochester">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="JavaScript/jquery.min.js"></script>
+  <script type="text/javascript" src="JavaScript/bootstrap.min.js"></script>
   <script src="JavaScript/header.js"></script>
   <script src="JavaScript/read_blog.js"></script>
 
