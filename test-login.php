@@ -22,6 +22,9 @@
 
       <style>
          body {
+            position: relative;
+            height: 100%;
+            width: 300px;
             padding-top: 40px;
             padding-bottom: 40px;
             background-image: url(images/pearl.jpg);
@@ -85,10 +88,16 @@
             border-color: rgb(255,206,211);
          }
 
-         .btn-primary:hover {
+         .btn-primary:hover, .btn-primary:focus {
             background-color: rgb(255,206,211);
             border-color: rgb(255,206,211);
             color: rgb(59, 61, 60);
+         }
+
+         .container {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
          }
       </style>
 
@@ -129,7 +138,6 @@
          ?>
       </div> <!-- /container -->
 
-  <div id="menu-spacing"></div>
 
       <div class = "container">
 

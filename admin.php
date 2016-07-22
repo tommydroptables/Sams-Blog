@@ -5,6 +5,7 @@
   <meta charset="utf-8"/>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="JavaScript/jquery.min.js"></script>
     <script type="text/javascript" src="JavaScript/admin.js"></script>
     <script type="text/javascript" src="JavaScript/bootstrap.min.js"></script>

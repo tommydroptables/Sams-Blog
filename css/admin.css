@@ -93,22 +93,28 @@ input[type=checkbox] {
 
 .select_blog_header {
 	background-color: rgba(255,206,211, .3);
-	color: #313131;
+	color: #0e0e0e;
 }
 
 .btn-primary {
     color: black;
-	background-color: rgba(255,206,211, .2);
+	background-color: rgba(255,206,211, .5);
     border-color: rgb(255,206,211);
     padding-right: 5px;
 }
 
-.btn-primary:hover {
-	background-color: rgba(255,206,211, .6);
+.btn-primary:hover, .btn-primary:focus {
+	background-color: rgb(255,206,211);
     border-color: rgb(255,206,211);
     color: black;
 }
 
 .modal-title {
 	color: #313131;
+	font-family: 'Rochester';
+	font-size: 2.1em;
+}
+
+.modal-header {
+	border: none;
 }
