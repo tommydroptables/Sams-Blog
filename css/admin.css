@@ -47,7 +47,6 @@ body {
 	border-radius: 5px;
     color: white;
     background-repeat: no-repeat;
-    background-origin: 50% 50%;
     background-size: cover;
     display: inline-block;
     margin-bottom: 0px;
@@ -85,9 +84,9 @@ input[type=checkbox] {
 }
 
 .select_blog {
-	background-image: url(../images/pearl2.jpg);
+	background-image: url(../images/pearl3.jpg);
     background-repeat: no-repeat;
-    background-origin: 50% 50%;
+    background-position: bottom;
     background-size: cover;
 }
 
@@ -100,7 +99,17 @@ input[type=checkbox] {
     color: black;
 	background-color: rgba(255,206,211, .5);
     border-color: rgb(255,206,211);
-    padding-right: 5px;
+}
+
+#create_blog {
+	background-color: rgb(76,175,80);
+	border-color: rgb(76,175,80);
+	margin-bottom: 4px;
+	color: white;
+}
+
+#create_blog:hover {
+	background-color: rgba(76,175,80, .7);
 }
 
 .btn-primary:hover {
@@ -117,4 +126,8 @@ input[type=checkbox] {
 
 .modal-header {
 	border: none;
+}
+
+.modal-footerf {
+	padding-bottom: 10px;
 }

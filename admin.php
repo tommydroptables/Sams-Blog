@@ -346,11 +346,13 @@ if($_SESSION['blog']) {
       </div>
       <div class="modal-body">
         <!-- Output blog buttons -->
+        <button id="create_blog" type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#new_blog_modal_add_blog">Create Blog</button>
           <?php
             foreach($blog_titles as &$blog_title){
               echo "<div><a href='?blog=$blog_title[0]' class='blog_links btn btn-primary' >" . $blog_title[0] . "</a></div>";
             }
           ?>
+
 
       </div>
     </div>
