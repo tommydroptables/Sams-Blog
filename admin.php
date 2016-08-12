@@ -62,6 +62,7 @@
 
     if (isset($_GET['blog'])) {
       $blog_name = $_GET['blog'];
+
     }
 
     if (isset($_GET['create'])) {
@@ -75,12 +76,14 @@
       fclose($myfile);
       // Set blog_name details to new blog so it will be read in bellow
       $blog_name = $create_blog_name;
+      header("Location: admin.php?blog=$blog_dir_name");
     }
 
     if (isset($_GET['save'])) {
       $save_blog_name = $_GET['save'];
       $body_to_save = detectRequestBody();
       file_put_contents($save_blog_name, $body_to_save);
+      header('Location: admin.php');
     }
 
     if (isset($_GET['delete'])) {
@@ -92,6 +95,7 @@
             if(file_exists($delete_image_name))
               unlink($delete_image_name);
       }
+      header('Location: admin.php');
     }
 
     if (isset($_GET['delete_blog'])) {
@@ -107,15 +111,17 @@
 
     function number_of_blogs() {
       $blogs_dir = scandir("blogs");
-      $count = 0;
+      $max_number = 0;
       foreach($blogs_dir as &$blogs_){
         # since this is linux we will need to skip '.' and '..'
         if($blogs_ == '.' || $blogs_ == '..') {
           continue;
         }
-        $count++;
+        if ($max_number < intval($blogs_)) {
+          $max_number = intval($blogs_);
+        }
       }
-      return $count;
+      return ++$max_number;
     }
 
     function detectRequestBody() {
