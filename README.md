@@ -1,5 +1,5 @@
 # Sams-Blog
-Content Management System for Sam's Blog
+content Management System for Sam's Blog
 
 # File Structure
 
@@ -34,7 +34,7 @@ Bellow is the format that the Blog1-name.txt files shoud be in. <b> Note:
 :title: best title ever
 :summary:<IMAGE-NAME>: short summary of why the article. This will be show 'onHover' on the home page
 The image specifed here will be shown in the cards on the home page.
-:article:<IMAGE-NAME>: full artile. 
+:article:<IMAGE-NAME>: full artile.
 The image specifed here will be shown on the article page at the top.
 
 NOTE: The elements below are part of the article
@@ -61,7 +61,7 @@ Curabitur eget faucibus orci. Vestibulum pulvinar magna sed sem lacinia pretium 
 quis ultricies eros.
 
 :image-left:1.jpg:
-Quisque commodo efficitur ante, nec fringilla ex ornare vitae. Nulla mollis ligula sed tristique 
+Quisque commodo efficitur ante, nec fringilla ex ornare vitae. Nulla mollis ligula sed tristique
 semper. Maecenas sit amet mi vehicula, ornare lectus eget, scelerisque orci. Morbi sem nibh, suscipit
 nec ante vitae, imperdiet viverra erat. Proin gravida eget nisi sit amet ullamcorper. Mauris turpis
 massa, semper auctor quam non, porta lobortis mi. Praesent commodo nulla odio, at egestas mi dignissim
@@ -72,7 +72,7 @@ euismod risus massa, quis efficitur est tempor vel. Nam dolor nisl, vestibulum s
 cursus ac metus. Donec ac aliquet turpis.
 
 Nulla suscipit mauris lacinia augue sollicitudin, quis tincidunt neque facilisis. Mauris in neque sit
-amet nulla vulputate porttitor. Vivamus iaculis turpis odio, ac dictum augue condimentum a. Nullam 
+amet nulla vulputate porttitor. Vivamus iaculis turpis odio, ac dictum augue condimentum a. Nullam
 mollis vel nunc vitae dapibus. Sed efficitur nisi non nunc laoreet facilisis. Suspendisse sagittis,
 ex eget sagittis varius, metus erat consectetur magna, ut tincidunt enim orci sit amet magna. Nullam
 ligula lorem, placerat vel blandit et, pellentesque vitae ligula. Aenean blandit facilisis cursus.
