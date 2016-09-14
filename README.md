@@ -21,7 +21,7 @@ blogs
            ....
 ```
 
-Note: all blogs must be text files (.txt) that follow the bellow
+Note: all blogs must be text files (.txt) that follow the bello
 order
 
 # Format
