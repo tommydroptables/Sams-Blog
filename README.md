@@ -3,7 +3,7 @@ content Management System for Sam's Blog
 
 # File Structure
 
-All blogs will go in the blog directory in the bellow order
+All blog will go in the blog directory in the bellow order
 
 ```
 blogs
