@@ -12,7 +12,7 @@ blogs
     	   |
     	   --> images
     	            |
-    	            --> image1.png
+    	            --> image1.pn
     	            --> image2.jpeg
     	            --> image3.gif
     	   --> Blog1-name.txt
