@@ -80,11 +80,22 @@
         if(startsWith($text_line, ':article:')){
           // Read in image from article
           $article_image = explode(":", $text_line)[2];
-
+          $article_image_position = explode(":", $text_line)[3];
+          $position_class = '';
+              if($article_image_position == 'top'){
+                $position_class = 'title_image_top';
+              }
+              if($article_image_position == 'center'){
+                $position_class = 'title_image_center';
+              }
+              if($article_image_position == 'bottom'){
+                $position_class = 'title_image_bottom';
+              }
+              
           // Replace article and image so you don't see them in blog
           $article = str_replace(':article:', '', $text_line);
           $article = str_replace($article_image . ':', '', $article);
-
+          
           $text_line = "<p>" . $text_line;
 
           # read in article
@@ -116,7 +127,7 @@
           $text_line .= "</p>";
         }
       }
-      echo("<div style='background-image: url(" . getPhoto($images_dir . $article_image) . ")' class='basic_image_attributes' id='title_image_container'></div>");
+      echo("<div style='background-image: url(" . getPhoto($images_dir . $article_image) . ")' class='basic_image_attributes " . $position_class . "' id='title_image_container'></div>");
 
       echo("<div id='text_body'>");
       echo("<h1 id='article_title'>" . $title . "</h1>");
