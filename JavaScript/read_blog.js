@@ -21,7 +21,7 @@ $(document).ready(function()
     }
     else if (positiony.endsWith('%')) {
       var percent = positiony.replace('%', '');
-      new_positiony = $("#title_image_container").height() * Number(percent);
+      new_positiony = $("#title_image_container").height() * Number("." + percent);
     }
 
     console.log("X: " + positionx);
