@@ -115,8 +115,6 @@
               // Find the position of the photo
               $image_info = explode(":", $text_line);
               $article_small_image = $image_info[2];
-              echo("count of list");
-              echo(count($image_info));
               if (count($image_info) == 4)
               {
                 $temp_postion = $image_info[3];
@@ -129,7 +127,8 @@
           $text_line .= "</p>";
         }
       }
-      echo("<div style='background-image: url(" . getPhoto($images_dir . $article_image) . ")' class='basic_image_attributes " . $position_class . "' id='title_image_container'></div>");
+
+      echo("<div style='background-position: " . $article_image_position . "; background-image: url(" . getPhoto($images_dir . $article_image) . ")' class='basic_image_attributes " . $position_class . "' id='title_image_container'></div>");
 
       echo("<div id='text_body'>");
       echo("<h1 id='article_title'>" . $title . "</h1>");
@@ -138,7 +137,7 @@
 
       session_start();
       if ($_SESSION['valid'] == true || $_SESSION['timeout'] > time()) {
-        echo("<a id='back_to_editing' style='background-position: " . $article_image_position . "' class='btn btn-primary' href='admin.php' role='button'>Back To Edit Blog</a>");
+        echo("<a id='back_to_editing' class='btn btn-primary' href='admin.php' role='button'>Back To Edit Blog</a>");
       }
 
     ?>
