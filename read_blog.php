@@ -101,7 +101,7 @@
             # Check for images in article
             if(startsWith($text_line, ':image-')){
               $float_class = '';
-              $temp_postion = 'center';
+              $temp_postion = '100%';
               if(startsWith($text_line, ':image-left')){
                 $float_class = 'inpage_image_left';
               }

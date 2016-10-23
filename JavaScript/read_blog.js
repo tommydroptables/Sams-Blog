@@ -24,6 +24,10 @@ $(document).ready(function()
       new_positiony = $("#title_image_container").height() * Number(percent);
     }
 
+    console.log("X: " + positionx);
+    console.log("Y: " + positiony);
+    console.log("new Y: " + new_positiony);
+
     $("#title_image_container").css("background-position", positionx + " " + (new_positiony + (window.scrollY / 2)) + "px");
   });
 });
