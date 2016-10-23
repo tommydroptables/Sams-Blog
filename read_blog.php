@@ -83,10 +83,6 @@
           // position of backgournd image on the x axis (should be a percentage)
           $article_image_position = explode(":", $text_line)[3];
 
-          // Replace article and image so you don't see them in blog
-          $article = str_replace(':article:', '', $text_line);
-          $article = str_replace($article_image . ':', '', $article);
-
           $text_line = "<p>" . $text_line;
           # read in article
           while(!feof($myfile)){
@@ -119,7 +115,7 @@
                 $temp_postion = $image_info[3];
               }
 
-              $text_line = '</p><div style="background-position: ' . $temp_postion . '; background-image: url(' . getPhoto($images_dir . $article_small_image) . ')" class="basic_image_attributes ' . $float_class . '"></div><p>';
+              $text_line = '</p><div style="background-position: center ' . $temp_postion . '; background-image: url(' . getPhoto($images_dir . $article_small_image) . ')" class="basic_image_attributes ' . $float_class . '"></div><p>';
             }
             $article .= $text_line;
           }
