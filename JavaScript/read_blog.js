@@ -1,6 +1,31 @@
 $(document).ready(function()
 {
   // ------------------------------------------------------------------
+  //    Find the height of the artilce image to smoothly diplay paralax
+  // ------------------------------------------------------------------
+  var articleImgHeight = null;
+
+  var window_width = $(window).width();
+
+  var image_url = $('#title_image_container').css('background-image'), image;
+  // Remove url() or in case of Chrome url("")
+  image_url = image_url.match(/^url\("?(.+?)"?\)$/);
+  
+  if (image_url[1]) {
+    image_url = image_url[1];
+    image = new Image();
+
+    // just in case it is not already loaded
+    $(image).load(function () {
+        articleImgHeight = image.height;
+        articleImgWidth = image.width;
+        // Set listener on photo not that we have the full photo size
+        set_parallax();
+    });
+
+    image.src = image_url;
+  }  
+  // ------------------------------------------------------------------
   //          Set vh so webpage isn't glitchy on mobile
   // ------------------------------------------------------------------
   var window_height = window.innerHeight;
@@ -11,23 +36,32 @@ $(document).ready(function()
   // ------------------------------------------------------------------
   //                         Parallax Image
   // ------------------------------------------------------------------
-  $(document).scroll(function() {
-    var background_deets = $("#title_image_container").css("background-position").split(" ")
-    var positionx = background_deets[0]
-    var positiony = background_deets[1]
-    var new_positiony = 0;
-    if (positiony.endsWith('px')) {
-      new_positiony = positiony.replace('px', '');
-    }
-    else if (positiony.endsWith('%')) {
-      var percent = positiony.replace('%', '');
-      new_positiony = $("#title_image_container").height() * Number("." + percent);
-    }
+  function set_parallax(){
+    var scale_mulitplier = window_width / articleImgWidth;
+    var scaled_height = articleImgHeight * scale_mulitplier;
 
-    console.log("X: " + positionx);
-    console.log("Y: " + positiony);
-    console.log("new Y: " + new_positiony);
 
-    $("#title_image_container").css("background-position", positionx + " " + (new_positiony + (window.scrollY / 2)) + "px");
-  });
+    var background_container_position = $("#title_image_container").css("background-position").split(" ");
+    var positionx = background_container_position[0];
+    var positiony = background_container_position[1];
+
+    var article_vewer_height = $("#title_image_container").height();
+
+    console.log("SCALED HEIGHT: " + scaled_height);
+    console.log("VIEWER HEIGHT: " + article_vewer_height);
+
+    $(document).scroll(function() {
+
+      var scaler = 1;
+      // If position Y was 100 percent the image hight will equal itself so don't do the math
+      if (positiony.endsWith('%') && positiony != '100%') {
+        scaler = Number("." + positiony.replace('%', ''));
+      }
+
+      var new_psoition = (((scaled_height - article_vewer_height) * scaler) * -1) + (window.scrollY / 2);
+      console.log(new_psoition);
+
+      $("#title_image_container").css("background-position", positionx + " " + new_psoition + "px");
+    });
+  }
 });

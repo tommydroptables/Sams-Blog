@@ -88,7 +88,6 @@
           $article = str_replace($article_image . ':', '', $article);
           
           $text_line = "<p>" . $text_line;
-
           # read in article
           while(!feof($myfile)){
             $previous_line = $text_line;
@@ -120,6 +119,7 @@
                 $temp_postion = $image_info[3];
               }
 
+
               $text_line = '</p><div style="background-position: ' . $temp_postion . '; background-image: url(' . getPhoto($images_dir . $article_small_image) . ')" class="basic_image_attributes ' . $float_class . '"></div><p>';
             }
             $article .= $text_line;
@@ -128,12 +128,13 @@
         }
       }
 
-      echo("<div style='background-position: " . $article_image_position . "; background-image: url(" . getPhoto($images_dir . $article_image) . ")' class='basic_image_attributes " . $position_class . "' id='title_image_container'></div>");
+      $temp_style = "background-position: center " . $article_image_position . "; background-image: url(" . getPhoto($images_dir . $article_image) . ")";
+
+      echo("<div style='" . $temp_style . "' class='basic_image_attributes " . $position_class . "' id='title_image_container'></div>");
 
       echo("<div id='text_body'>");
       echo("<h1 id='article_title'>" . $title . "</h1>");
       echo("<h5 id='article_author'>Author: Dr. Parker</h5>");
-      echo($article);
 
       session_start();
       if ($_SESSION['valid'] == true || $_SESSION['timeout'] > time()) {
