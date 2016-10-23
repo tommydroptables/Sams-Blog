@@ -20,15 +20,7 @@ body {
 	background-image: url(../images/1.jpg);
 	box-shadow: unset;
 }
-.title_image_top {
-	background-position: top;
-}
-.title_image_center {
-	background-position: center;
-}
-.title_image_bottom {
-	background-position: bottom;
-}
+
 .basic_image_attributes {
 	background-repeat: no-repeat;
 	background-origin: 50% 50%;

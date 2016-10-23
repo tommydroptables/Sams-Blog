@@ -331,7 +331,7 @@ if($_SESSION['blog']) {
         <div><b>:title: Your title Here</b> <- title of blog</div>
         <div><b>:summary:image.jpg: Your Summary Here</b> <- summary and the image to show on the front page with the summary</div>
         <div><b>:article:image.jpg:focus: Your article Here</b> <- article and the image to show on the top of the article page</div>
-        <div><b>focus: top, center or bottom</b></div>
+        <div><b>focus: top, center or bottom. If you want it more refined you can use a percentage. 0% is the top. 100% is the bottom. You can go over 100% :)</b></div>
         <div><b>NOTE: The elements below are part of the article</b></div>
         <div><b>:image-left:image.jpg:</b> <- images that show inline in the article on the left side of the page</div>
         <div><b>:image-right:image.jpg:</b> <- images that show inline in the article on the right side of the page</div>

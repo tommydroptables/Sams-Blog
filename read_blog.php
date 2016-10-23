@@ -80,17 +80,8 @@
         if(startsWith($text_line, ':article:')){
           // Read in image from article
           $article_image = explode(":", $text_line)[2];
+          // position of backgournd image on the x axis (should be a percentage)
           $article_image_position = explode(":", $text_line)[3];
-          $position_class = '';
-              if($article_image_position == 'top'){
-                $position_class = 'title_image_top';
-              }
-              if($article_image_position == 'center'){
-                $position_class = 'title_image_center';
-              }
-              if($article_image_position == 'bottom'){
-                $position_class = 'title_image_bottom';
-              }
               
           // Replace article and image so you don't see them in blog
           $article = str_replace(':article:', '', $text_line);
@@ -110,6 +101,7 @@
             # Check for images in article
             if(startsWith($text_line, ':image-')){
               $float_class = '';
+              $temp_postion = 'center';
               if(startsWith($text_line, ':image-left')){
                 $float_class = 'inpage_image_left';
               }
@@ -119,8 +111,18 @@
               if(startsWith($text_line, ':image-full')){
                 $float_class = 'inpage_image_full';
               }
-              $article_small_image = explode(":", $text_line)[2];
-              $text_line = '</p><div style="background-image: url(' . getPhoto($images_dir . $article_small_image) . ')" class="basic_image_attributes ' . $float_class . '"></div><p>';
+
+              // Find the position of the photo
+              $image_info = explode(":", $text_line);
+              $article_small_image = $image_info[2];
+              echo("count of list");
+              echo(count($image_info));
+              if (count($image_info) == 4)
+              {
+                $temp_postion = $image_info[3];
+              }
+
+              $text_line = '</p><div style="background-position: ' . $temp_postion . '; background-image: url(' . getPhoto($images_dir . $article_small_image) . ')" class="basic_image_attributes ' . $float_class . '"></div><p>';
             }
             $article .= $text_line;
           }
@@ -136,7 +138,7 @@
 
       session_start();
       if ($_SESSION['valid'] == true || $_SESSION['timeout'] > time()) {
-        echo("<a id='back_to_editing' class='btn btn-primary' href='admin.php' role='button'>Back To Edit Blog</a>");
+        echo("<a id='back_to_editing' style='background-position: " . $article_image_position . "' class='btn btn-primary' href='admin.php' role='button'>Back To Edit Blog</a>");
       }
 
     ?>
