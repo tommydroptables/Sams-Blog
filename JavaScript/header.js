@@ -1,4 +1,4 @@
-$(document).ready(function() 
+$(document).ready(function()
 {
     set_on_hover_title();
 });
@@ -21,8 +21,8 @@ window.set_on_hover_title = function() {
 //                 Scroll Effect for Nav Bar
 // ------------------------------------------------------------------
 $(document).scroll(function() {
-    var text_size = (window.innerWidth > 450 ? '4em' : '3em'); 
-    var line_width = (window.innerWidth > 450 ? '400px' : '275px'); 
+    var text_size = (window.innerWidth > 450 ? '4em' : '3em');
+    var line_width = (window.innerWidth > 450 ? '400px' : '275px');
     if (window.scrollY > 10) {
         $(".navbar").css("transition", "padding-bottom 1s");
         $("#title_t_pearl").css("font-size", '2em');

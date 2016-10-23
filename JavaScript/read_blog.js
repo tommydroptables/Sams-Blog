@@ -16,7 +16,7 @@ $(document).ready(function()
   var positionx = background_container_position[0];
   var positiony = background_container_position[1];
 
-  // Find the height of the article image  
+  // Find the height of the article image
   if (image_url[1]) {
     image_url = image_url[1];
     image = new Image();
@@ -30,7 +30,7 @@ $(document).ready(function()
     });
 
     image.src = image_url;
-  }  
+  }
   // ------------------------------------------------------------------
   //          Set vh so webpage isn't glitchy on mobile
   // ------------------------------------------------------------------
@@ -67,5 +67,5 @@ $(document).ready(function()
     });
   }
 
-  
+
 });

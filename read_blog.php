@@ -82,11 +82,11 @@
           $article_image = explode(":", $text_line)[2];
           // position of backgournd image on the x axis (should be a percentage)
           $article_image_position = explode(":", $text_line)[3];
-              
+
           // Replace article and image so you don't see them in blog
           $article = str_replace(':article:', '', $text_line);
           $article = str_replace($article_image . ':', '', $article);
-          
+
           $text_line = "<p>" . $text_line;
           # read in article
           while(!feof($myfile)){
@@ -135,7 +135,7 @@
       echo("<h1 id='article_title'>" . $title . "</h1>");
       echo("<h5 id='article_author'>Author: Dr. Parker</h5>");
       echo($article);
-      
+
       session_start();
       if ($_SESSION['valid'] == true || $_SESSION['timeout'] > time()) {
         echo("<a id='back_to_editing' class='btn btn-primary' href='admin.php' role='button'>Back To Edit Blog</a>");
