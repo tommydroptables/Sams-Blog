@@ -83,11 +83,11 @@
         return $list;
       }
 
-     function output_cards($title, $summary, $href_blog_text, $href_blog_images_folder, $summary_image_path) {
+     function output_cards($title, $summary, $href_blog_text, $href_blog_images_folder, $summary_image_path, $summary_image_position) {
         $html_card = "";
         $full_sum_img_pth = getPhoto($href_blog_images_folder . $summary_image_path);
         $html_card .= ("<div dragable=true onclick='read_more(\"$href_blog_text\", \"$href_blog_images_folder\")' style='background-color: " . get_random_color() . "' onMouseOver  ='add_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' onMouseOut='remove_linear_gradiant(this, \"" . $full_sum_img_pth . "\")' class='tile_container panel panel-default'>\n");
-        $html_card .= ("<div style='background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(\"" . $full_sum_img_pth . "\")' class='list-group panel-body tile_background_image text_padding'>\n");
+        $html_card .= ("<div style='background-position: 50% " . $summary_image_position . "; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(\"" . $full_sum_img_pth . "\")' class='list-group panel-body tile_background_image text_padding'>\n");
         $html_card .= ("<p>$summary</p>\n");
         $html_card .= ("</div>\n");
         $html_card .= ("<div class='panel-heading-container'>\n");
@@ -166,10 +166,20 @@
                 }
               }
               if(startsWith($text_line, ':summary:')){
-                $summary_image = explode(":", $text_line)[2];
+                $summary_info  = explode(":", $text_line);
+                $summary_image = $summary_info[2];
+                // Set the position of the photo. Read in from markdown.. if it exists
+                $summary_image_position = '50%';
+
+                if (count($summary_info) == 5)
+                {
+                  $summary_image_position = $summary_info[3];
+                  $text_line = str_replace($summary_image_position . ':', '', $text_line);
+                }
 
                 $summary = str_replace(':summary:', '', $text_line);
                 $summary = str_replace($summary_image . ':', '', $summary);
+
                 # read in summary
                 while(!feof($myfile)){
                   $text_line = fgets($myfile);
@@ -183,17 +193,16 @@
 
 
             if($blog_counter_2_rows == 0)
-              array_push($blog_row1_col_2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
+              array_push($blog_row1_col_2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image, $summary_image_position));
             if($blog_counter_2_rows == 1)
-              array_push($blog_row2_col_2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
-
+              array_push($blog_row2_col_2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image, $summary_image_position));
 
             if($blog_counter_3_rows == 0)
-              array_push($blog_row1, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
+              array_push($blog_row1, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image, $summary_image_position));
             if($blog_counter_3_rows == 1)
-              array_push($blog_row2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
+              array_push($blog_row2, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image, $summary_image_position));
             if($blog_counter_3_rows == 2)
-              array_push($blog_row3, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image));
+              array_push($blog_row3, array($title, $summary, $blog_file, ($blog_str . '/images/'), $summary_image, $summary_image_position));
             fclose($myfile);
           }
         }
@@ -205,11 +214,11 @@
       $two_column_cards = "";
       $two_column_cards .= ("<div class='col-md-6 col-sm-6'>");
       foreach($blog_row1_col_2 as &$each_blog_info){
-        $two_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+        $two_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4], $each_blog_info[5]);
       }
       $two_column_cards .= ("</div><div class='col-md-6 col-sm-6'>");
       foreach($blog_row2_col_2 as &$each_blog_info){
-        $two_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+        $two_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4], $each_blog_info[5]);
       }
       $two_column_cards .= ('</div>');
 
@@ -218,15 +227,15 @@
       $three_column_cards = "";
       $three_column_cards .= ("<div class='col-md-4 col-sm-6'>");
       foreach($blog_row1 as &$each_blog_info){
-        $three_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+        $three_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4], $each_blog_info[5]);
       }
       $three_column_cards .= ("</div><div class='col-md-4 col-sm-6'>");
       foreach($blog_row2 as &$each_blog_info){
-        $three_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+        $three_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4], $each_blog_info[5]);
       }
       $three_column_cards .= ("</div><div class='col-md-4 col-sm-6'>");
       foreach($blog_row3 as &$each_blog_info){
-        $three_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4]);
+        $three_column_cards .= output_cards($each_blog_info[0], $each_blog_info[1], $each_blog_info[2], $each_blog_info[3], $each_blog_info[4], $each_blog_info[5]);
       }
       $three_column_cards .= ('</div>');
 

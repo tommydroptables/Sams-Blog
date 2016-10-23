@@ -96,7 +96,6 @@
             # Check for images in article
             if(startsWith($text_line, ':image-')){
               $float_class = '';
-              $temp_postion = '100%';
               if(startsWith($text_line, ':image-left')){
                 $float_class = 'inpage_image_left';
               }
@@ -107,7 +106,8 @@
                 $float_class = 'inpage_image_full';
               }
 
-              // Find the position of the photo
+              // Set the position of the photo. Read in from markdown.. if it exists
+              $temp_postion = '50%';
               $image_info = explode(":", $text_line);
               $article_small_image = $image_info[2];
               if (count($image_info) == 4)
