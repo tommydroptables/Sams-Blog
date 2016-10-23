@@ -119,7 +119,6 @@
                 $temp_postion = $image_info[3];
               }
 
-
               $text_line = '</p><div style="background-position: ' . $temp_postion . '; background-image: url(' . getPhoto($images_dir . $article_small_image) . ')" class="basic_image_attributes ' . $float_class . '"></div><p>';
             }
             $article .= $text_line;
@@ -135,7 +134,8 @@
       echo("<div id='text_body'>");
       echo("<h1 id='article_title'>" . $title . "</h1>");
       echo("<h5 id='article_author'>Author: Dr. Parker</h5>");
-
+      echo($article);
+      
       session_start();
       if ($_SESSION['valid'] == true || $_SESSION['timeout'] > time()) {
         echo("<a id='back_to_editing' class='btn btn-primary' href='admin.php' role='button'>Back To Edit Blog</a>");

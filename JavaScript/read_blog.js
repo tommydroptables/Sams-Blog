@@ -10,7 +10,13 @@ $(document).ready(function()
   var image_url = $('#title_image_container').css('background-image'), image;
   // Remove url() or in case of Chrome url("")
   image_url = image_url.match(/^url\("?(.+?)"?\)$/);
-  
+
+  // Declare vars while the page loads to not waste time while running the set_parallax function
+  var background_container_position = $("#title_image_container").css("background-position").split(" ");
+  var positionx = background_container_position[0];
+  var positiony = background_container_position[1];
+
+  // Find the height of the article image  
   if (image_url[1]) {
     image_url = image_url[1];
     image = new Image();
@@ -37,31 +43,29 @@ $(document).ready(function()
   //                         Parallax Image
   // ------------------------------------------------------------------
   function set_parallax(){
-    var scale_mulitplier = window_width / articleImgWidth;
-    var scaled_height = articleImgHeight * scale_mulitplier;
-
-
-    var background_container_position = $("#title_image_container").css("background-position").split(" ");
-    var positionx = background_container_position[0];
-    var positiony = background_container_position[1];
-
+    var scale_mulitplier     = window_width / articleImgWidth;
+    var scaled_height        = articleImgHeight * scale_mulitplier;
     var article_vewer_height = $("#title_image_container").height();
+    var scaler = 1;
 
-    console.log("SCALED HEIGHT: " + scaled_height);
-    console.log("VIEWER HEIGHT: " + article_vewer_height);
-
-    $(document).scroll(function() {
-
-      var scaler = 1;
-      // If position Y was 100 percent the image hight will equal itself so don't do the math
+    function on_scroll() {
+      scaler = 1;
+      // If position Y was 100 percent the image hight will equal itself so don't do the replacement
       if (positiony.endsWith('%') && positiony != '100%') {
         scaler = Number("." + positiony.replace('%', ''));
       }
 
-      var new_psoition = (((scaled_height - article_vewer_height) * scaler) * -1) + (window.scrollY / 2);
-      console.log(new_psoition);
+      $("#title_image_container").css("background-position", positionx + " " + (
+        ((scaled_height - article_vewer_height) * scaler * -1) + (window.scrollY / 2)) + "px");
+    }
 
-      $("#title_image_container").css("background-position", positionx + " " + new_psoition + "px");
+    // Exectute once before on scroll to postion the image relative to the page
+    on_scroll();
+
+    $(document).scroll(function() {
+      on_scroll();
     });
   }
+
+  
 });
