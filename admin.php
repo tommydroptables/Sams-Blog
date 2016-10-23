@@ -328,14 +328,15 @@ if($_SESSION['blog']) {
         <h4 class="modal-title">Markdown Cheat Sheet</h4>
       </div>
       <div class="modal-body">
-        <div><b>:title: Your title Here</b> <- title of blog</div>
-        <div><b>:summary:image.jpg: Your Summary Here</b> <- summary and the image to show on the front page with the summary</div>
-        <div><b>:article:image.jpg:focus: Your article Here</b> <- article and the image to show on the top of the article page</div>
-        <div><b>focus: top, center or bottom. If you want it more refined you can use a percentage. 0% is the top. 100% is the bottom. You can go over 100% :)</b></div>
-        <div><b>NOTE: The elements below are part of the article</b></div>
-        <div><b>:image-left:image.jpg:</b> <- images that show inline in the article on the left side of the page</div>
-        <div><b>:image-right:image.jpg:</b> <- images that show inline in the article on the right side of the page</div>
-        <div><b>:image-full:image.jpg:</b> <- images that show inline in the article that will be full width of the article</div>
+        <div class="left"><b>:title: Your title Here</b> <- title of blog</div>
+        <div class="left"><b>:summary:image.jpg:fucus: Your Summary Here</b> <- summary and the image to show on the front page with the summary</div>
+        <div class="left"><b>:article:image.jpg:focus: Your article Here</b> <- article and the image to show on the top of the article page</div>
+        <HR>
+        <div class="left"><b>NOTE: The elements below are part of the article</b></div>
+        <div class="left"><b>:image-left:image.jpg:focus:</b> <- images that show inline in the article on the left side of the page</div>
+        <div class="left"><b>:image-right:image.jpg:focus:</b> <- images that show inline in the article on the right side of the page</div>
+        <div class="left"><b>:image-full:image.jpg:focus:</b> <- images that show inline in the article that will be full width of the article</div>
+        <div class="left"><b>focus: You can use a percentage. 0% is the top. 100% is the bottom. You can go over 100% too :)</b></div>
       </div>
     </div>
   </div>
