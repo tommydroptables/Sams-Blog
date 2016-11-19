@@ -61,21 +61,20 @@
     }
 
     if (isset($_GET['blog'])) {
-      $blog_name = $_GET['blog'];
+      $blog_number = $_GET['blog'];
 
     }
 
     if (isset($_GET['create'])) {
-      $create_blog_name = $_GET['create'];
+      $create_blog_name = urlencode($_GET['create']);
       // create directories for new blog
       $blog_dir_name = number_of_blogs();
       mkdir("blogs/$blog_dir_name/images", 0777, true);
       $myfile = fopen("blogs/$blog_dir_name/$create_blog_name.txt", "w") or die("Unable to create file!");
-      $txt = ":title: $create_blog_name\n";
+      $txt = ":title: " . urldecode($create_blog_name) . "\n";
       fwrite($myfile, $txt);
       fclose($myfile);
       // Set blog_name details to new blog so it will be read in bellow
-      $blog_name = $create_blog_name;
       header("Location: admin.php?blog=$blog_dir_name");
     }
 
@@ -140,18 +139,65 @@
              "</div>";
     }
 
+    function get_blog_title($blog_directory){
+      $blog_str = "blogs/$blog_directory";
+      $blog_contents = scandir($blog_str);
+
+      foreach($blog_contents as &$blog_content){
+        # since this is linux we will need to skip '.' and '..'
+        if($blog_content == '.' || $blog_content == '..') {
+          continue;
+        }
+        # blog text file
+        if(endsWith($blog_content, '.txt')){
+          $blog_file = "$blog_str/$blog_content";
+          $myfile    = fopen($blog_file, "r") or die("Unable to open file, $blog_file!1");
+          $title     = '';
+          while(!feof($myfile)) {
+            $text_line = fgets($myfile);
+            if(startsWith($text_line, ':title:')){
+              $title = trim(str_replace(':title:', '', $text_line));
+              while(!feof($myfile)){
+                $text_line = fgets($myfile);
+                if(startsWith($text_line, ':summary:')){
+                  break;
+                }
+                $title .= $text_line;
+              }
+            }
+          }
+          fclose($myfile);
+        }
+      }
+      return $title;
+    }
+
     $blog_titles = array();
     $dir   = "blogs";
     $blogs = scandir($dir);
     foreach($blogs as &$blog){
+
+
+
       # since this is linux we will need to skip '.' and '..'
+      # make sure we are just looking at the blog specified
       if($blog == '.' || $blog == '..') {
         continue;
-     }
+      }
 
+      # Keep track of all blogs and their title and directory numbers
+      array_push($blog_titles, Array(get_blog_title($blog), $blog));
+
+      if($blog_number != $blog) {
+        continue;
+      }
 
       $blog_str = "$dir/$blog";
       $blog_contents = scandir($blog_str);
+
+      // Save blog and blog text file to cache
+      $_SESSION['blog'] = $blog_str;
+      $_SESSION['blog_text_file'] = $blog_file;
 
       foreach($blog_contents as &$blog_content){
         # since this is linux we will need to skip '.' and '..'
@@ -161,16 +207,12 @@
       	# blog text file
       	if(endsWith($blog_content, '.txt')){
       		$blog_file = "$dir/$blog/$blog_content";
-      		$myfile    = fopen($blog_file, "r") or die("Unable to open file, $blog_content!");
+      		$myfile    = fopen($blog_file, "r") or die("Unable to open file, $blog_file!");
           $title     = '';
           while(!feof($myfile)) {
           	$text_line = fgets($myfile);
         		if(startsWith($text_line, ':title:')){
           		$title = trim(str_replace(':title:', '', $text_line));
-              if($title === $blog_name){
-                $_SESSION['blog'] = $blog_str;
-                $_SESSION['blog_text_file'] = $blog_file;
-              }
           		# read in title
           		while(!feof($myfile)){
           			$text_line = fgets($myfile);
@@ -181,7 +223,6 @@
           		}
         		}
         	}
-        	array_push($blog_titles, Array($title));
     		  fclose($myfile);
         }
       }
@@ -330,9 +371,9 @@ if($_SESSION['blog']) {
       <div class="modal-body">
         <div class="left"><b>:title: Your title Here</b> <- title of blog</div>
         <div class="left"><b>:summary:image.jpg:fucus: Your Summary Here</b> <- summary and the image to show on the front page with the summary</div>
-        <div class="left"><b>:article:image.jpg:focus: Your article Here</b> <- article and the image to show on the top of the article page</div>
         <HR>
         <div class="left"><b>NOTE: The elements below are part of the article</b></div>
+        <div class="left"><b>:article:image.jpg:focus: Your article Here</b> <- article and the image to show on the top of the article page</div>
         <div class="left"><b>:image-left:image.jpg:focus:</b> <- images that show inline in the article on the left side of the page</div>
         <div class="left"><b>:image-right:image.jpg:focus:</b> <- images that show inline in the article on the right side of the page</div>
         <div class="left"><b>:image-full:image.jpg:focus:</b> <- images that show inline in the article that will be full width of the article</div>
@@ -357,7 +398,7 @@ if($_SESSION['blog']) {
         <button id="create_blog" type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#new_blog_modal_add_blog">Create Blog</button>
           <?php
             foreach($blog_titles as &$blog_title){
-              echo "<div><a href='?blog=$blog_title[0]' class='blog_links btn btn-primary' >" . $blog_title[0] . "</a></div>";
+              echo "<div><a href='?blog=" . $blog_title[1] . "' class='blog_links btn btn-primary' >" . $blog_title[0] . "</a></div>";
             }
           ?>
 
