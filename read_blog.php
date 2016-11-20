@@ -52,7 +52,7 @@
       $blog_text_url = $_GET["blog_text_url"];
       $images_dir    = $_GET["images_dir"];
 
-      $myfile = fopen($blog_text_url, "r") or die("Unable to open file, $blog_content!");
+      $myfile = fopen($blog_text_url, "r") or die("Unable to open file, $blog_text_url!");
 
       // Elements we need to read in from the blog file
       $title         = '';

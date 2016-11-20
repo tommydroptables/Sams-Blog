@@ -16,12 +16,17 @@
     session_start();
 
 
-    # verifiy user is logged in
+    //-------------------------------------------------------------------------
+    //              verifiy user is logged in
+    //-------------------------------------------------------------------------
     if ($_SESSION['valid'] == false || $_SESSION['timeout'] < time()) {
         header('Location: login.php');
         die;
     }
 
+    //-------------------------------------------------------------------------
+    //                  Helper functions
+    //-------------------------------------------------------------------------
     function is_correct_file_extension($file){
       $extensions= array("jpeg","jpg","png", "gif");
       $file_ext  = strtolower(end(explode('.', $file)));
@@ -60,69 +65,6 @@
       return rmdir($dir);
     }
 
-    if (isset($_GET['blog'])) {
-      $blog_number = $_GET['blog'];
-
-    }
-
-    if (isset($_GET['create'])) {
-      $create_blog_name = urlencode($_GET['create']);
-      // create directories for new blog
-      $blog_dir_name = number_of_blogs();
-      mkdir("blogs/$blog_dir_name/images", 0777, true);
-      $myfile = fopen("blogs/$blog_dir_name/$create_blog_name.txt", "w") or die("Unable to create file!");
-      $txt = ":title: " . urldecode($create_blog_name) . "\n";
-      fwrite($myfile, $txt);
-      fclose($myfile);
-      // Set blog_name details to new blog so it will be read in bellow
-      header("Location: admin.php?blog=$blog_dir_name");
-    }
-
-    if (isset($_GET['save'])) {
-      $save_blog_name = $_GET['save'];
-      $body_to_save = detectRequestBody();
-      file_put_contents($save_blog_name, $body_to_save);
-      header('Location: admin.php');
-    }
-
-    if (isset($_GET['delete'])) {
-      $ary_of_imgs = explode(",", $_GET['delete']);
-      foreach($ary_of_imgs as &$img){
-        $delete_image_name = $_SESSION['blog'] . "/images/" . $img;
-        if(is_malicious_file_name($delete_image_name))
-          if(is_correct_file_extension($delete_image_name))
-            if(file_exists($delete_image_name))
-              unlink($delete_image_name);
-      }
-      header('Location: admin.php');
-    }
-
-    if (isset($_GET['delete_blog'])) {
-      $blog_to_delete = $_GET['delete_blog'];
-      if (!is_dir("blogs/$blog_to_delete")) {
-        if (isnt_malicious_dir_name($blog_to_delete)) {
-          echo "deleting this blog:" . "$blog_to_delete";
-          delTree("$blog_to_delete");
-        }
-        header('Location: admin.php');
-      }
-    }
-
-    function number_of_blogs() {
-      $blogs_dir = scandir("blogs");
-      $max_number = 0;
-      foreach($blogs_dir as &$blogs_){
-        # since this is linux we will need to skip '.' and '..'
-        if($blogs_ == '.' || $blogs_ == '..') {
-          continue;
-        }
-        if ($max_number < intval($blogs_)) {
-          $max_number = intval($blogs_);
-        }
-      }
-      return ++$max_number;
-    }
-
     function detectRequestBody() {
       $rawInput = fopen('php://input', 'r');
       $tempStream = fopen('php://temp', 'r+');
@@ -148,6 +90,7 @@
         if($blog_content == '.' || $blog_content == '..') {
           continue;
         }
+
         # blog text file
         if(endsWith($blog_content, '.txt')){
           $blog_file = "$blog_str/$blog_content";
@@ -172,12 +115,86 @@
       return $title;
     }
 
+    function number_of_blogs() {
+      $blogs_dir = scandir("blogs");
+      $max_number = 0;
+      foreach($blogs_dir as &$blogs_){
+        # since this is linux we will need to skip '.' and '..'
+        if($blogs_ == '.' || $blogs_ == '..') {
+          continue;
+        }
+        if ($max_number < intval($blogs_)) {
+          $max_number = intval($blogs_);
+        }
+      }
+      return ++$max_number;
+    }
+
+    //-------------------------------------------------------------------------
+    //     if blog number is not set try reading it out of the session
+    //-------------------------------------------------------------------------
+    $blog_number = $_SESSION["blog_number"];
+
+    //-------------------------------------------------------------------------
+    //                        GET URL Variables
+    //-------------------------------------------------------------------------
+    if (isset($_GET['blog'])) {
+      $blog_number = $_GET['blog'];
+    }
+
+    if (isset($_GET['create'])) {
+      $create_blog_name = urlencode($_GET['create']);
+      // create directories for new blog
+      $blog_dir_name = number_of_blogs();
+      mkdir("blogs/$blog_dir_name/images", 0777, true);
+      $myfile = fopen("blogs/$blog_dir_name/$blog_dir_name.txt", "w") or die("Unable to create file!");
+      $txt = ":title: " . urldecode($create_blog_name) . "\n";
+      fwrite($myfile, $txt);
+      fclose($myfile);
+      // Set blog_name details to new blog so it will be read in bellow
+      header("Location: admin.php?blog=$blog_dir_name");
+    }
+
+    if (isset($_GET['save'])) {
+      $save_blog_name = $_GET['save'];
+      $body_to_save = detectRequestBody();
+      file_put_contents($save_blog_name, $body_to_save);
+      header('Location: admin.php');
+    }
+
+    if (isset($_GET['delete'])) {
+      $ary_of_imgs = explode(",", $_GET['delete']);
+      foreach($ary_of_imgs as &$img){
+        $delete_image_name = $_SESSION['blog_dir'] . "/images/" . $img;
+        if(is_malicious_file_name($delete_image_name))
+          if(is_correct_file_extension($delete_image_name))
+            if(file_exists($delete_image_name))
+              unlink($delete_image_name);
+      }
+      header('Location: admin.php');
+    }
+
+    if (isset($_GET['delete_blog'])) {
+      $blog_to_delete = $_GET['delete_blog'];
+      if (!is_dir("blogs/$blog_to_delete")) {
+        if (isnt_malicious_dir_name($blog_to_delete)) {
+          echo "deleting this blog:" . "$blog_to_delete";
+          delTree("$blog_to_delete");
+        }
+        header('Location: admin.php');
+      }
+    }
+
+
+    //-------------------------------------------------------------------------
+    //                 Loop through blog directory
+    //-------------------------------------------------------------------------
     $blog_titles = array();
     $dir   = "blogs";
+
+    // Loop through all blogs
     $blogs = scandir($dir);
     foreach($blogs as &$blog){
-
-
 
       # since this is linux we will need to skip '.' and '..'
       # make sure we are just looking at the blog specified
@@ -193,39 +210,32 @@
       }
 
       $blog_str = "$dir/$blog";
-      $blog_contents = scandir($blog_str);
+      $blog_file = "$blog_str/$blog.txt";
 
       // Save blog and blog text file to cache
-      $_SESSION['blog'] = $blog_str;
+      $_SESSION['blog_dir'] = $blog_str;
+      $_SESSION['blog_number'] = $blog_number;
       $_SESSION['blog_text_file'] = $blog_file;
 
-      foreach($blog_contents as &$blog_content){
-        # since this is linux we will need to skip '.' and '..'
-      	if($blog_content == '.' || $blog_content == '..') {
-          continue;
-        }
-      	# blog text file
-      	if(endsWith($blog_content, '.txt')){
-      		$blog_file = "$dir/$blog/$blog_content";
-      		$myfile    = fopen($blog_file, "r") or die("Unable to open file, $blog_file!");
-          $title     = '';
-          while(!feof($myfile)) {
-          	$text_line = fgets($myfile);
-        		if(startsWith($text_line, ':title:')){
-          		$title = trim(str_replace(':title:', '', $text_line));
-          		# read in title
-          		while(!feof($myfile)){
-          			$text_line = fgets($myfile);
-          			if(startsWith($text_line, ':summary:')){
-          		  	break;
-          			}
-          			$title .= $text_line;
-          		}
-        		}
-        	}
-    		  fclose($myfile);
-        }
-      }
+  	  # load blog text file
+  		$blog_file = "$dir/$blog/$blog.txt";
+  		$myfile    = fopen($blog_file, "r") or die("Unable to open file, $blog_file!");
+      $title     = '';
+      while(!feof($myfile)) {
+      	$text_line = fgets($myfile);
+    		if(startsWith($text_line, ':title:')){
+      		$title = trim(str_replace(':title:', '', $text_line));
+      		# read in title
+      		while(!feof($myfile)){
+      			$text_line = fgets($myfile);
+      			if(startsWith($text_line, ':summary:')){
+      		  	break;
+      			}
+      			$title .= $text_line;
+      		}
+    		}
+    	}
+		  fclose($myfile);
     }
 
 //-------------------------------------------------------------------------
@@ -273,11 +283,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 //                            If blog exists
 //-------------------------------------------------------------------------
 $image_thumbnails = Array();
-if($_SESSION['blog']) {
+if($_SESSION['blog_dir']) {
   //-------------------------------------------------------------------------
   //     If blog that is passed through url exits then display it.
   //-------------------------------------------------------------------------
-  $blog_contents = scandir($_SESSION['blog']);
+  $blog_contents = scandir($_SESSION['blog_dir']);
 
   foreach($blog_contents as &$blog_content){
     # since this is linux we will need to skip '.' and '..'
@@ -286,14 +296,14 @@ if($_SESSION['blog']) {
     }
     # blog text file
     if(endsWith($blog_content, '.txt')){
-      $text = file_get_contents($_SESSION['blog'] . '/' . $blog_content);
+      $text = file_get_contents($_SESSION['blog_dir'] . '/' . $blog_content);
     }
 
     //-------------------------------------------------------------------------
     //                          Read in photos
     //-------------------------------------------------------------------------
     if($blog_content == "images"){
-      $blog_image_dir = $_SESSION['blog'] . "/images";
+      $blog_image_dir = $_SESSION['blog_dir'] . "/images";
       $blog_images = scandir($blog_image_dir);
       foreach($blog_images as &$blog_image){
         if($blog_image == '.' || $blog_image == '..') {
@@ -307,9 +317,7 @@ if($_SESSION['blog']) {
 
 }
 
-
 ?>
-
 <form>
 	<textarea id="edit_blog" class="add_left_margin add_top_margin add_right_margin" name="text"><?php echo htmlspecialchars($text) ?></textarea>
 	<br>
@@ -328,7 +336,7 @@ if($_SESSION['blog']) {
     </form>
 </div>
 
-<input class="delete" type="button" value="Delete Blog"  onclick=on_delete_blog(<?php echo '"' . htmlspecialchars($_SESSION['blog']) . '"'?>) />
+<input class="delete" type="button" value="Delete Blog"  onclick=on_delete_blog(<?php echo '"' . htmlspecialchars($_SESSION['blog_dir']) . '"'?>) />
 <input class="delete" type="submit" value="Delete Photo"  onclick="on_delete_image()" />
 <input class="delete" type="submit" value="Log Out"  onclick="log_out()" />
 
@@ -370,7 +378,7 @@ if($_SESSION['blog']) {
       </div>
       <div class="modal-body">
         <div class="left"><b>:title: Your title Here</b> <- title of blog</div>
-        <div class="left"><b>:summary:image.jpg:fucus: Your Summary Here</b> <- summary and the image to show on the front page with the summary</div>
+        <div class="left"><b>:summary:image.jpg:focus: Your Summary Here</b> <- summary and the image to show on the front page with the summary</div>
         <HR>
         <div class="left"><b>NOTE: The elements below are part of the article</b></div>
         <div class="left"><b>:article:image.jpg:focus: Your article Here</b> <- article and the image to show on the top of the article page</div>
