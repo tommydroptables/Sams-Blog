@@ -129,7 +129,6 @@
 
       echo("<div id='text_body'>");
       echo("<h1 id='article_title'>" . $title . "</h1>");
-      echo("<h5 id='article_author'>Author: Dr. Parker</h5>");
       echo($article);
 
       session_start();
