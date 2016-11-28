@@ -255,7 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       $file_size = $_FILES['image']['size'];
       $file_tmp  = $_FILES['image']['tmp_name'];
       $file_type = $_FILES['image']['type'];
-      $file_path =  $_SESSION["blog"] . "/images/" . $file_name;
+      $file_path =  $_SESSION["blog_dir"] . "/images/" . $file_name;
 
       if(!is_correct_file_extension($_FILES['image']['name'])){
          $errors[] = "File not allowed";
@@ -323,7 +323,7 @@ if($_SESSION['blog_dir']) {
 	<br>
 	<input type="button" value="Save" class="button_left add_left_margin" onclick="on_page_submit(<?php echo "'" . $_SESSION['blog_text_file'] . "'" ?>)" />
   <input type="button" value="Help?" class="add_left_margin button_left" data-toggle="modal" data-target="#new_blog_modal_help" />
-    <input type='button' value="Go To This Blog" class="add_left_margin button_left" onclick='on_go_to_page(<?php echo "\"read_blog.php?blog_text_url=" . $_SESSION["blog_text_file"] . "&images_dir=" . $_SESSION["blog"] . "/images/\"" ?>)' />
+    <input type='button' value="Go To This Blog" class="add_left_margin button_left" onclick='on_go_to_page(<?php echo "\"read_blog.php?blog_text_url=" . $_SESSION["blog_text_file"] . "&images_dir=" . $_SESSION["blog_dir"] . "/images/\"" ?>)' />
 
   <input type="button" value="Select or Create Blog" class="button_right"  data-toggle="modal" data-target="#new_blog_modal_select_blog" />
 
