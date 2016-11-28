@@ -12,6 +12,9 @@
 
    <head>
       <title>Thanks Pearl</title>
+      <meta charset="UTF-8">
+      <meta name="robots" content="NOODP">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href = "css/bootstrap.min.css" rel = "stylesheet">
       <link rel="stylesheet" type="text/css" href="css/styles.css">
       <link rel="stylesheet" type="text/css" href="css/header.css">
