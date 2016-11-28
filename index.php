@@ -3,8 +3,7 @@
   <head>
     <!-- Set up Mobile meta -->
     <meta charset="UTF-8">
-    <meta name="description" content="The blog about all things I wish someone had told me.
-This blog contains stories that are funny, serious and dumb. I write about any moronic topic I wish someone had warned me about.">
+    <meta name="description" content="The blog about all things I wish someone had told me. This blog contains stories that are funny, serious and dumb. I write about any moronic topic I wish someone had warned me about.">
     <meta name="keywords" content="thanks, pearl, thanks-pearl, thanks pearl, funny, blog, Dr. Pearl, i wish someone had told me">
     <meta name="author" content="Dr. Pearl">
     <meta name="viewport" content="width=device-width, initial-scale=1">
