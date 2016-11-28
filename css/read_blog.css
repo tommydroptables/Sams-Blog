@@ -21,6 +21,10 @@ body {
 	box-shadow: unset;
 }
 
+blockquote {
+	margin-left: 40px;
+}
+
 .basic_image_attributes {
 	background-repeat: no-repeat;
 	background-origin: 50% 50%;
