@@ -2,7 +2,10 @@
 <html>
 <head>
 	<title>Thanks Pearl</title>
-  <meta charset="utf-8"/>
+  <meta charset="UTF-8">
+  <meta name="robots" content="NOODP">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
     <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>

@@ -3,9 +3,7 @@
   <head>
   <!-- Set up Mobile meta -->
   <meta charset="UTF-8">
-  <meta name="description" content="Things I wish people have told me">
-  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-  <meta name="author" content="Dr. Parker">
+  <meta name="robots" content="NOODP">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -13,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="css/header.css">
   <link rel="stylesheet" type="text/css" href="css/tile.css">
   <link rel="stylesheet" type="text/css" href="css/read_blog.css">
-    <link rel='stylesheet' type='text/css' href="fonts/rochester">
+  <link rel='stylesheet' type='text/css' href="fonts/rochester">
 
   <script type="text/javascript" src="JavaScript/jquery.min.js"></script>
   <script type="text/javascript" src="JavaScript/bootstrap.min.js"></script>
