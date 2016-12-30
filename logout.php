@@ -1,3 +1,5 @@
+<!-- Set up anaylitics -->
+<?php include_once("analytics/analyticstracking.php") ?>
 <?php
    session_start();
    $_SESSION['valid'] = false;
