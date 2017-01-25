@@ -249,9 +249,6 @@
       </div> <!-- End Row Block  -->
     </div> <!-- End main Block  -->
     <footer>
-      <p  id="creator">
-      <a href="http://www.cocozzello.com">© 2016 by Tom Cocozzello</a>
-    </p>
     </footer>
   </body>
 

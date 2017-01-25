@@ -80,9 +80,15 @@
 
         if(startsWith($text_line, ':article:')){
           // Read in image from article
-          $article_image = explode(":", $text_line)[2];
+          $article_image_line = explode(":", $text_line);
+          $article_image = $article_image_line[2];
           // position of backgournd image on the x axis (should be a percentage)
-          $article_image_position = explode(":", $text_line)[3];
+          $article_image_position = '50%';
+          if (count($article_image_line) === 4)
+          {
+            $article_image_position = $article_image_line[3];
+          }
+
 
           $text_line = "<p>" . $text_line;
           # read in article
@@ -111,7 +117,12 @@
               $temp_postion = '50%';
               $image_info = explode(":", $text_line);
               $article_small_image = $image_info[2];
-              if (count($image_info) == 4)
+
+              // Since this line usually looks like:
+              // :image-full:flowser.jpg:50%:
+              // there count will be 5 when you split it since there is space before the first
+              // semicolin and after the last one
+              if (count($image_info) === 5)
               {
                 $temp_postion = $image_info[3];
               }
@@ -140,8 +151,5 @@
     ?>
 </body>
 <footer>
-    <p  id="creator">
-      <a href="http://www.cocozzello.com">© 2016 by Tom Cocozzello</a>
-    </p>
 </footer>
 </html>
