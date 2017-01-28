@@ -26,7 +26,7 @@ $(document).ready(function()
         articleImgHeight = image.height;
         articleImgWidth = image.width;
         // Set listener on photo not that we have the full photo size
-        set_parallax();
+        // set_parallax();
     });
 
     image.src = image_url;

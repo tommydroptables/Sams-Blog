@@ -84,7 +84,8 @@
           $article_image = $article_image_line[2];
           // position of backgournd image on the x axis (should be a percentage)
           $article_image_position = '50%';
-          if (count($article_image_line) === 4)
+
+          if (count($article_image_line) === 5)
           {
             $article_image_position = $article_image_line[3];
           }
