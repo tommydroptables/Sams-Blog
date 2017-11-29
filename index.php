@@ -40,14 +40,14 @@
     <?php
 
       $colors_used = array();
-      function get_random_int($number_recusions, $size_of_list) {
+      function get_random_int($size_of_list) {
         // ------------------------------------------------------------------
         // Return an int without of the int that is in the `colors_used array
         // ------------------------------------------------------------------
 
         $temp_color_options = array();
         // Create an array that contains all the possible opesion
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 0; $i <= $size_of_list; $i++) {
           if(!in_array($i, $colors_used)){
             array_push($temp_color_options, $i);
           }
@@ -69,7 +69,7 @@
          // 'rgb(251,247,218)'
 
 
-        return $colors[get_random_int(0, count($colors))];
+        return $colors[get_random_int(count($colors))];
       }
 
       function getPhoto($photo_url) {
