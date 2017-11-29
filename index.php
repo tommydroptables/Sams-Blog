@@ -41,6 +41,7 @@
 
       $colors_used = [];
       function get_random_int($size_of_list) {
+        global $colors_used;
         // ------------------------------------------------------------------
         // Return an int without of the int that is in the `colors_used array
         // ------------------------------------------------------------------
