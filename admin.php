@@ -204,7 +204,7 @@
 
       # since this is linux we will need to skip '.' and '..'
       # make sure we are just looking at the blog specified
-      if($blog == '.' || $blog == '..') {
+      if($blog == '.' || $blog == '..' || $blog == '.git') {
         continue;
       }
 
