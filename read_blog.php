@@ -56,12 +56,13 @@
       $myfile = fopen($blog_text_url, "r") or die("Unable to open file, $blog_text_url!");
 
       // Elements we need to read in from the blog file
-      $title         = '';
-      $article       = '';
-      $article_image = '';
-      $image_left    = '';
-      $image_right   = '';
-      $image_full    = '';
+      $title                  = '';
+      $article                = '';
+      $article_image          = '';
+      $image_left             = '';
+      $image_right            = '';
+      $image_full             = '';
+      $article_image_position = '';
 
       while(!feof($myfile)) {
         $text_line = fgets($myfile);
@@ -138,7 +139,7 @@
 
       $temp_style = "background-position: center " . $article_image_position . "; background-image: url(" . getPhoto($images_dir . $article_image) . ")";
 
-      echo("<div style='" . $temp_style . "' class='basic_image_attributes " . $position_class . "' id='title_image_container'></div>");
+      echo("<div style='" . $temp_style . "' class='basic_image_attributes' id='title_image_container'></div>");
 
       echo("<div id='text_body'>");
       echo("<h1 id='article_title'>" . $title . "</h1>");

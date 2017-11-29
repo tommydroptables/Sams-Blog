@@ -41,15 +41,25 @@
 
       $colors_used = array();
       function get_random_int($number_recusions, $size_of_list) {
-        // Return an int without duplications. The returned number
-        // starts at 0 and goes to the size of $size_of_list
+        // ------------------------------------------------------------------
+        // Return an int without of the int that is in the `colors_used array
+        // ------------------------------------------------------------------
 
-        $random_int = rand(0, $size_of_list);
-        if(in_array($random_int, $colors_used) && $number_recusions <= 3)
-          $random_int = get_random_int($number_recusions++, $size_of_list);
+        $temp_color_options = array();
+        // Create an array that contains all the possible opesion
+        for ($i = 1; $i <= 10; $i++) {
+          if(!in_array($i, $colors_used)){
+            array_push($temp_color_options, $i);
+          }
+        }
 
-        array_push($colors_used, $random_int);
-        return $random_int;
+        $random_pos = rand(0, count($temp_color_options));
+
+        # New color position
+        $new_color_int = $temp_color_options[$random_pos];
+
+        array_push($colors_used, $new_color_int);
+        return $new_color_int;
       }
 
       function get_random_color() {
