@@ -93,14 +93,14 @@
 
       foreach($blog_contents as &$blog_content){
         # since this is linux we will need to skip '.' and '..'
-        if($blog_content == '.' || $blog_content == '..') {
+        if($blog_content == '.' || $blog_content == '..' || $blog_content == '.git' ) {
           continue;
         }
 
         # blog text file
         if(endsWith($blog_content, '.txt')){
           $blog_file = "$blog_str/$blog_content";
-          $myfile    = fopen($blog_file, "r") or die("Unable to open file, $blog_file!1");
+          $myfile    = fopen($blog_file, "r") or die("Unable to open file, $blog_file!");
           $title     = '';
           while(!feof($myfile)) {
             $text_line = fgets($myfile);
@@ -126,7 +126,7 @@
       $max_number = 0;
       foreach($blogs_dir as &$blogs_){
         # since this is linux we will need to skip '.' and '..'
-        if($blogs_ == '.' || $blogs_ == '..') {
+        if($blogs_ == '.' || $blogs_ == '..' || $blogs_ == '.git') {
           continue;
         }
         if ($max_number < intval($blogs_)) {
@@ -289,6 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 //                            If blog exists
 //-------------------------------------------------------------------------
 $image_thumbnails = Array();
+$text = "";
 if($_SESSION['blog_dir']) {
   //-------------------------------------------------------------------------
   //     If blog that is passed through url exits then display it.
@@ -297,7 +298,7 @@ if($_SESSION['blog_dir']) {
 
   foreach($blog_contents as &$blog_content){
     # since this is linux we will need to skip '.' and '..'
-    if($blog_content == '.' || $blog_content == '..') {
+    if($blog_content == '.' || $blog_content == '..' || $blog_content == '.git' ) {
       continue;
     }
     # blog text file
@@ -312,7 +313,7 @@ if($_SESSION['blog_dir']) {
       $blog_image_dir = $_SESSION['blog_dir'] . "/images";
       $blog_images = scandir($blog_image_dir);
       foreach($blog_images as &$blog_image){
-        if($blog_image == '.' || $blog_image == '..') {
+        if($blog_image == '.' || $blog_image == '..' || $blog_image == '.git') {
           continue;
         }
         array_push($image_thumbnails, get_thumbnail_photo_html($blog_image, './' . $blog_image_dir . '/' . $blog_image));

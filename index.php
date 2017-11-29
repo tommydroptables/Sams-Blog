@@ -129,7 +129,7 @@
       $blog_counter_2_rows = 0;
       foreach($blogs as &$blog){
         # since this is linux we will need to skip '.' and '..'
-        if($blog == '.' || $blog == '..') {
+        if($blog == '.' || $blog == '..' || $blog == '.git') {
           continue;
         }
         if($blog_counter_3_rows == 3) {
@@ -141,9 +141,9 @@
         $blog_str = "$dir/$blog";
         $blog_contents = scandir($blog_str);
 
-        foreach($blog_contents as &$blog_content){
+        foreach($blog_contents as $blog_content){
           # since this is linux we will need to skip '.' and '..'
-          if($blog_content == '.' || $blog_content == '..') {
+          if($blog_content == '.' || $blog_content == '..' || $blog_content == '.git' ) {
             continue;
           }
 
