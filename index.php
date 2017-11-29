@@ -39,13 +39,13 @@
 
     <?php
 
-      $colors_used = array();
+      $colors_used = [];
       function get_random_int($size_of_list) {
         // ------------------------------------------------------------------
         // Return an int without of the int that is in the `colors_used array
         // ------------------------------------------------------------------
 
-        $temp_color_options = array();
+        $temp_color_options = [];
         // Create an array that contains all the possible opesion
         for ($i = 0; $i <= $size_of_list; $i++) {
           if(!in_array($i, $colors_used)){
