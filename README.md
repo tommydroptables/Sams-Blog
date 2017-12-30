@@ -1,5 +1,5 @@
 # Sams-Blog
-Content Management System for Sam's Blog
+Content Management System for Sam's Blogs
 
 # File Structure
 
