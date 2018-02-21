@@ -8,6 +8,7 @@
 
   <!-- Set up anaylitics -->
   <?php include_once("analytics/analyticstracking.php") ?>
+  <link rel="icon" href="images/icon.png">
 
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css">

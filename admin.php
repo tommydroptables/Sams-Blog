@@ -9,7 +9,8 @@
   <!-- Set up anaylitics -->
   <?php include_once("analytics/analyticstracking.php") ?>
 
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="icon" href="images/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
     <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="JavaScript/jquery.min.js"></script>

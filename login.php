@@ -18,6 +18,7 @@
 
       <!-- Set up anaylitics -->
       <?php include_once("analytics/analyticstracking.php") ?>
+      <link rel="icon" href="images/icon.png">
 
       <link href = "css/bootstrap.min.css" rel = "stylesheet">
       <link rel="stylesheet" type="text/css" href="css/styles.css">

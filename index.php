@@ -8,6 +8,7 @@
     <meta name="author" content="Dr. Pearl">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" href="images/icon.png">
     <!-- Set up anaylitics -->
     <?php include_once("analytics/analyticstracking.php") ?>
 
