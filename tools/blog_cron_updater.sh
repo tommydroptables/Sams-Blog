@@ -9,6 +9,7 @@ echo "PUSHING BLOG CHANGES"
 
 cd /var/www/thanks-pearl.us/Sams-Blog/blogs
 
+git add .
 git commit -a -m "updating blogs"
 
 # Push up to master
